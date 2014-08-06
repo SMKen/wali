@@ -1,4 +1,6 @@
-/**帐户表*/
+/**
+jdbc:h2:tcp://localhost/~/smblog
+帐户表*/
 CREATE TABLE `SMBLOG_ADMIN` (
   `EMAIL` VARCHAR(255) NOT NULL,
   `USERNAME` VARCHAR(64) NOT NULL,
