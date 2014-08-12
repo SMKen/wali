@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `wali`.`smdiary_diary` (
   `update_time` TIMESTAMP NOT NULL,
   PRIMARY KEY (`UID`));
 
--- Table `wali`.`diary_category`
-DROP TABLE IF EXISTS `wali`.`diary_category` ;
-CREATE TABLE IF NOT EXISTS `wali`.`diary_category` (
+-- Table `wali`.`smdiary_category`
+DROP TABLE IF EXISTS `wali`.`smdiary_category` ;
+CREATE TABLE IF NOT EXISTS `wali`.`smdiary_category` (
   `name` VARCHAR(32) NOT NULL,
   `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` TIMESTAMP NOT NULL,
@@ -71,9 +71,13 @@ CREATE TABLE IF NOT EXISTS smdiary_diary (
   update_time TIMESTAMP NOT NULL,
   PRIMARY KEY (UID));
 
-DROP TABLE IF EXISTS diary_category ;
-CREATE TABLE IF NOT EXISTS diary_category (
+DROP TABLE IF EXISTS smdiary_category ;
+CREATE TABLE IF NOT EXISTS smdiary_category (
   name VARCHAR(32) NOT NULL,
   create_time TIMESTAMP NOT NULL ,
   update_time TIMESTAMP NOT NULL,
   PRIMARY KEY (name));
+  
+--jdbc:h2:tcp://localhost/~/smdiary
+--org.h2.Driver sa 
+  
