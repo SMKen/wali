@@ -64,7 +64,7 @@ div, input, select, textarea, span, img, table, td, th, p, a, button, ul,
 
 .nav>li>a {
 	display: block;
-	padding: 10px 15px;
+	padding: 15px 15px;
 	position: relative;
 }
 
