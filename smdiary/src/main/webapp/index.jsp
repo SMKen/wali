@@ -93,15 +93,15 @@
 				<!-- END LEFT SIDEBAR -->
 
 				<!-- BEGIN RIGHT SIDEBAR -->
-				<div class="col-md-3 col-sm-3 blog-sidebar">
+				<div class="col-md-3 col-sm-3">
 					<!-- CATEGORIES START -->
 					<h2>年份浏览</h2>
-					<ul class="nav sidebar-categories margin-bottom-40">
+					<ul class="margin-bottom-40">
 						<li><a href="#">2014年8月(18)</a></li>
 						<li><a href="#">2014年7月 (5)</a></li>
-						<li class="active"><a href="#">2014年6月 (12)</a></li>
-						<li><a href="#">2013年(7)</a></li>
-					</ul>
+						<li class="active"><a href="#">2014年6月 (5)</a></li>
+						<li><a href="#">2014年5月 (5)</a></li>
+					</ul> 
 					<!-- CATEGORIES END -->
 
 					<!-- BEGIN BLOG TAGS -->
