@@ -4,7 +4,7 @@
 <%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"  %>
 <%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"  %> 
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:setLocale value="zh_CN" />
@@ -14,7 +14,7 @@
 <!-- 使用query 标签执行查询 -->
 <sql:query dataSource="${db}" var="users"
 	sql="select * from SMDIARY_CATEGORY" scope="page" startRow="0"
-	maxRows="10"> 
+	maxRows="10">
 </sql:query>
 <!DOCTYPE html>
 <html>
@@ -118,17 +118,18 @@
 					<div class="blog-tags margin-bottom-20">
 						<h2>标签</h2>
 						<ul>
-<c:catch var="sqle">
- <c:forEach var="row" items="${users.rows}">
- <li><a href="#"><i class="icon-tags"></i><c:out value="${row.name}" /></a></li>
- </c:forEach>
-</c:catch>
-<c:if test="${sqle != null}"> 
-<li><a href="#"><i class="icon-tags"></i>未分类</a></li>
-</c:if>
-<%-- <c:out value="${empty sqle}" /> --%>
-<!-- 
---INSERT INTO SMDIARY_CATEGORY(NAME,CREATE_TIME,UPDATE_TIME)VALUES('工作',now(),now());	
+							<c:catch var="sqle">
+								<c:forEach var="row" items="${users.rows}">
+									<li><a href="#"><i class="icon-tags"></i>
+										<c:out value="${row.name}" /></a></li>
+								</c:forEach>
+							</c:catch>
+							<c:if test="${sqle != null}">
+								<li><a href="#"><i class="icon-tags"></i>未分类</a></li>
+							</c:if>
+							<%-- <c:out value="${empty sqle}" /> --%>
+							<!-- 
+--INSERT INTO SMDIARY_CATEGORY(NAME,CREATE_TIME,UPDATE_TIME)VALUES('工作',now(),now());
 							<li><a href="#"><i class="icon-tags"></i>生活</a></li>
 							<li><a href="#"><i class="icon-tags"></i>小敏</a></li>
 							<li><a href="#"><i class="icon-tags"></i>家庭</a></li>
@@ -136,7 +137,8 @@
 							<li><a href="#"><i class="icon-tags"></i>财务</a></li>
 							<li><a href="#"><i class="icon-tags"></i>健康</a></li>
 							<li><a href="#"><i class="icon-tags"></i>旅游</a></li>
- -->						</ul>
+ -->
+						</ul>
 					</div>
 					<!-- END BLOG TAGS -->
 				</div>
@@ -153,10 +155,9 @@
 			<p>CopyRight @ Ken</p>
 		</div>
 	</footer>
-
-	<%-- <script
-		src="${pageContext.request.contextPath}/resource/jquery/2.0.2/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.min.js"></script> --%>
+		src="${pageContext.request.contextPath}/resource/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>
