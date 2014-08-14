@@ -128,6 +128,7 @@
 </c:if>
 <%-- <c:out value="${empty sqle}" /> --%>
 <!-- 
+--INSERT INTO SMDIARY_CATEGORY(NAME,CREATE_TIME,UPDATE_TIME)VALUES('工作',now(),now());	
 							<li><a href="#"><i class="icon-tags"></i>生活</a></li>
 							<li><a href="#"><i class="icon-tags"></i>小敏</a></li>
 							<li><a href="#"><i class="icon-tags"></i>家庭</a></li>
