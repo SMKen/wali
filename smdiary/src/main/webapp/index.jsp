@@ -154,10 +154,10 @@
 		<div class="container container-narrow">
 			<p>CopyRight @ Ken</p>
 		</div>
-	</footer>
+	</footer><%-- 
 	<script
 		src="${pageContext.request.contextPath}/resource/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.min.js"></script> --%>
 </body>
 </html>
