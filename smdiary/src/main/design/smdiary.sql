@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS smdiary_diary (
   diary TEXT NOT NULL,
   category VARCHAR(255) NOT NULL,
   viewtimes INT NOT NULL DEFAULT 0,
+  status INT NOT NULL DEFAULT 0,
   create_time TIMESTAMP NOT NULL ,
   update_time TIMESTAMP NOT NULL,
   PRIMARY KEY (UID));
