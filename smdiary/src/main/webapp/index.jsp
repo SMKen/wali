@@ -9,13 +9,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:setLocale value="zh_CN" />
 
-<sql:setDataSource driver="org.h2.Driver" user="sa" password=""
-	url="jdbc:h2:tcp://localhost/~/smdiary" var="db" />
-<!-- 使用query 标签执行查询 -->
-<sql:query dataSource="${db}" var="users"
-	sql="select * from SMDIARY_CATEGORY" scope="page" startRow="0"
-	maxRows="10">
-</sql:query>
+<sql:setDataSource driver="org.h2.Driver" user="sa" password="" url="jdbc:h2:tcp://localhost/~/smdiary" var="db" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,7 +112,8 @@
 					<div class="blog-tags margin-bottom-20">
 						<h2>标签</h2>
 						<ul>
-							<c:catch var="sqle">
+						<c:catch var="sqle">
+							<sql:query dataSource="${db}" var="users" sql="select * from SMDIARY_CATEGORY" scope="page" startRow="0" maxRows="10"></sql:query>
 								<c:forEach var="row" items="${users.rows}">
 									<li><a href="#"><i class="icon-tags"></i>
 										<c:out value="${row.name}" /></a></li>
