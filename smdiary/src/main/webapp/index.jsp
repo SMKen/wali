@@ -9,7 +9,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:setLocale value="zh_CN" />
 
-<sql:setDataSource driver="org.h2.Driver" user="sa" password="" url="jdbc:h2:tcp://localhost/~/smdiary" var="db" />
+<sql:setDataSource driver="org.h2.Driver" user="sa" password=""
+	url="jdbc:h2:tcp://localhost/~/smdiary" var="db" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,21 +67,37 @@
 				<!-- BEGIN LEFT SIDEBAR -->
 				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
 					<div class="row">
-						<div class="col-md-8 col-sm-8">
-							<h2>
-								<a href="#">这是什么一个情况</a>
-							</h2>
-							<ul class="blog-info">
-								<li><i class="icon-calendar"></i>2014-08-13</li>
-								<li><i class="icon-user"></i> 17</li>
-								<li><i class="icon-tags"></i>设计，开发，创作</li>
-							</ul>
-							<p>认真做好一件事，一件一件地往前做!.</p>
-							<a class="more" href="blog_item.html">更多<i
-								class="icon-angle-right"></i></a>
-						</div>
+
+						<c:catch var="sqle">
+							<sql:query dataSource="${db}" var="diaryList"
+								sql="select * from smdiary_diary" scope="page" startRow="0"
+								maxRows="10"></sql:query>
+							<c:forEach var="d" items="${diaryList.rows}">
+								<div class="col-md-8 col-sm-8">
+									<h2>
+										<a href="#"><c:out value="${d.outline}" /></a>
+									</h2>
+									<ul class="blog-info">
+										<li><i class="icon-calendar"></i> <fmt:parseDate
+												value="${d.create_time}" var="date"
+												pattern="yyyy/MM/dd:HH:mm:ss"></fmt:parseDate></li>
+										<li><i class="icon-user"></i> <c:out
+												value="${d.viewtimes}" /></li>
+										<li><i class="icon-tags"></i> <c:out
+												value="${d.category}" /></li>
+									</ul>
+									<p>
+										<c:out value="${d.diary}" />
+									</p>
+									<a class="more" href="#">更多<i class="icon-angle-right"></i></a>
+								</div>
+								<hr class="blog-post-sep">
+							</c:forEach>
+						</c:catch>
+						<c:if test="${sqle != null}">
+							<a href="#">Sorry , 后台出现异常 ！</a>
+						</c:if>
 					</div>
-					<hr class="blog-post-sep">
 
 					<div class="text-center">
 						<ul class="pagination pagination-centered">
@@ -112,11 +129,13 @@
 					<div class="blog-tags margin-bottom-20">
 						<h2>标签</h2>
 						<ul>
-						<c:catch var="sqle">
-							<sql:query dataSource="${db}" var="users" sql="select * from SMDIARY_CATEGORY" scope="page" startRow="0" maxRows="10"></sql:query>
+							<c:catch var="sqle">
+								<sql:query dataSource="${db}" var="users"
+									sql="select * from SMDIARY_CATEGORY" scope="page" startRow="0"
+									maxRows="10"></sql:query>
 								<c:forEach var="row" items="${users.rows}">
-									<li><a href="#"><i class="icon-tags"></i>
-										<c:out value="${row.name}" /></a></li>
+									<li><a href="#"><i class="icon-tags"></i> <c:out
+												value="${row.name}" /></a></li>
 								</c:forEach>
 							</c:catch>
 							<c:if test="${sqle != null}">
@@ -149,7 +168,8 @@
 		<div class="container container-narrow">
 			<p>CopyRight @ Ken</p>
 		</div>
-	</footer><%-- 
+	</footer>
+	<%-- 
 	<script
 		src="${pageContext.request.contextPath}/resource/jquery.min.js"></script>
 	<script
