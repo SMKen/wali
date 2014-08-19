@@ -1,5 +1,5 @@
 --mysql 
--- Table `wali`.`smdiary_admin`
+-- Table `wali`.`smdiary_admin` insert into SMDIARY_ADMIN values('Ken','郑超','123456','zh_chao@126.com','','',1,0,now(),now());
 DROP TABLE IF EXISTS `wali`.`smdiary_admin` ;
 
 CREATE TABLE IF NOT EXISTS `wali`.`smdiary_admin` (
