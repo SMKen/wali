@@ -23,6 +23,9 @@
 		<sql:param value="${param.pwd}" />
 	</sql:query>
 	<c:if test="${userList.rowCount>0}">
+	<%-- <c:set  var="alias"  value="Eric"  scope="session"  />
+	<c:out  value="${sessionScope.currentUser.username"  />
+	 --%>
 	<script type="text/javascript">
 			function getCookie(name) {  
 				var nameEQ = name + "=";  
