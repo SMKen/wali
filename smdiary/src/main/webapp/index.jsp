@@ -9,8 +9,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:setLocale value="zh_CN" />
 
-<sql:setDataSource driver="org.h2.Driver" user="sa" password=""
-	url="jdbc:h2:tcp://localhost/~/smdiary" var="db" />
+<%@ include file="resource/jsp/diarydb.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +44,11 @@
 					<li><a href="#">日记</a></li>
 					<li><a href="#">分类</a></li>
 					<li><a href="#">分享</a></li>
-					<li><a href="#">其它</a></li>
+					<!-- <li><a href="#">其它</a></li> -->
 					<li><a href="#">设置</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">登陆</a></li>
-					<li><a href="#">其它</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -67,7 +65,6 @@
 				<!-- BEGIN LEFT SIDEBAR -->
 				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
 					<div class="row">
-
 						<c:catch var="sqle">
 							<sql:query dataSource="${db}" var="diaryList"
 								sql="select * from smdiary_diary" scope="page" startRow="0"
