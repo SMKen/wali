@@ -51,22 +51,28 @@
 }
 </style>
 <script type="text/javascript">
-	function CheckEmail(email) {
-		return eregi(
-				"^[0-9a-z][a-z0-9._-]{1,}@[a-z0-9-]{1,}[a-z0-9].[a-z.]{1,}[a-z]$",
-				email);
+	function checkEmail(email) {
+		var reg = new RegExp("^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$");
+		if (reg.test(email)) {
+			return true;
+		}
+		return false;
 	}
 	function validate(str) {
-		return eregi("^[0-9a-zA-Z@]$", str);
-	}
-	function checkvalidate() {
-		var user = document.getElementById("email").value;
-		var pwd = document.getElementById("pwd").value;
-		alert(user + "_" + pwd);
-		if (!validate(user) || !validate(pwd)) {
-			alert("invalidate");
-			return false;
+		var regs = new RegExp("^[a-zA-Z0-9]{6,20}$");
+		if (regs.test(str)) {
+			return true;
 		}
+		return false;
+	}
+	function checkvalidate(){
+		var user = document.login.email.value;//getElementById("email").value;
+		var pwd = document.login.pwd.value;//.getElementById("pwd").value;
+		alert(user + "_" + pwd);
+		if (!checkEmail(user) || !validate(pwd)) {
+			alert("invalidate user or password");
+			return false;
+		} 
 		return false;
 	}
 </script>
@@ -79,31 +85,31 @@
 		<div class="row">
 			<div
 				class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 login-signup-page">
-				<form action="login.jsp" method="POST"
-					onsubmit="return checkvalidate();">
+				<form name="login" action="login.jsp" method="POST" onSubmit	="return checkvalidate();">
 					<h2>登陆</h2>
 
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i class="icon-envelope"></i></span>
 						<input type="text" name="email" id="email" class="form-control"
-							placeholder="邮箱">
+							placeholder="邮箱"/>
 					</div>
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i class="icon-remove-sign"></i></span>
 						<input type="password" name="pwd" id="pwd" class="form-control"
-							placeholder="密码">
+							placeholder="密码"/>
 						<!-- <a href="#" class="login-signup-forgot-link">忘记?</a> -->
 					</div>
 
 					<div class="row">
 						<div class="col-md-6 col-sm-6">
 							<div class="checkbox-list">
-								<label class="checkbox"><input type="checkbox">
+								<label class="checkbox"><input type="checkbox"/>
 									记住</label>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6">
-							<button type="submit" class="btn theme-btn pull-right">登陆</button>
+						<!-- onclick="checkvalidate();" -->
+							<button type="button"  onclick="checkvalidate();"  class="btn theme-btn pull-right">登陆</button>
 						</div>
 					</div>
 					<hr>
