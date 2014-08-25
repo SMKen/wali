@@ -59,7 +59,6 @@
 
 	<div class="clear"></div>
 	<div class="page-container">
-
 		<div class="container min-hight">
 			<div class="row">
 				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
@@ -95,6 +94,21 @@
 						</c:if>
 					</div>
 
+					<c:if test="${sessionScope.user != null}">
+						<div class="text-center">
+							<form id="addRight" action="#" onsubmit="return false;"
+								style="text-align: left">
+								标题:<input id="title" type="text" name="title" size="50" /> <input
+									type="hidden" id="titleh" name="titleh" size="150" /> <br />标签:<input
+									id="tag" type="text" name="tag" size="50" /> <input
+									type="hidden" id="tagh" name="tagh" size="150" /> <br />日志:<input
+									id="content" type="text" name="content" size="50" /> <input
+									type="hidden" id="contenth" name="contenth" size="150" /> <br />
+								<button class="btn btn-primary" onclick="addDiary();" value="提交">提交</button>
+							</form>
+						</div>
+					</c:if>
+				
 					<div class="text-center">
 						<ul class="pagination pagination-centered">
 							<li><a href="#">上一页</a></li>
