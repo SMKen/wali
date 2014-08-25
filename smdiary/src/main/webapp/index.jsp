@@ -1,38 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %> 
 <fmt:setLocale value="zh_CN" />
-<%@ include file="resource/jsp/diarydb.jsp"%>
-<%--提交文章 --%>
-<c:catch var="sqle">
-	<c:if
-		test="${param.title != null and param.tag != null  and param.content != null }">
-		<sql:query dataSource="${db}" var="userList"
-			sql="insert into SMDIARY_DIARY (UID,DIARY_DAY,DAY_WEATHER,MOOD,ADMIN_UID,OUTLINE,DIARY,CATEGORY,VIEWTIMES,	STATUS,CREATE_TIME,UPDATE_TIME) values
-			()"
-			scope="page">
-			<sql:param value="${param.email}" />
-			<sql:param value="${param.pwd}" />
-		</sql:query>
-		<c:choose>
-			<c:when test="${userList.rowCount>0}">
-				<c:set var="user" scope="session" value="${param.email}" />
-				<script type="text/javascript">
-					alert("${sessionScope.user}登陆成功!");
-					self.location.href = "index.jsp";
-				</script>
-			</c:when>
-			<c:otherwise>
-				<c:remove var="user" scope="session" />
-			</c:otherwise>
-		</c:choose>
-	</c:if>
-</c:catch>
-
+<%@ include file="resource/jsp/diarydb.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,17 +19,7 @@
 <link
 	href="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resource/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-	function addDiary() {
-
-	}
-	/* <form id="addRight" action="#" onsubmit="return false;">
-	 标题:<input id="title" type="text" name="title"  size="150" /> <input type="text" id="titleh" name="titleh"  size="150" />
-	 tag:<input id="tag" type="text" name="tag"  size="150" /> <input id="tagh" name="tagh"  size="150" />
-	 日志:<input id="content" type="text" name="content" size="150" /> <input id="contenth" name="contenth" size="150" />
-	 <button class="btn btn-primary"  onclick="addDiary();"  */
-</script>
+<link href="resource/style.css" rel="stylesheet" type="text/css" /> 
 </head>
 <body>
 	<header role="banner" id="top"
@@ -81,66 +45,64 @@
 					<li><a href="#">设置</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><c:choose>
-							<c:when test="${sessionScope.user == null}">
-								<a href="login.jsp">登陆</a>
-							</c:when>
-							<c:otherwise>
+					<li>
+					<c:choose>
+						<c:when test="${sessionScope.user == null}"> 
+							<a href="login.jsp">登陆</a>
+						</c:when>
+						<c:otherwise>
 							${sessionScope.user}
-						</c:otherwise>
-						</c:choose></li>
+						</c:otherwise> 
+					</c:choose>
+					</li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 
 	<div class="clear"></div>
+	<!-- BEGIN PAGE CONTAINER -->
 	<div class="page-container">
 
+		<!-- BEGIN CONTAINER -->
 		<div class="container min-hight">
-			<!-- <div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
+			<!-- BEGIN BLOG -->
+			<div class="row">
+				<!-- BEGIN LEFT SIDEBAR -->
+				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
 					<div class="row">
-						<form id="addRight" action="#" onsubmit="return false;">
-							标题:<input id="title" type="text" name="title"  size="50" /> <input type="hidden" id="titleh" name="titleh"  size="150" />
-							<br/>tag:<input id="tag" type="text" name="tag"  size="50" /> <input type="hidden"  id="tagh" name="tagh"  size="150" />
-							<br/>日志:<input id="content" type="text" name="content" size="50" /> <input type="hidden"  id="contenth" name="contenth" size="150" />
-							<button class="btn btn-primary"  onclick="addDiary();"  type="button"></button>
-						</form>									 
+						<c:catch var="sqle">
+							<sql:query dataSource="${db}" var="diaryList"
+								sql="select * from smdiary_diary" scope="page" startRow="0"
+								maxRows="10"></sql:query>
+							<c:forEach var="d" items="${diaryList.rows}">
+								<div class="col-md-8 col-sm-8">
+									<h2>
+										<a href="#"><c:out value="${d.outline}" /></a>
+									</h2>
+									<ul class="blog-info">
+										<li><i class="icon-calendar"></i> <fmt:parseDate
+												value="${d.create_time}" var="date"
+												pattern="yyyy/MM/dd:HH:mm:ss"></fmt:parseDate></li>
+										<li><i class="icon-user"></i> <c:out
+												value="${d.viewtimes}" /></li>
+										<li><i class="icon-tags"></i> <c:out
+												value="${d.category}" /></li>
+									</ul>
+									<p>
+										<c:out value="${d.diary}" />
+									</p>
+									<a class="more" href="#">更多<i class="icon-angle-right"></i></a>
+								</div>
+								<hr class="blog-post-sep">
+							</c:forEach>
+						</c:catch>
+						<c:if test="${sqle != null}">
+							<a href="#">Sorry , 后台出现异常 ！</a>
+						</c:if>
 					</div>
-				</div> -->
-			<!-- BEGIN LEFT SIDEBAR -->
-			<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
-				<div class="row">
-					<c:catch var="sqle">
-						<sql:query dataSource="${db}" var="diaryList"
-							sql="select * from smdiary_diary" scope="page" startRow="0"
-							maxRows="10"></sql:query>
-						<c:forEach var="d" items="${diaryList.rows}">
-							<div class="col-md-8 col-sm-8">
-								<h2>
-									<a href="#"><c:out value="${d.outline}" /></a>
-								</h2>
-								<ul class="blog-info">
-									<li><i class="icon-calendar"></i> <fmt:parseDate
-											value="${d.create_time}" var="date"
-											pattern="yyyy/MM/dd:HH:mm:ss"></fmt:parseDate></li>
-									<li><i class="icon-user"></i> <c:out
-											value="${d.viewtimes}" /></li>
-									<li><i class="icon-tags"></i> <c:out value="${d.category}" /></li>
-								</ul>
-								<p>
-									<c:out value="${d.diary}" />
-								</p>
-								<a class="more" href="#">更多<i class="icon-angle-right"></i></a>
-							</div>
-							<hr class="blog-post-sep">
-						</c:forEach>
-					</c:catch>
-					<c:if test="${sqle != null}">
-						<a href="#">Sorry , 后台出现异常 ！</a>
-					</c:if>
 
-				<!-- <div class="text-center">
+					<div class="text-center">
 						<ul class="pagination pagination-centered">
 							<li><a href="#">上一页</a></li>
 							<li><a href="#">1</a></li>
@@ -150,35 +112,40 @@
 							<li><a href="#">5</a></li>
 							<li><a href="#">最后一页</a></li>
 						</ul>
-					</div> -->
-			</div>
+					</div>
+				</div>
+				<!-- END LEFT SIDEBAR -->
 
-			<div class="col-md-3 col-sm-3">
-				<h2>年份浏览</h2>
-				<ul class="margin-bottom-40">
-					<li><a href="#">2014年8月(18)</a></li>
-					<li><a href="#">2014年7月 (5)</a></li>
-					<li class="active"><a href="#">2014年6月 (5)</a></li>
-					<li><a href="#">2014年5月 (5)</a></li>
-				</ul>
+				<!-- BEGIN RIGHT SIDEBAR -->
+				<div class="col-md-3 col-sm-3">
+					<!-- CATEGORIES START -->
+					<h2>年份浏览</h2>
+					<ul class="margin-bottom-40">
+						<li><a href="#">2014年8月(18)</a></li>
+						<li><a href="#">2014年7月 (5)</a></li>
+						<li class="active"><a href="#">2014年6月 (5)</a></li>
+						<li><a href="#">2014年5月 (5)</a></li>
+					</ul>
+					<!-- CATEGORIES END -->
 
-				<div class="blog-tags margin-bottom-20">
-					<h2>标签</h2>
-					<ul>
-						<c:catch var="sqle">
-							<sql:query dataSource="${db}" var="users"
-								sql="select * from SMDIARY_CATEGORY" scope="page" startRow="0"
-								maxRows="10"></sql:query>
-							<c:forEach var="row" items="${users.rows}">
-								<li><a href="#"><i class="icon-tags"></i> <c:out
-											value="${row.name}" /></a></li>
-							</c:forEach>
-						</c:catch>
-						<c:if test="${sqle != null}">
-							<li><a href="#"><i class="icon-tags"></i>未分类</a></li>
-						</c:if>
-						<%-- <c:out value="${empty sqle}" /> --%>
-						<!-- 
+					<!-- BEGIN BLOG TAGS -->
+					<div class="blog-tags margin-bottom-20">
+						<h2>标签</h2>
+						<ul>
+							<c:catch var="sqle">
+								<sql:query dataSource="${db}" var="users"
+									sql="select * from SMDIARY_CATEGORY" scope="page" startRow="0"
+									maxRows="10"></sql:query>
+								<c:forEach var="row" items="${users.rows}">
+									<li><a href="#"><i class="icon-tags"></i> <c:out
+												value="${row.name}" /></a></li>
+								</c:forEach>
+							</c:catch>
+							<c:if test="${sqle != null}">
+								<li><a href="#"><i class="icon-tags"></i>未分类</a></li>
+							</c:if>
+							<%-- <c:out value="${empty sqle}" /> --%>
+							<!-- 
 --INSERT INTO SMDIARY_CATEGORY(NAME,CREATE_TIME,UPDATE_TIME)VALUES('工作',now(),now());
 							<li><a href="#"><i class="icon-tags"></i>生活</a></li>
 							<li><a href="#"><i class="icon-tags"></i>小敏</a></li>
@@ -188,11 +155,16 @@
 							<li><a href="#"><i class="icon-tags"></i>健康</a></li>
 							<li><a href="#"><i class="icon-tags"></i>旅游</a></li>
  -->
-					</ul>
+						</ul>
+					</div>
+					<!-- END BLOG TAGS -->
 				</div>
+				<!-- END RIGHT SIDEBAR -->
 			</div>
+			<!-- END BEGIN BLOG -->
 		</div>
-	</div>
+		<!-- END CONTAINER -->
+
 	</div>
 
 	<footer class="footer">
