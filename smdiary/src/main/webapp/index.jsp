@@ -125,11 +125,11 @@
 				<div class="col-md-3 col-sm-3">
 					<h2>年份浏览</h2>
 					<ul class="margin-bottom-40">
-						<li><a href="#">2014年8月(18)</a></li>
+<!-- 						<li><a href="#">2014年8月(18)</a></li>
 						<li><a href="#">2014年7月 (5)</a></li>
 						<li class="active"><a href="#">2014年6月 (5)</a></li>
 						<li><a href="#">2014年5月 (5)</a></li>
-					</ul>
+ -->					</ul>
 
 					<div class="blog-tags margin-bottom-20">
 						<h2>标签</h2>
