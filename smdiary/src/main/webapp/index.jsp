@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%> 
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
-<%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <fmt:setLocale value="zh_CN" />
-<%@ include file="resource/jsp/diarydb.jsp" %>
+<%@ include file="resource/jsp/diarydb.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
 <link
 	href="${pageContext.request.contextPath}/resource/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resource/style.css" rel="stylesheet" type="text/css" /> 
+<link href="resource/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<header role="banner" id="top"
@@ -41,34 +41,27 @@
 					<li><a href="#">日记</a></li>
 					<li><a href="#">分类</a></li>
 					<li><a href="#">分享</a></li>
-					<!-- <li><a href="#">其它</a></li> -->
 					<li><a href="#">设置</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-					<c:choose>
-						<c:when test="${sessionScope.user == null}"> 
-							<a href="login.jsp">登陆</a>
-						</c:when>
-						<c:otherwise>
+					<li><c:choose>
+							<c:when test="${sessionScope.user == null}">
+								<a href="login.jsp">登陆</a>
+							</c:when>
+							<c:otherwise>
 							${sessionScope.user}
-						</c:otherwise> 
-					</c:choose>
-					</li>
+						</c:otherwise>
+						</c:choose></li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 
 	<div class="clear"></div>
-	<!-- BEGIN PAGE CONTAINER -->
 	<div class="page-container">
 
-		<!-- BEGIN CONTAINER -->
 		<div class="container min-hight">
-			<!-- BEGIN BLOG -->
 			<div class="row">
-				<!-- BEGIN LEFT SIDEBAR -->
 				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
 					<div class="row">
 						<c:catch var="sqle">
@@ -114,11 +107,8 @@
 						</ul>
 					</div>
 				</div>
-				<!-- END LEFT SIDEBAR -->
 
-				<!-- BEGIN RIGHT SIDEBAR -->
 				<div class="col-md-3 col-sm-3">
-					<!-- CATEGORIES START -->
 					<h2>年份浏览</h2>
 					<ul class="margin-bottom-40">
 						<li><a href="#">2014年8月(18)</a></li>
@@ -126,9 +116,7 @@
 						<li class="active"><a href="#">2014年6月 (5)</a></li>
 						<li><a href="#">2014年5月 (5)</a></li>
 					</ul>
-					<!-- CATEGORIES END -->
 
-					<!-- BEGIN BLOG TAGS -->
 					<div class="blog-tags margin-bottom-20">
 						<h2>标签</h2>
 						<ul>
@@ -144,26 +132,11 @@
 							<c:if test="${sqle != null}">
 								<li><a href="#"><i class="icon-tags"></i>未分类</a></li>
 							</c:if>
-							<%-- <c:out value="${empty sqle}" /> --%>
-							<!-- 
---INSERT INTO SMDIARY_CATEGORY(NAME,CREATE_TIME,UPDATE_TIME)VALUES('工作',now(),now());
-							<li><a href="#"><i class="icon-tags"></i>生活</a></li>
-							<li><a href="#"><i class="icon-tags"></i>小敏</a></li>
-							<li><a href="#"><i class="icon-tags"></i>家庭</a></li>
-							<li><a href="#"><i class="icon-tags"></i>人际</a></li>
-							<li><a href="#"><i class="icon-tags"></i>财务</a></li>
-							<li><a href="#"><i class="icon-tags"></i>健康</a></li>
-							<li><a href="#"><i class="icon-tags"></i>旅游</a></li>
- -->
 						</ul>
 					</div>
-					<!-- END BLOG TAGS -->
 				</div>
-				<!-- END RIGHT SIDEBAR -->
 			</div>
-			<!-- END BEGIN BLOG -->
 		</div>
-		<!-- END CONTAINER -->
 
 	</div>
 
