@@ -13,17 +13,16 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         ">
-
-	<!-- Hibernate4 -->
 	<!-- 加载资源文件 其中包含变量信息，必须在Spring配置文件的最前面加载，即第一个加载 -->
 	<context:property-placeholder location="classpath:db.properties" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="packagesToScan" value="com.wali.smdiary.entity"></property> -->
 		<property name="packagesToScan">
 			<list>
-				<value>com.wali.smdiary.entity</value>
+				<value>com.wali.*.entity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -46,6 +45,10 @@
 		<property name="username" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.pass}" />
 	</bean>
+
+	<context:component-scan base-package="com.wali.smdiary" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- 配置Hibernate事务管理器 -->
 	<bean id="transactionManager"
@@ -73,4 +76,7 @@
 		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
 	</aop:config>
 
+	<!-- <context:component-scan base-package="com.wali.smdiary"> <context:include-filter 
+		type="regex" expression="com.wali.smdiary.dao.*.*" /> <context:include-filter 
+		type="regex" expression="com.wali.smdiary.service.*.*" /> </context:component-scan> -->
 </beans>
