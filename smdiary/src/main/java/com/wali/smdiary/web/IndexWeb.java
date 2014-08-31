@@ -3,24 +3,25 @@ package com.wali.smdiary.web;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wali.smdiary.entity.SmDiaryAdmin;
 import com.wali.smdiary.service.ISmDiaryAdminService;
 
 @Controller
 @RequestMapping("/index")
+@SessionAttributes(types = SmDiaryAdmin.class, value = "admin")
 public class IndexWeb
 {
 
 	@Resource(name = "smDiaryAdminService")
-	private ISmDiaryAdminService service;
+	private ISmDiaryAdminService admin;
 
-	/*
-	 * @RequestMapping(method = RequestMethod.GET) public ModelAndView index() {
-	 * return new ModelAndView("index"); }
-	 */
+	@Deprecated
 	@RequestMapping(value = "/ma", method = RequestMethod.GET)
 	public ModelAndView manage()
 	{
@@ -30,13 +31,18 @@ public class IndexWeb
 		return mv;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login()
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(String email, String pwd, ModelMap mm)
 	{
-		// int c = service.doCount();
-		ModelAndView mv = new ModelAndView();
-		//mv.addObject("message", c);
-		mv.setViewName("main");
-		return mv;
+		SmDiaryAdmin ad = admin.login(email, pwd);
+		if (ad != null)
+		{
+			ad.setPwd("***");
+			mm.addAttribute("admin", ad);
+			return "index";
+		}
+		mm.addAttribute("emaill", email);
+		mm.addAttribute("msg", "用户名或密码不对。");
+		return "login";
 	}
 }
