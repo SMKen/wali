@@ -4,13 +4,15 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import javax.persistence.Embeddable;
-
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.util.Assert;
 
-import com.wali.common.lang.StringUtil;
+import com.wali.common.web.Page;
 import com.wali.smdiary.dao.IBaseHibernateDao;
-import com.wali.smdiary.entity.SmDiaryAdmin;
 
 /**
  * Hibernate 基准类.
@@ -18,104 +20,108 @@ import com.wali.smdiary.entity.SmDiaryAdmin;
  * @author Ken
  * @since 2014年8月31日
  */
-@Embeddable
+//@Embeddable
 public abstract class BaseHibernateDao<T, ID extends Serializable> implements IBaseHibernateDao<T, ID>
 {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return (List<T>) getSession().createCriteria(getClazz()).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAllOrderyed(String property, Boolean isAsc)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		if (isAsc)
+		{
+			return (List<T>) getSession().createCriteria(getClazz()).addOrder(Order.asc(property)).list();
+		}
+		return (List<T>) getSession().createCriteria(getClazz()).addOrder(Order.desc(property)).list();
 	}
 
 	@Override
 	public int getCountl()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return (Integer) getSession().createCriteria(getClazz()).setProjection(Projections.rowCount()).uniqueResult();
 	}
 
-	abstract Session getSession();
-	
 	@Override
 	public Boolean doSave(Serializable T)
 	{
-		//Session session = getSession();
-		try
-		{
-//			Transaction tx =	session.beginTransaction();
-//			tx.begin();
-			SmDiaryAdmin t = new SmDiaryAdmin();
-			t.setUid(StringUtil.getUUID());
-			t.setEmail("xxx");
-			t.setPwd("pwd");
-			getSession().save(t);
-			/*Session session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery(hsql);*/
-			//tx.commit();
-			return true;
-		} finally
-		{
-			//session.close();
-		}
+		getSession().save(T);
+		return true;
 	}
 
 	@Override
 	public Boolean doUpdate(Serializable T)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		getSession().update(T);
+		return true;
 	}
 
 	@Override
 	public Boolean doDelete(Serializable T)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		getSession().delete(T);
+		return true;
 	}
 
 	@Override
-	public Boolean doByParam(String property, Object value)
+	public int doDeleteByParam(String property, Object value)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		int count = getSession().createQuery("delete from " + getClass().getName() + " where " + property + " ? ").setParameter(property, value).executeUpdate();
+		return count;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getListByParams(String[] propertys, Object[] values)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return (List<T>) getCriteria(propertys,values).list();
 	}
 
+	Criteria getCriteria(String[] propertys, Object[] values)
+	{
+		Criteria c = getSession().createCriteria(getClazz());
+		if (null != propertys)
+		{
+			for (int i = 0; i < propertys.length; i++)
+			{
+				c.add(Restrictions.eq(propertys[i], values[i]));
+			}
+		}
+		return c;
+	}
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public T getOneById(Serializable ID)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Assert.notNull(ID);  
+		return (T) getSession().get(getClazz(), ID);
 	}
 
 	@Override
-	public T getByParams()
+	public T getByParams(String property, Object value)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		@SuppressWarnings("unchecked")
+		List<T> list = getSession().createCriteria(getClazz()).add(Restrictions.eq(property, value)).setFirstResult(0).setMaxResults(1).list();
+		if (null == list || list.isEmpty())
+			return null;
+		return list.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> getPagesByParams(String[] propertys, Object[] values, int page, int pageSize)
+	public List<T> getPagesByParams(String[] propertys, Object[] values,Page page)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return (List<T>) getCriteria(propertys,values).setFirstResult(page.getStartRow()).setMaxResults(page.getPageSize()).list();
 	}
+
+	abstract Session getSession();
 
 	protected Class<T> clazz;
 

@@ -3,6 +3,8 @@ package com.wali.smdiary.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.wali.common.web.Page;
+
 /**
  * 基准Hibenrate接口.
  * 
@@ -24,15 +26,15 @@ public interface IBaseHibernateDao<T, ID extends Serializable>
 
 	Boolean doDelete(Serializable T);
 
-	Boolean doByParam(String property, Object value);
+	int doDeleteByParam(String property, Object value);
 
 	List<T> getListByParams(String[] propertys, Object[] values);
 
 	T getOneById(Serializable ID);
 
-	T getByParams();
+	T getByParams(String property, Object value);
 
-	List<T> getPagesByParams(String[] propertys, Object[] values, int page, int pageSize);
+	List<T> getPagesByParams(String[] propertys, Object[] values, Page page);
 
 	abstract Class<T> getClazz();
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wali.smdiary.service.SmDiaryAdminService;
+import com.wali.smdiary.service.ISmDiaryAdminService;
 
 @Controller
 @RequestMapping("/index")
@@ -15,14 +15,12 @@ public class IndexWeb
 {
 
 	@Resource(name = "smDiaryAdminService")
-	private SmDiaryAdminService service;
-/*
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index()
-	{
-		return new ModelAndView("index");
-	}
-*/
+	private ISmDiaryAdminService service;
+
+	/*
+	 * @RequestMapping(method = RequestMethod.GET) public ModelAndView index() {
+	 * return new ModelAndView("index"); }
+	 */
 	@RequestMapping(value = "/ma", method = RequestMethod.GET)
 	public ModelAndView manage()
 	{
@@ -35,9 +33,9 @@ public class IndexWeb
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login()
 	{
-		int c = service.doCount();
+		// int c = service.doCount();
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("message", c);
+		//mv.addObject("message", c);
 		mv.setViewName("main");
 		return mv;
 	}

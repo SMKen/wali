@@ -1,12 +1,12 @@
-package com.wali.smdiary.service;
+package com.wali.smdiary.service.impl;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.wali.smdiary.dao.ISmDiaryAdminDao;
-import com.wali.smdiary.dao.impl.SmDiaryAdminDao;
 import com.wali.smdiary.entity.SmDiaryAdmin;
+import com.wali.smdiary.service.ISmDiaryAdminService;
 
 /**
  * 
@@ -14,22 +14,21 @@ import com.wali.smdiary.entity.SmDiaryAdmin;
  * @since 2014年8月28日
  */
 @Service
-public class SmDiaryAdminService
+public class SmDiaryAdminService implements ISmDiaryAdminService
 {
 
+	//@Autowired
 	@Resource(name = "smDiaryAdminDao")
 	private ISmDiaryAdminDao dao;
 
-	public int getCount()
+	public SmDiaryAdmin login(String name, String pwd)
 	{
-		System.out.println(dao.doSave(new SmDiaryAdmin()));
-		return 1;
+		return dao.login(name, pwd);
 	}
 
-	public int doCount()
+	public Boolean doUpdate(SmDiaryAdmin T)
 	{
-		System.out.println(dao.doSave(new SmDiaryAdmin()));
-		return 1;
+		return doUpdate(T);
 	}
 
 }

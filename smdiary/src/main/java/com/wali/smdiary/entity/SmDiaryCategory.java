@@ -18,6 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Ken
  * @since 2014年8月28日
  */
+@Deprecated
 @Entity(name = "wali_diary_category")
 public class SmDiaryCategory implements Serializable
 {
