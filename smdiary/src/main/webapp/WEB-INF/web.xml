@@ -5,8 +5,12 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>smdiary</display-name>
 
-	<welcome-file-list>
+	<!-- <welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	 -->
+	<welcome-file-list>
+	    <welcome-file></welcome-file>
 	</welcome-file-list>
 
 	<context-param>
