@@ -4,7 +4,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.wali.smdiary.dao.ISmDiaryAdminDao;
 import com.wali.smdiary.dao.impl.SmDiaryAdminDao;
+import com.wali.smdiary.entity.SmDiaryAdmin;
 
 /**
  * 
@@ -16,21 +18,18 @@ public class SmDiaryAdminService
 {
 
 	@Resource(name = "smDiaryAdminDao")
-	private SmDiaryAdminDao dao;
+	private ISmDiaryAdminDao dao;
 
 	public int getCount()
 	{
-		return dao.getAllObjs().size();
+		System.out.println(dao.doSave(new SmDiaryAdmin()));
+		return 1;
 	}
 
-	public SmDiaryAdminDao getDao()
+	public int doCount()
 	{
-		return dao;
-	}
-
-	public void setDao(SmDiaryAdminDao dao)
-	{
-		this.dao = dao;
+		System.out.println(dao.doSave(new SmDiaryAdmin()));
+		return 1;
 	}
 
 }

@@ -8,27 +8,25 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.wali.smdiary.dao.ISmDiaryAdminDao;
+import com.wali.smdiary.entity.SmDiary;
+
 /**
  * 管理员Dao.
  * 
  * @author Ken
  * @since 2014年8月28日
  */
-@Repository
-public class SmDiaryAdminDao
+@Repository(value = "smDiaryAdminDao")
+public class SmDiaryAdminDao extends BaseHibernateDao<SmDiary, String> implements ISmDiaryAdminDao<SmDiary, String>
 {
 
 	@Autowired
-	private SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory)
+	protected Session getSession()
 	{
-		this.sessionFactory = sessionFactory;
-	}
-
-	public SessionFactory getSessionFactory()
-	{
-		return sessionFactory;
+		return sessionFactory.getCurrentSession();
 	}
 
 	@SuppressWarnings("unchecked")

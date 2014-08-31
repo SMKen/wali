@@ -16,13 +16,13 @@ public class IndexWeb
 
 	@Resource(name = "smDiaryAdminService")
 	private SmDiaryAdminService service;
-
+/*
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index()
 	{
 		return new ModelAndView("index");
 	}
-
+*/
 	@RequestMapping(value = "/ma", method = RequestMethod.GET)
 	public ModelAndView manage()
 	{
@@ -35,7 +35,7 @@ public class IndexWeb
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login()
 	{
-		int c = service.getCount();
+		int c = service.doCount();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("message", c);
 		mv.setViewName("main");
