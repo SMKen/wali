@@ -16,13 +16,13 @@ public class Page
 	private int totalRecord = 0;
 	private Object data = null;
 
-	Page(){}
+	public Page(){}
 
-	Page(int start){
+	public Page(int start){
 		this.startPage = start;
 	}
 	
-	Page(int start,int pagesize){
+	public Page(int start,int pagesize){
 		this.startPage = start;
 		this.pageSize = pagesize;
 	}
