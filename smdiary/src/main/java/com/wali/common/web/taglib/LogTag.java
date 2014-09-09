@@ -1,4 +1,4 @@
-package com.wali.smdiary.jsp.taglib;
+package com.wali.common.web.taglib;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;

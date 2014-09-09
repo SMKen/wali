@@ -8,7 +8,7 @@
 	<uri>taglib.hexunkj</uri>
 	<tag>
 		<name>log</name>
-		<tag-class>com.wali.smdiary.jsp.taglib.LogTag</tag-class>
+		<tag-class>com.wali.common.web.taglib.LogTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>msg</name>

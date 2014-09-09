@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wali.common.lang.StringUtil;
-import com.wali.common.web.Page;
+import com.wali.common.web.page.Page;
 import com.wali.smdiary.entity.SmDiary;
 import com.wali.smdiary.entity.SmDiaryAdmin;
 import com.wali.smdiary.service.ISmDiaryService;

@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.wali.common.web.Page;
+import com.wali.common.web.page.Page;
 import com.wali.smdiary.dao.ISmDiaryDao;
 import com.wali.smdiary.entity.SmDiary;
 import com.wali.smdiary.service.ISmDiaryService;

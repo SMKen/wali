@@ -3,7 +3,7 @@ package com.wali.smdiary.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import com.wali.common.web.Page;
+import com.wali.common.web.page.Page;
 
 /**
  * 基准Hibenrate接口.

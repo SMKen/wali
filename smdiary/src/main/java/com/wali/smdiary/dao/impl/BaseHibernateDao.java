@@ -11,7 +11,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.util.Assert;
 
-import com.wali.common.web.Page;
+import com.wali.common.web.page.Page;
 import com.wali.smdiary.dao.IBaseHibernateDao;
 
 /**

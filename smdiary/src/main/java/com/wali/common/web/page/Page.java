@@ -1,4 +1,4 @@
-package com.wali.common.web;
+package com.wali.common.web.page;
 
 /**
  * 分页对象.
