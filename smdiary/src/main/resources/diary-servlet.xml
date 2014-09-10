@@ -16,7 +16,7 @@
 
 	<mvc:annotation-driven />
 	<!-- 启动自动扫描该包下所有的Bean(例如@Controller) -->
-	<context:component-scan base-package="com.wali.smdiary" />
+	<context:component-scan base-package="com.wali.smdiary.web" />
 
 	<!-- 静态资源访问，方案1 -->
 	<mvc:resources location="/img/" mapping="/img/**" />
