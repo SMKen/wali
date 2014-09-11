@@ -21,28 +21,27 @@ public class IndexWeb
 	@Resource(name = "smDiaryAdminService")
 	private ISmDiaryAdminService admin;
 
-	@Deprecated
-	@RequestMapping(value = "/ma", method = RequestMethod.GET)
-	public ModelAndView manage()
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login()
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("message", "HelloMVC");
-		mv.setViewName("manage");
+		mv.addObject("msg", "please login");
+		mv.setViewName("login");
 		return mv;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String email, String pwd, ModelMap mm)
+	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
+	public String doLogin(String email, String pwd, ModelMap mm)
 	{
 		SmDiaryAdmin ad = admin.login(email, pwd);
 		if (ad != null)
 		{
 			ad.setPwd("***");
 			mm.addAttribute("admin", ad);
-			return "index";
+			return "redirect:/diary";
 		}
 		mm.addAttribute("emaill", email);
 		mm.addAttribute("msg", "用户名或密码不对。");
-		return "login";
+		return "redirect:/index/login";
 	}
 }

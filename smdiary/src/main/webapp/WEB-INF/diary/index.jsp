@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>首页</title>
 </head>
 <body>
-	index page
+	<a href="${pageContext.request.contextPath}/index/login">登陆</a>
+	<%-- <a href="${pageContext.request.contextPath}/index/reg">注册</a> --%>
 </body>
 </html>

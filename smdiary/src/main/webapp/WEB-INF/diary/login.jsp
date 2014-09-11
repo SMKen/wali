@@ -5,10 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>登陆</title>
 </head>
 <body>
-	<form:form commandName="admin">
+<form action="${pageContext.request.contextPath}/index/doLogin"  method="POST">
+	<input type="text" name="email"></input>
+	<input type="password" name="pwd"></input>
+	<button type="submit">登录</button>
+	<button type="reset">重置</button>
+</form>
+${msg }
+	<%-- <form:form commandName="admin">
 		<form:hidden path="id" />
 		<ul>
 			<li><form:label path="email">邮箱:</form:label> <form:input
@@ -20,6 +27,6 @@
 				<button type="reset">重置</button>
 			</li>
 		</ul>
-	</form:form>
+	</form:form> --%>
 </body>
 </html>

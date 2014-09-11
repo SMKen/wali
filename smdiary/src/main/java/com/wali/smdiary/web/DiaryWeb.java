@@ -28,6 +28,19 @@ public class DiaryWeb
 	@Resource(name = "smDiaryService")
 	private ISmDiaryService service;
 
+	@RequestMapping
+	public ModelAndView main(@ModelAttribute("admin") SmDiaryAdmin admin)
+	{
+		List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("diarys", diarys);
+		mv.addObject("msgs", "test_attributeValue");
+		mv.setViewName("main");
+		return mv;
+	}
+
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView manage(@ModelAttribute("admin") SmDiaryAdmin admin)
 	{

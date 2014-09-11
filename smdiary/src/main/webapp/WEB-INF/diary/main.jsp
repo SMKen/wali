@@ -8,5 +8,9 @@
 </head>
 <body>
 	<h1>Message : ${message}</h1>
+	msgs:${msgs }<br/>
+	msg:${msg }<br/>
+	diarys:${diarys }<br/>
+	<hr>
 </body>
 </html>
