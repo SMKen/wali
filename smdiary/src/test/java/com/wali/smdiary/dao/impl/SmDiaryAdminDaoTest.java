@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wali.smdiary.dao.ISmDiaryAdminDao;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:diary-beans.xml")
-@Transactional
+@RunWith(SpringJUnit4ClassRunner.class)//启动 Spring 对测试类的支持
+@ContextConfiguration(locations = "classpath:diary-beans.xml")//指定 Spring 配置文件或者配置类的位置
+@Transactional//启用自动的事务管理
 public class SmDiaryAdminDaoTest
 // extends AbstractJUnit4SpringContextTests
 {
