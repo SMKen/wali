@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wali.common.lang.StringUtil;
-import com.wali.common.web.page.Page;
 import com.wali.smdiary.entity.SmDiary;
 import com.wali.smdiary.entity.SmDiaryAdmin;
 import com.wali.smdiary.service.ISmDiaryService;
@@ -29,10 +28,11 @@ public class DiaryWeb
 	private ISmDiaryService service;
 
 	@RequestMapping
-	public ModelAndView main(@ModelAttribute("admin") SmDiaryAdmin admin)
+	public ModelAndView main()//@ModelAttribute("admin") SmDiaryAdmin admin
 	{
-		List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
-
+		//List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+		List<SmDiary> diarys = service.getListByParams(null, null);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("diarys", diarys);
 		mv.addObject("msgs", "test_attributeValue");
@@ -44,7 +44,8 @@ public class DiaryWeb
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView manage(@ModelAttribute("admin") SmDiaryAdmin admin)
 	{
-		List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+		//List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+		List<SmDiary> diarys = service.getListByParams(null, null);
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("diarys", diarys);
@@ -80,18 +81,22 @@ public class DiaryWeb
 		return mv;
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diary, @ModelAttribute("admin") SmDiaryAdmin admin)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diary)//, @ModelAttribute("admin") SmDiaryAdmin admin
 	{
-		diary.setAdmin(admin.getUid());
+		//diary.setAdmin(admin.getUid());
 		diary.setCreateTime(new Date());
 		diary.setUpdateTime(new Date());
 		diary.setUid(StringUtil.getUUID());
 		boolean flag = service.doSave(diary);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("diary", diary);
 		mv.addObject("flag", flag);
-		mv.setViewName("add");
+		
+		//List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+		List<SmDiary> diarys = service.getListByParams(null, null);
+		mv.addObject("diarys", diarys);
+		mv.addObject("msgs", "test_in_add_view");
+		mv.setViewName("main");
 		return mv;
 	}
 
