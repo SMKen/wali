@@ -1,0 +1,72 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; }
+html { font-size: 100%; }
+body { font-family: "微软雅黑", serif; font-size: 100%; }
+h1 { color: #363636; font-size: 3.428571428571429em; font-family: 'Fredericka the Great', cursive; font-weight: normal; }
+ul { list-style: none; }
+a img { border: none; }
+a { color: #333; text-decoration: none; }
+a:hover, a:active, a:focus { color: #d34e16; text-decoration: none; }
+img { max-width: 100%; height: auto; width: auto; }
+p { line-height: 140%; }
+.wrapper { width: 93.75%;margin: 0 auto }
+header { border-bottom: #c0c0c01px solid; overflow: hidden; margin: 10px 0 }
+h1#logo { width: 260px; height: 60px; float: left; overflow: hidden }
+nav { float: right; margin: 20px 0; }
+nav li { display: inline; list-style: none; padding: 1px; }
+nav li a { display: inline; color: #fff; text-shadow: none; background: #333; padding: 8px 10px; }
+nav li a:hover, nav #active a { background: #00ff40; color: #ffffff; }
+.mainContent { margin: 20px 0; float: left; width: 72.91666666666667%;}
+h2.title_tj { font: 18px "微软雅黑", Arial, Helvetica, sans-serif; color: #444; font-weight: bold; }
+h2.title_tj span { color: #0000ff }
+h2.title_tj p { background: #fff; width: 90px }
+.bloglist h3 { border-bottom: 1px solid #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
+.bloglist h3, .dateview { clear: both; }
+.bloglist ul p { color: #666; font-size: 14px; line-height: 26px }
+.dateview span { margin: 0 5px; }
+.dateview span a { color: #099B43; }
+a.readmore { color: #028CC2; float: right; padding-right: 5px }
+.sidebar { margin: 20px 0 0 75%; font-size: 14px }
+.news h3 p { background: #fff; width: 70px }
+.news h3 span { color: #65b020 }
+.news h3.ph span { color: #37ccca; }
+.news h3.links span { color: #F17B6B; }
+.news ul { margin-bottom: 20px }
+.news ul li a:hover { text-decoration: underline }
+.rank { margin: 10px 0; overflow: hidden; }
+.rank li a { color: #333; }
+.paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom: #CCC dotted 1px }
+.website { margin: 10px 0; background: #F3F3F3; border-radius: 50%; text-align: center; }
+.website li { line-height: 26px; text-shadow: #fff 1px 1px 1px; height: 26px; }
+.ewicon img { margin: 10px auto; display: block }
+footer { background: #f3f3f3; margin-top: 20px; }
+footer ul { padding: 10px 0; text-align: center; }
+footer a { text-decoration: underline; }
+.clearfloat { clear: both; height: 0; line-height: 0px; }
+
+/* <= 960px */
+@media screen and (max-width: 960px) {
+.wrapper { width: 93.75%; margin: 0 auto; }
+.websiteDescription { margin-left: 0; }
+}
+/* for 768px or less */
+@media screen and (max-width: 768px) {
+.mainContent { float: none; width: auto; }
+.sidebar { margin: 0; }
+h1#logo { float: none }
+nav { float: none; }
+nav li { display: block; list-style: none; padding: 1px; text-align: left; }
+nav li a { display: block; }
+}
+/* <= 480px */
+@media screen and (max-width: 480px) {
+h1#logo { float: none }
+nav { float: none; }
+nav li { display: block; list-style: none; padding: 1px; text-align: left; }
+nav li a { display: block; }
+}
+@media (min-width: 981px) {
+.websiteDescription { margin-left: 400px }
+.bloglist figure { float: left; width: 233px; margin-right: 20px; margin-bottom: 10px; }
+.bloglist figure img { padding: 4px; border: #f4f2f2 1px solid; width: 225px; }
+}
