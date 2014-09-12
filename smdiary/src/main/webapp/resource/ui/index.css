@@ -70,3 +70,55 @@ nav li a { display: block; }
 .bloglist figure { float: left; width: 233px; margin-right: 20px; margin-bottom: 10px; }
 .bloglist figure img { padding: 4px; border: #f4f2f2 1px solid; width: 225px; }
 }
+
+[class^="icon-"], [class*=" icon-"] {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	vertical-align: text-top;
+	background-image: url("glyphicons-halflings.png");
+	background-position: 14px 14px;
+	background-repeat: no-repeat;
+	*margin-right: .3em;
+}
+
+[class^="icon-"]:last-child, [class*=" icon-"]:last-child {
+	*margin-left: 0;
+}
+
+.icon-white {
+	background-image:
+		url("glyphicons-halflings-white.png");
+}
+.icon-calendar {
+	background-position: -192px -120px;
+}
+.icon-th-list {
+	background-position: -264px 0;
+}
+.icon-cog {
+	background-position: -432px 0;
+}
+
+.icon-home {
+	background-position: 0 -24px;
+}
+.icon-tag {
+	background-position: 0 -48px;
+}
+
+.icon-tags {
+	background-position: -25px -48px;
+}
+
+.icon-book {
+	background-position: -48px -48px;
+}
+
+.icon-bookmark {
+	background-position: -72px -48px;
+}
+.icon-list-alt {
+	background-position: -264px -24px;
+}
