@@ -1,9 +1,13 @@
 package com.wali.smdiary.web;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 
@@ -31,33 +35,56 @@ public class DiaryWeb
 	private ISmDiaryService service;
 
 	@RequestMapping
-	public ModelAndView main()//@ModelAttribute("admin") SmDiaryAdmin admin
+	public ModelAndView main()// @ModelAttribute("admin") SmDiaryAdmin admin
 	{
-		//List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
+		// "admin" }, new String[] { admin.getUid() }, new Page(1));
 		List<SmDiary> diarys = service.getListByParams(null, null);
 		List<SmDiary> timeCategory = service.getTimeCategory();
-		Map<String,Integer> timeCount = new HashMap<String,Integer>();
-		Map<String,Integer> categoryCount = new HashMap<String,Integer>();
-		for(SmDiary sd : timeCategory)
+		Map<String, Integer> timeCount = new TreeMap<String, Integer>(new Comparator<String>()
+		{ // new HashMap<String,Integer>();
+					public int compare(String obj1, String obj2)
+					{
+						return obj2.compareTo(obj1);// 降序排序
+					}
+				});
+
+		Map<String, Integer> categoryCount = new HashMap<String, Integer>();
+
+		List<Map.Entry<String, Integer>> mappingList = null;
+		// 通过ArrayList构造函数把map.entrySet()转换成list
+		mappingList = new ArrayList<Map.Entry<String, Integer>>(categoryCount.entrySet());
+		// 通过比较器实现比较排序
+		Collections.sort(mappingList, new Comparator<Map.Entry<String, Integer>>()
 		{
-			if(sd.getDiaryDay() !=null )
+			public int compare(Map.Entry<String, Integer> mapping1, Map.Entry<String, Integer> mapping2)
+			{
+				return mapping1.getValue().compareTo(mapping2.getValue());
+			}
+		});
+
+		for (SmDiary sd : timeCategory)
+		{
+			if (sd.getDiaryDay() != null)
 			{
 				String date = DateUtil.formatDateZH(sd.getDiaryDay());
-				if(timeCount.get(date) ==null) timeCount.put(date,0); 
-				timeCount.put(date,timeCount.get(date)+1);
+				if (timeCount.get(date) == null)
+					timeCount.put(date, 0);
+				timeCount.put(date, timeCount.get(date) + 1);
 			}
 			String cates = sd.getCategorys();
-			if(cates !=null)
+			if (cates != null)
 			{
 				String cateArra[] = StringUtil.splitCategory(cates);
-				for(String ca : cateArra)
+				for (String ca : cateArra)
 				{
-					if(categoryCount.get(ca) ==null) categoryCount.put(ca,0); 
-					categoryCount.put(ca,categoryCount.get(ca)+1);
+					if (categoryCount.get(ca) == null)
+						categoryCount.put(ca, 0);
+					categoryCount.put(ca, categoryCount.get(ca) + 1);
 				}
 			}
 		}
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("diarys", diarys);
 		mv.addObject("catemap", categoryCount);
@@ -67,11 +94,11 @@ public class DiaryWeb
 		return mv;
 	}
 
-	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView manage(@ModelAttribute("admin") SmDiaryAdmin admin)
 	{
-		//List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
+		// "admin" }, new String[] { admin.getUid() }, new Page(1));
 		List<SmDiary> diarys = service.getListByParams(null, null);
 
 		ModelAndView mv = new ModelAndView();
@@ -109,17 +136,21 @@ public class DiaryWeb
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diary)//, @ModelAttribute("admin") SmDiaryAdmin admin
+	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diary)// ,
+																		// @ModelAttribute("admin")
+																		// SmDiaryAdmin
+																		// admin
 	{
-		//diary.setAdmin(admin.getUid());
+		// diary.setAdmin(admin.getUid());
 		diary.setCreateTime(new Date());
 		diary.setUpdateTime(new Date());
 		diary.setUid(StringUtil.getUUID());
 		boolean flag = service.doSave(diary);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("flag", flag);
-		
-		//List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
+
+		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
+		// "admin" }, new String[] { admin.getUid() }, new Page(1));
 		List<SmDiary> diarys = service.getListByParams(null, null);
 		mv.addObject("diarys", diarys);
 		mv.addObject("msgs", "test_in_add_view");
