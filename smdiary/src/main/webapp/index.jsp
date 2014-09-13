@@ -3,9 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:choose>
 	<c:when test="${sessionScope.user != null}">
-		<jsp:forward page="${pageContext.request.contextPath}/index/login"></jsp:forward>
+		<jsp:forward page="index/login"></jsp:forward>
 	</c:when>
 	<c:otherwise>
-		<jsp:forward page="${pageContext.request.contextPath}/diary"></jsp:forward>
+		<jsp:forward page="diary"></jsp:forward>
 	</c:otherwise>
 </c:choose>
