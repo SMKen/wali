@@ -1,13 +1,12 @@
 @charset "UTF-8";
 * { margin: 0; padding: 0; }
-html { font-size: 100%; }
+html { font-size: 15px; }
 body { font-family:'TeXGyreAdventor', "微软雅黑",Arial,serif,sans-seif;}
-h1 { color: #363636; font-size: 3.428571428571429em; font-family: 'Fredericka the Great', cursive; font-weight: normal; }
+h1 { color: #363636; font-size: 3.0em; font-family: 'Fredericka the Great', cursive; font-weight: normal; }
 ul { list-style: none; }
 a img { border: none; }
 a,a:hover, a:active, a:focus {text-decoration: none; }
 img { max-width: 100%; height: auto; width: auto; }
-p { line-height: 120%; }
 .topmenu { width: 100%;margin: 0 auto;}
 .maincontainer { width: 96%;margin: 0 auto }
 header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
@@ -19,11 +18,11 @@ nav li a:hover, nav #active a {background: #4b8df8; }
 .maincontent { margin: 20px 0; float: left; width: 73%;}
 .hdtitle{font:1.2em "Times New Roman",sans-serif,"微软雅黑"; color: #0000ff ;font-weight: 900;}
 h2.hdnamd {width: 100% ;}
-.itemlist h3 { border-bottom: 1px solid #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
+.itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
 .itemlist h3, .dateview { clear: both; }
 .itemcontent { color: #666; font-size: 14px; line-height: 26px }
+.dateview { margin: 0 5px; color: #939300}
 .dateview span { margin: 0 5px; }
-.dateview span a { color: #099B43; }
 a.readmore { color: #028CC2; float: right; padding-right: 5px }
 .subitems { margin: 20px 0 0 75%; font-size: 14px }
 .subitemlist h3 span { color: #65b020 }
@@ -66,12 +65,14 @@ nav li a { display: block; }
 	width: 14px;
 	height: 14px;
 	line-height: 14px;
-	vertical-align: text-top;
+	margin-left: 5px;
+	margin-right: 1px;
+	vertical-align: middle;/**text-top*/
 	background-image: url("glyphicons-halflings.png");
 	background-position: 14px 14px;
 	background-repeat: no-repeat;
-	*margin-right: .3em;}
-[class^="icon-"]:last-child, [class*=" icon-"]:last-child {*margin-left: 0;}
+	}
+[class^="icon-"]:last-child, [class*=" icon-"]:last-child {*margin-left: 1;}
 .icon-white {background-image:url("glyphicons-halflings-white.png");}
 .icon-calendar {background-position: -192px -120px;}
 .icon-th-list {background-position: -264px 0;}
@@ -82,6 +83,9 @@ nav li a { display: block; }
 .icon-book {background-position: -48px -48px;}
 .icon-bookmark {background-position: -72px -48px;}
 .icon-list-alt {background-position: -264px -24px;}
+.icon-user {background-position: -168px 0;}
+.icon-heart {background-position: -96px 0;}
+.icon-star {background-position: -120px 0;}
 body{
 	/* background: url("htmlbg.jpg") repeat scroll 0 0 #fff; */
 }
