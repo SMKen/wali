@@ -56,25 +56,36 @@
 			</div>
 		</div>
 		<div class="subitems">
-			<div class="subitemlist">
-				<h3>
-						最新日记<span></span>
-				</h3>
-				<ul class="items">
-					<li><a href="/" title="123" target="_blank">123</a></li>
-					<li><a href="/" title="123" target="_blank">123</a></li>
-				</ul>
+			<div class="subitemlist"> 
 				<h3>
 						日记归档<span></span>
 				</h3>
 				<ul class="items">
-					<li><a href="/" title="123" target="_blank">123</a></li>
+					<c:choose>
+						<c:when test="${timemap != null}"> 
+							<c:forEach var="d" items="${timemap}">
+								<li><a href="/" title="123" target="_blank"><c:out value="${d.key }"></c:out>(<c:out value="${d.value }"></c:out>)</a></li>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+								NO Data
+						</c:otherwise>
+					</c:choose> 
 				</ul>
 				<h3>
 						标签<span></span>
 				</h3>
 				<ul class="items">
-					<li><a href="/" title="123" target="_blank">123</a></li>
+					<c:choose>
+						<c:when test="${catemap != null}"> 
+							<c:forEach var="d" items="${catemap}">
+								<li><a href="/" title="123" target="_blank"><c:out value="${d.key }"></c:out>(<c:out value="${d.value }"></c:out>)</a></li>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+								NO Data
+						</c:otherwise>
+					</c:choose> 
 				</ul>
 				<!-- <a href="/" class="ewicon"><img src="images/xxx.jpg"></a> -->
 			</div>

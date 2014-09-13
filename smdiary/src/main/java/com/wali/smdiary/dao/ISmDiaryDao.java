@@ -2,7 +2,6 @@ package com.wali.smdiary.dao;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import com.wali.common.web.page.Page;
 import com.wali.smdiary.entity.SmDiary;
@@ -34,6 +33,7 @@ public interface ISmDiaryDao extends IBaseHibernateDao<SmDiary, String>
 
 	List<SmDiary> getPagesByParams(String[] propertys, Object[] values, Page page);
 
-	Map<String, Integer> getAllTags(String uid);
+	public List<SmDiary> getTimeCategory();
+//	Map<String, Integer> getAllTags(String uid);
 
 }

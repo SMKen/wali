@@ -1,8 +1,6 @@
 package com.wali.smdiary.dao.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,7 +29,13 @@ public class SmDiaryDao extends BaseHibernateDao<SmDiary, String> implements ISm
 		return sessionFactory.getCurrentSession();
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
+	public List<SmDiary> getTimeCategory(){
+		List<SmDiary> categories = (List<SmDiary>) getSession().createQuery("select new com.wali.smdiary.entity.SmDiary(diaryDay,categorys)  from com.wali.smdiary.entity.SmDiary " ).list();
+		return categories;
+	}
+	
+	/*@Override
 	public Map<String, Integer> getAllTags(String uid)
 	{
 		@SuppressWarnings("unchecked")
@@ -58,5 +62,5 @@ public class SmDiaryDao extends BaseHibernateDao<SmDiary, String> implements ISm
 		}
 		return cs;
 	}
-
+*/
 }

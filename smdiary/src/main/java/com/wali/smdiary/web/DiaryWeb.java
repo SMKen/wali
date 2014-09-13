@@ -1,7 +1,9 @@
 package com.wali.smdiary.web;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wali.common.lang.DateUtil;
 import com.wali.common.lang.StringUtil;
 import com.wali.smdiary.entity.SmDiary;
 import com.wali.smdiary.entity.SmDiaryAdmin;
@@ -32,9 +35,33 @@ public class DiaryWeb
 	{
 		//List<SmDiary> diarys = service.getPagesByParams(new String[] { "admin" }, new String[] { admin.getUid() }, new Page(1));
 		List<SmDiary> diarys = service.getListByParams(null, null);
+		List<SmDiary> timeCategory = service.getTimeCategory();
+		Map<String,Integer> timeCount = new HashMap<String,Integer>();
+		Map<String,Integer> categoryCount = new HashMap<String,Integer>();
+		for(SmDiary sd : timeCategory)
+		{
+			if(sd.getDiaryDay() !=null )
+			{
+				String date = DateUtil.formatDateZH(sd.getDiaryDay());
+				if(timeCount.get(date) ==null) timeCount.put(date,0); 
+				timeCount.put(date,timeCount.get(date)+1);
+			}
+			String cates = sd.getCategorys();
+			if(cates !=null)
+			{
+				String cateArra[] = StringUtil.splitCategory(cates);
+				for(String ca : cateArra)
+				{
+					if(categoryCount.get(ca) ==null) categoryCount.put(ca,0); 
+					categoryCount.put(ca,categoryCount.get(ca)+1);
+				}
+			}
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("diarys", diarys);
+		mv.addObject("catemap", categoryCount);
+		mv.addObject("timemap", timeCount);
 		mv.addObject("msgs", "test_attributeValue");
 		mv.setViewName("main");
 		return mv;

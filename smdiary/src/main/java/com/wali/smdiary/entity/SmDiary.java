@@ -54,6 +54,12 @@ public class SmDiary implements Serializable
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
 
+	public SmDiary(){}
+	public SmDiary(Date diaryDay,String categorys){
+		this.diaryDay = diaryDay;
+		this.categorys = categorys;
+	}
+	
 	public String getUid()
 	{
 		return uid;

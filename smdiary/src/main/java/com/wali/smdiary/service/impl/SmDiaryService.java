@@ -2,7 +2,6 @@ package com.wali.smdiary.service.impl;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -63,9 +62,14 @@ public class SmDiaryService implements ISmDiaryService
 	}
 
 	@Override
-	public Map<String, Integer> getAllTags(String uid)
+	public List<SmDiary> getTimeCategory()
 	{
-		return dao.getAllTags(uid);
+		return dao.getTimeCategory();
 	}
+//	@Override
+//	public Map<String, Integer> getAllTags(String uid)
+//	{
+//		return dao.getAllTags(uid);
+//	}
 
 }
