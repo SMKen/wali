@@ -62,7 +62,7 @@
 			method="POST">
 			<h2>登陆到Diary</h2>
 			<input type="text" name="email" id="email" class="form-control"
-				placeholder="邮箱" value="${msg }" /> <input type="password"
+				placeholder="邮箱" value="${email }" /> <input type="password"
 				name="pwd" id="pwd" class="form-control" placeholder="密码" /> <br />
 			<button type="submit" class="btn">登陆</button>
 			<button type="reset" class="btn">重置</button>
