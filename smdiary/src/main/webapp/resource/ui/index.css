@@ -1,26 +1,24 @@
 @charset "UTF-8";
 * { margin: 0; padding: 0; }
 html { font-size: 100%; }
-body { font-family:'TeXGyreAdventor', "微软雅黑",Arial,serif,sans-seif;}/**font-size: 100%; */
+body { font-family:'TeXGyreAdventor', "微软雅黑",Arial,serif,sans-seif;}
 h1 { color: #363636; font-size: 3.428571428571429em; font-family: 'Fredericka the Great', cursive; font-weight: normal; }
 ul { list-style: none; }
 a img { border: none; }
-a { color: #333; text-decoration: none; }
-a:hover, a:active, a:focus { color: #d34e16; text-decoration: none; }
+a,a:hover, a:active, a:focus {text-decoration: none; }
 img { max-width: 100%; height: auto; width: auto; }
-p { line-height: 140%; }
-.wrapperh { width: 100%;margin: 0 auto }
-.wrapper { width: 93.75%;margin: 0 auto }
-header { border-bottom: #c0c0c01px solid; overflow: hidden; margin: 10px 0 }
-h1#logo { width: 260px; height: 60px; float: left; overflow: hidden }
+p { line-height: 120%; }
+.topmenu { width: 100%;margin: 0 auto;}
+.maincontainer { width: 96%;margin: 0 auto }
+header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
+.sitename { width: 260px; height: 60px; float: left; overflow: hidden }
 nav { float: right; margin: 20px 0; }
 nav li { display: inline; list-style: none; padding: 1px; }
-nav li a { display: inline; color: #fff; text-shadow: none; padding: 8px 10px;border-radius: 4px }/**background: #333; */
-nav li a:hover, nav #active a { /* background: #00ff40;  */color: #ffffff; }
-.mainContent { margin: 20px 0; float: left; width: 72.91666666666667%;}
-h2.title_tj {color: #444; font-weight: bold;font: italic 1.2em Georgia,"Times New Roman",Times,serif,sans-serif,"微软雅黑"; }
-h2.title_tj span { color: #0000ff }
-h2.title_tj p { /* background: #fff; */ width: 180px }
+nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 10px;border-radius: 4px ;}
+nav li a:hover, nav #active a {background: #4b8df8; }
+.maincontent { margin: 20px 0; float: left; width: 73%;}
+.hdtitle{font:1.2em "Times New Roman",sans-serif,"微软雅黑"; color: #0000ff ;font-weight: 900;}
+h2.hdnamd {width: 100% ;}
 .bloglist h3 { border-bottom: 1px solid #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
 .bloglist h3, .dateview { clear: both; }
 .bloglist ul p { color: #666; font-size: 14px; line-height: 26px }
@@ -28,40 +26,39 @@ h2.title_tj p { /* background: #fff; */ width: 180px }
 .dateview span a { color: #099B43; }
 a.readmore { color: #028CC2; float: right; padding-right: 5px }
 .sidebar { margin: 20px 0 0 75%; font-size: 14px }
-.news h3 p { /* background: #fff;  */width: 70px }
+.news h3 p { background: #fff;width: 70px }
 .news h3 span { color: #65b020 }
 .news h3.ph span { color: #37ccca; }
 .news h3.links span { color: #F17B6B; }
 .news ul { margin-bottom: 20px }
-.news ul li a:hover { text-decoration: underline }
 .rank { margin: 10px 0; overflow: hidden; }
 .rank li a { color: #333; }
 .paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom: #CCC dotted 1px }
-.website { margin: 10px 0; /* background: #F3F3F3; */ border-radius: 50%; text-align: center; }
+.website { margin: 10px 0;  background: #F3F3F3;  border-radius: 50%; text-align: center; }
 .website li { line-height: 26px; text-shadow: #fff 1px 1px 1px; height: 26px; }
 .ewicon img { margin: 10px auto; display: block }
-footer { /* background: #f3f3f3; */ margin-top: 20px; }
+footer { background: #f3f3f3; margin-top: 20px; }	
 footer ul { padding: 10px 0; text-align: center; }
-footer a { text-decoration: underline; }
 .clearfloat { clear: both; height: 0; line-height: 0px; }
 
 /* <= 960px */
 @media screen and (max-width: 960px) {
-.wrapper { width: 93.75%; margin: 0 auto; }
+.maincontainer { width: 93.75%; margin: 0 auto; }
 .websiteDescription { margin-left: 0; }
 }
 /* for 768px or less */
 @media screen and (max-width: 768px) {
-.mainContent { float: none; width: auto; }
+.maincontent { float: none; width: auto; }
 .sidebar { margin: 0; }
-h1#logo { float: none }
+sitename { float: none }
+topmenu { float: none }
 nav { float: none; }
 nav li { display: block; list-style: none; padding: 1px; text-align: left; }
 nav li a { display: block; }
 }
 /* <= 480px */
 @media screen and (max-width: 480px) {
-h1#logo { float: none }
+sitename { float: none }
 nav { float: none; }
 nav li { display: block; list-style: none; padding: 1px; text-align: left; }
 nav li a { display: block; }
@@ -81,50 +78,18 @@ nav li a { display: block; }
 	background-image: url("glyphicons-halflings.png");
 	background-position: 14px 14px;
 	background-repeat: no-repeat;
-	*margin-right: .3em;
-}
-
-[class^="icon-"]:last-child, [class*=" icon-"]:last-child {
-	*margin-left: 0;
-}
-
-.icon-white {
-	background-image:
-		url("glyphicons-halflings-white.png");
-}
-.icon-calendar {
-	background-position: -192px -120px;
-}
-.icon-th-list {
-	background-position: -264px 0;
-}
-.icon-cog {
-	background-position: -432px 0;
-}
-
-.icon-home {
-	background-position: 0 -24px;
-}
-.icon-tag {
-	background-position: 0 -48px;
-}
-
-.icon-tags {
-	background-position: -25px -48px;
-}
-
-.icon-book {
-	background-position: -48px -48px;
-}
-
-.icon-bookmark {
-	background-position: -72px -48px;
-}
-.icon-list-alt {
-	background-position: -264px -24px;
-}
+	*margin-right: .3em;}
+[class^="icon-"]:last-child, [class*=" icon-"]:last-child {*margin-left: 0;}
+.icon-white {background-image:url("glyphicons-halflings-white.png");}
+.icon-calendar {background-position: -192px -120px;}
+.icon-th-list {background-position: -264px 0;}
+.icon-cog {background-position: -432px 0;}
+.icon-home {background-position: 0 -24px;}
+.icon-tag {background-position: 0 -48px;}
+.icon-tags {background-position: -25px -48px;}
+.icon-book {background-position: -48px -48px;}
+.icon-bookmark {background-position: -72px -48px;}
+.icon-list-alt {background-position: -264px -24px;}
 body{
-	/* background-position: -72px -48px; */ 
-	/* background-image: htmlbg.jpg;  */
-	background: url("htmlbg.jpg") repeat scroll 0 0 #fff;
+	/* background: url("htmlbg.jpg") repeat scroll 0 0 #fff; */
 }
