@@ -21,17 +21,16 @@ nav li a:hover, nav #active a {background: #4b8df8; }
 h2.hdnamd {width: 100% ;}
 .itemlist h3 { border-bottom: 1px solid #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
 .itemlist h3, .dateview { clear: both; }
-.itemlist ul p { color: #666; font-size: 14px; line-height: 26px }
+.itemcontent { color: #666; font-size: 14px; line-height: 26px }
 .dateview span { margin: 0 5px; }
 .dateview span a { color: #099B43; }
 a.readmore { color: #028CC2; float: right; padding-right: 5px }
 .subitems { margin: 20px 0 0 75%; font-size: 14px }
-.subitemlist h3 p { background: #fff;width: 70px }
 .subitemlist h3 span { color: #65b020 }
 .subitemlist ul { margin-bottom: 20px }
 .ewicon img { margin: 10px auto; display: block }
 footer { background: #f3f3f3; margin-top: 20px; }	
-footer ul { padding: 10px 0; text-align: center; }
+footer div { padding: 10px 0; text-align: center; }
 .clear { clear: both; height: 0; line-height: 0px; }
 
 /* <= 960px */
