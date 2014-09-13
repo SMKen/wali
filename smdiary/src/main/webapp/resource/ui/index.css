@@ -10,12 +10,12 @@ img { max-width: 100%; height: auto; width: auto; }
 .topmenu { width: 100%;margin: 0 auto;}
 .maincontainer { width: 96%;margin: 0 auto }
 header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
-#sitename { width: 260px; height: 60px; float: left; overflow: hidden }
-nav { float: right; margin: 20px 0; }
+#sitename { width: 260px; height: 55px; float: left; overflow: hidden }
+nav { float: right; margin: 10px 0; }
 nav li { display: inline; list-style: none; padding: 1px; }
-nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 10px;border-radius: 4px ;}
+nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 4px 15px;border-radius: 4px ;}
 nav li a:hover, nav #active a {background: #4b8df8; }
-.maincontent { margin: 20px 0; float: left; width: 73%;}
+.maincontent { margin: 10px 0; float: left; width: 73%;}
 .hdtitle{font:1.2em "Times New Roman",sans-serif,"微软雅黑"; color: #0000ff ;font-weight: 900;}
 h2.hdnamd {width: 100% ;}
 .itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
@@ -23,7 +23,7 @@ h2.hdnamd {width: 100% ;}
 .itemcontent { color: #666; font-size: 14px; line-height: 26px }
 .dateview { margin: 0 5px; color: #939300}
 .dateview span { margin: 0 5px; }
-a.readmore { color: #028CC2; float: right; padding-right: 5px }
+a.readmore { color: #028CC2; float: left; padding-right: 5px }
 .subitems { margin: 20px 0 0 75%; font-size: 14px }
 .subitemlist h3 span { color: #65b020 }
 .subitemlist ul { margin-bottom: 20px }
