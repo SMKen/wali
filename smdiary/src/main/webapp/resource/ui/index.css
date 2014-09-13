@@ -19,27 +19,20 @@ nav li a:hover, nav #active a {background: #4b8df8; }
 .maincontent { margin: 20px 0; float: left; width: 73%;}
 .hdtitle{font:1.2em "Times New Roman",sans-serif,"微软雅黑"; color: #0000ff ;font-weight: 900;}
 h2.hdnamd {width: 100% ;}
-.bloglist h3 { border-bottom: 1px solid #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
-.bloglist h3, .dateview { clear: both; }
-.bloglist ul p { color: #666; font-size: 14px; line-height: 26px }
+.itemlist h3 { border-bottom: 1px solid #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
+.itemlist h3, .dateview { clear: both; }
+.itemlist ul p { color: #666; font-size: 14px; line-height: 26px }
 .dateview span { margin: 0 5px; }
 .dateview span a { color: #099B43; }
 a.readmore { color: #028CC2; float: right; padding-right: 5px }
-.sidebar { margin: 20px 0 0 75%; font-size: 14px }
-.news h3 p { background: #fff;width: 70px }
-.news h3 span { color: #65b020 }
-.news h3.ph span { color: #37ccca; }
-.news h3.links span { color: #F17B6B; }
-.news ul { margin-bottom: 20px }
-.rank { margin: 10px 0; overflow: hidden; }
-.rank li a { color: #333; }
-.paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom: #CCC dotted 1px }
-.website { margin: 10px 0;  background: #F3F3F3;  border-radius: 50%; text-align: center; }
-.website li { line-height: 26px; text-shadow: #fff 1px 1px 1px; height: 26px; }
+.subitems { margin: 20px 0 0 75%; font-size: 14px }
+.subitemlist h3 p { background: #fff;width: 70px }
+.subitemlist h3 span { color: #65b020 }
+.subitemlist ul { margin-bottom: 20px }
 .ewicon img { margin: 10px auto; display: block }
 footer { background: #f3f3f3; margin-top: 20px; }	
 footer ul { padding: 10px 0; text-align: center; }
-.clearfloat { clear: both; height: 0; line-height: 0px; }
+.clear { clear: both; height: 0; line-height: 0px; }
 
 /* <= 960px */
 @media screen and (max-width: 960px) {
@@ -49,7 +42,7 @@ footer ul { padding: 10px 0; text-align: center; }
 /* for 768px or less */
 @media screen and (max-width: 768px) {
 .maincontent { float: none; width: auto; }
-.sidebar { margin: 0; }
+.subitems { margin: 0; }
 #sitename { float: none }
 .topmenu { float: none }
 nav { float: none; }
@@ -65,8 +58,8 @@ nav li a { display: block; }
 }
 @media (min-width: 981px) {
 .websiteDescription { margin-left: 400px }
-.bloglist figure { float: left; width: 233px; margin-right: 20px; margin-bottom: 10px; }
-.bloglist figure img { padding: 4px; border: #f4f2f2 1px solid; width: 225px; }
+.itemlist figure { float: left; width: 233px; margin-right: 20px; margin-bottom: 10px; }
+.itemlist figure img { padding: 4px; border: #f4f2f2 1px solid; width: 225px; }
 }
 
 [class^="icon-"], [class*=" icon-"] {
