@@ -52,13 +52,15 @@
 </style>
 </head>
 <body>
-		<div class="loginform">
+	<div class="loginform">
 		<form name="login" action="#" method="POST">
 			<h2>登陆到Diary</h2>
 			<input type="text" name="email" id="email" class="form-control"
 				placeholder="邮箱" value="" /> <input type="password" name="pwd"
 				id="pwd" class="form-control" placeholder="密码" /> <br />
 			<button type="button" onclick="checkvalidate();" class="btn">登陆</button>
+			<br/>
+			<font color="red">${msg }</font>
 		</form>
 	</div>
 </body>
