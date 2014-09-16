@@ -99,13 +99,13 @@ public class DiaryWeb
 		List<SmDiary> diarys = service.getListByParams(null, null);
 		ModelAndView mv = getCateGoryTimeMV();
 		mv.addObject("diarys", diarys);
-		mv.addObject("msgs", "test_attributeValue");
+		mv.addObject("MD", "main");
 		mv.setViewName("main");
 		return mv;
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView manage(@ModelAttribute("admin") SmDiaryAdmin admin)
+	public ModelAndView list(@ModelAttribute("admin") SmDiaryAdmin admin)
 	{
 		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
 		// "admin" }, new String[] { admin.getUid() }, new Page(1));
@@ -113,7 +113,8 @@ public class DiaryWeb
 
 		ModelAndView mv = getCateGoryTimeMV();
 		mv.addObject("diarys", diarys);
-		mv.setViewName("list");
+		mv.addObject("MD", "list");
+		mv.setViewName("main");
 		return mv;
 	}
 
@@ -121,7 +122,8 @@ public class DiaryWeb
 	public ModelAndView toAdd()
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("add");
+		mv.addObject("MD", "add");
+		mv.setViewName("main");
 		return mv;
 	}
 
@@ -147,9 +149,6 @@ public class DiaryWeb
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diary)// ,
-																		// @ModelAttribute("admin")
-																		// SmDiaryAdmin
-																		// admin
 	{
 		// diary.setAdmin(admin.getUid());
 		diary.setCreateTime(new Date());
