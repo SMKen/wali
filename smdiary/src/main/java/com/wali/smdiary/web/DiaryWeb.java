@@ -147,22 +147,27 @@ public class DiaryWeb
 		return mv;
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diary)// ,
+	@RequestMapping(value = "/doadd", method = RequestMethod.POST)
+	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diaryadd)// ,
 	{
 		// diary.setAdmin(admin.getUid());
-		diary.setCreateTime(new Date());
-		diary.setUpdateTime(new Date());
-		diary.setUid(StringUtil.getUUID());
-		boolean flag = service.doSave(diary);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("flag", flag);
+		diaryadd.setCreateTime(new Date());
+		diaryadd.setUpdateTime(new Date());
+		diaryadd.setUid(StringUtil.getUUID());
+		boolean flag = service.doSave(diaryadd);
 
-		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
-		// "admin" }, new String[] { admin.getUid() }, new Page(1));
+		ModelAndView mv = getCateGoryTimeMV();
+		if(flag)
+		{
+			mv.addObject("msg", "发布成功!");	
+		}else
+		{
+			mv.addObject("msg", "发布失败!");	
+		}
 		List<SmDiary> diarys = service.getListByParams(null, null);
+
 		mv.addObject("diarys", diarys);
-		mv.addObject("msgs", "test_in_add_view");
+		mv.addObject("MD", "list");
 		mv.setViewName("main");
 		return mv;
 	}

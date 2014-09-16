@@ -35,17 +35,43 @@
 		<div class="maincontent">
 			<!-- check MD choose begin -->
 			<c:choose>
-				<c:when test="${MD not eq 'add'}">
-				</c:when>
+				<c:when test="${MD == 'add'}">
 				<h2 class="hdnamd hdtitle">
-					<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a
-						href="${pageContext.request.contextPath}/diary/add">新增</a>
+					<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; 
+					 <a href="#">管理</a>
 				</h2>
+
+				<!-- itemlist begin -->
+				<div class="itemlist">
+					<form action="${pageContext.request.contextPath}/diary/doadd"
+						method="POST" name="diaryadd">
+						<h3>
+							标题:<input style="width: 100%" name="outline">
+						</h3>
+						<div class='itemcontent'>
+							<textarea rows="10" cols="20" name="diary">
+								在此处填写内容
+							</textarea>
+						</div>
+						<div class="dateview">
+							<span class="icon-heart"></span><span class="icon-star"></span> <span
+								class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
+								style="width: 100%" name="categorys">
+								<br/>
+								<button type="submit" class="btn">保存</button>
+						</div>
+					</form>
+				</div>
+				</c:when>
 				<c:otherwise>
 					<h2 class="hdnamd hdtitle">
-						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
+						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp;
+					 	<a href="${pageContext.request.contextPath}/diary/add">新增</a>
+						
+						<c:if test="${msg != null}">
+							<font color="red">${msg }</font>
+						</c:if>
 					</h2>
-
 					<!-- itemlist begin -->
 					<div class="itemlist">
 						<c:choose>
