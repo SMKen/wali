@@ -34,12 +34,15 @@ public class DiaryWeb
 	@Resource(name = "smDiaryService")
 	private ISmDiaryService service;
 
-	@RequestMapping
-	public ModelAndView main()// @ModelAttribute("admin") SmDiaryAdmin admin
+	/** 初始化并返回 */
+	private ModelAndView getCateGoryTimeMV()
 	{
-		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
-		// "admin" }, new String[] { admin.getUid() }, new Page(1));
-		List<SmDiary> diarys = service.getListByParams(null, null);
+		return addCateGoryTime(new ModelAndView());
+	}
+
+	/** 添加CageGory 和　Time数据 */
+	private ModelAndView addCateGoryTime(ModelAndView mv)
+	{
 		List<SmDiary> timeCategory = service.getTimeCategory();
 		Map<String, Integer> timeCount = new TreeMap<String, Integer>(new Comparator<String>()
 		{ // new HashMap<String,Integer>();
@@ -48,7 +51,6 @@ public class DiaryWeb
 						return obj2.compareTo(obj1);// 降序排序
 					}
 				});
-
 		Map<String, Integer> categoryCount = new HashMap<String, Integer>();
 
 		List<Map.Entry<String, Integer>> mappingList = null;
@@ -84,11 +86,19 @@ public class DiaryWeb
 				}
 			}
 		}
-
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("diarys", diarys);
-		mv.addObject("catemap", categoryCount);
 		mv.addObject("timemap", timeCount);
+
+		return mv;
+	}
+
+	@RequestMapping
+	public ModelAndView main()// @ModelAttribute("admin") SmDiaryAdmin admin
+	{
+		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
+		// "admin" }, new String[] { admin.getUid() }, new Page(1));
+		List<SmDiary> diarys = service.getListByParams(null, null);
+		ModelAndView mv = getCateGoryTimeMV();
+		mv.addObject("diarys", diarys);
 		mv.addObject("msgs", "test_attributeValue");
 		mv.setViewName("main");
 		return mv;
@@ -101,13 +111,13 @@ public class DiaryWeb
 		// "admin" }, new String[] { admin.getUid() }, new Page(1));
 		List<SmDiary> diarys = service.getListByParams(null, null);
 
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = getCateGoryTimeMV();
 		mv.addObject("diarys", diarys);
 		mv.setViewName("list");
 		return mv;
 	}
 
-	@RequestMapping(value = "/toAdd", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView toAdd()
 	{
 		ModelAndView mv = new ModelAndView();
