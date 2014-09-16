@@ -87,6 +87,7 @@ public class DiaryWeb
 			}
 		}
 		mv.addObject("timemap", timeCount);
+		mv.addObject("catemap", categoryCount);
 
 		return mv;
 	}
