@@ -83,14 +83,13 @@
 									<div class='itemcontent'>
 										<c:out value="${d.diary }"></c:out>
 										<br />
-										<c:out value="${d.categorys }"></c:out>
 										<a title="/" href="/" target="_blank" class="readmore">阅读>></a>&nbsp;&nbsp;&nbsp;&nbsp;<a
 											class="readmore">修改</a>
 									</div>
 									<div class="dateview">
 										<span class="icon-heart"></span><span class="icon-star"></span>
 										<span class="icon-calendar"></span>2014-09-12 周一 <span
-											class="icon-tags"></span>加油,Do it
+											class="icon-tags"></span><c:out value="${d.categorys }"></c:out>
 									</div>
 								</c:forEach>
 							</c:when>
