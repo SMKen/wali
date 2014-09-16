@@ -97,31 +97,3 @@
 	</footer>
 </body>
 </html>
-
-<%-- 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>Message : ${message}</h1>
-	msgs:${msgs }
-	<br /> msg:${msg }
-	<br /> diarys:${diarys }
-	<br />
-	<hr />
-	<h2>日记列表</h2>
-	
-	<br />
-	<hr>
-	<h3>添加新日记</h3>
-<form action="${pageContext.request.contextPath}/diary/add" name="diary" method="POST">
-	<input type="text" name="outline"></input>
-	<input type="text" name="diary"></input>
-	<button type="submit">发布</button>
-	<button type="reset">重置</button>
-</form>
-</body>
-</html> --%>
