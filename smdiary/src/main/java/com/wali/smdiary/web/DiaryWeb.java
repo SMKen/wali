@@ -11,6 +11,7 @@ import java.util.TreeMap;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -127,21 +128,25 @@ public class DiaryWeb
 		mv.setViewName("main");
 		return mv;
 	}
-
+	
+	@RequestMapping(value = "/delete/{uid}", method = RequestMethod.POST)
+	public String doDelete(@PathVariable String uid)
+	{
+		int count = service.doDeleteById(uid);
+		JSONObject json = new JSONObject();
+		if(count >=1)
+		{
+			json.put("flag", true);
+		}else{
+			json.put("flag", false);
+		}
+		 return json.toString();
+	}
+	
 	@RequestMapping(value = "/toMod/{uid}", method = RequestMethod.GET)
 	public ModelAndView toMod(@PathVariable String uid)
 	{
 		SmDiary sd = service.getOneById(uid);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("diary", sd);
-		mv.setViewName("mod");
-		return mv;
-	}
-
-	@RequestMapping(value = "/doDel/{uid}", method = RequestMethod.GET)
-	public ModelAndView doDel(@PathVariable String uid)
-	{
-		int sd = service.doDeleteByParam("UID", uid);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("diary", sd);
 		mv.setViewName("mod");

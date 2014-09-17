@@ -21,7 +21,7 @@ public interface ISmDiaryDao extends IBaseHibernateDao<SmDiary, String>
 
 	Boolean doUpdate(Serializable T);
 
-	// Boolean doDelete(Serializable T);
+	 Boolean doDelete(Serializable T);
 
 	int doDeleteByParam(String property, Object value);
 

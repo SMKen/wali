@@ -32,6 +32,12 @@ public class SmDiaryService implements ISmDiaryService
 	}
 
 	@Override
+	public int doDeleteById(String id)
+	{
+		return dao.doDeleteByParam("uid", id);
+	}
+	
+	@Override
 	public Boolean doUpdate(SmDiary T)
 	{
 		return dao.doUpdate(T);

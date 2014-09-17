@@ -19,6 +19,8 @@ public interface ISmDiaryService
 
 	Boolean doSave(SmDiary T);
 
+	int doDeleteById(String id);
+	
 	Boolean doUpdate(SmDiary T);
 
 	// Boolean doDelete(Serializable T);
