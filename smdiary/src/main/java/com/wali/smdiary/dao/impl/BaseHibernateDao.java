@@ -72,7 +72,8 @@ public abstract class BaseHibernateDao<T, ID extends Serializable> implements IB
 	@Override
 	public int doDeleteByParam(String property, Object value)
 	{
-		int count = getSession().createQuery("delete from " + getClass().getName() + " where " + property + " ? ").setParameter(property, value).executeUpdate();
+		String sql = "delete from " + getClazz().getName() + " where " + property + " =:"+property;
+		int count = getSession().createQuery(sql).setParameter(property, value).executeUpdate();
 		return count;
 	}
 
