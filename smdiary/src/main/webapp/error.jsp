@@ -9,6 +9,8 @@
 	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 <body>
+	<font color="red">
+	对不起，
 	<%
 		int statusCode = (Integer) request
 				.getAttribute("javax.servlet.error.status_code");
@@ -21,19 +23,20 @@
 		Throwable t = (Throwable) request
 				.getAttribute("javax.servlet.error.exception");
 		if (statusCode == 404)
-			out.print("对不起，你访问的资源不存在。");
+			out.print("你访问的资源不存在");
 		else if (statusCode == 405)
-			out.print("对不起，你访问的资源受限。");
+			out.print("你访问的资源受限");
 		else if (statusCode == 500)
-			out.print("对不起，服务器内部出现错误");
+			out.print("服务器内部出现错误");
 		else
-			out.print("对不起，未知服务器错误。");
+			out.print("未知服务器错误");
 	%>
+	。5秒后为您自动跳转到登陆页面。</font>
 </body>
 <script type="text/javascript">
 	function redirectIndex() {
 		window.location.href = '${pageContext.request.contextPath}';
 	}
-	//window.setTimeout(redirectIndex, 5000)
+	window.setTimeout(redirectIndex, 5000)
 </script>
 </html>
