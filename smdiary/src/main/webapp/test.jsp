@@ -16,6 +16,20 @@
 	console.log(str);
 	console.log(obj);
 	console.log(obj.name);
+	sm.ajax.request({
+		url : "diary/delete/id",
+		method:'POST',
+		/* data : {
+			datatype :''
+		}, */
+		success : function(xhr) {
+			alert(xhr.responseText);
+		},
+		error : function(xhr) {
+			
+		}
+	});
+	
 </script>
 </body>
 </html>

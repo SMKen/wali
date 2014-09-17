@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -130,7 +131,7 @@ public class DiaryWeb
 	}
 	
 	@RequestMapping(value = "/delete/{uid}", method = RequestMethod.POST)
-	public String doDelete(@PathVariable String uid)
+	public @ResponseBody String doDelete(@PathVariable String uid)
 	{
 		int count = service.doDeleteById(uid);
 		JSONObject json = new JSONObject();
