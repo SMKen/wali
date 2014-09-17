@@ -10,6 +10,11 @@
 	<packaging>war</packaging>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20140107</version>
+    	</dependency>
 		<!-- http://www.cnblogs.com/leiOOlei/p/3727859.html -->
 		<!-- Spring -->
 		<dependency>
