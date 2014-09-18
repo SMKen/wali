@@ -11,10 +11,31 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<!-- 
+		SLF4J结合Logback
+		<dependency>
+		  <groupId>ch.qos.logback</groupId>
+		  <artifactId>logback-classic</artifactId>
+		  <version>1.0.7</version>
+		</dependency>
+		SLF4J结合JUL (java.util.logging)
+		<dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-jdk14</artifactId>
+		  <version>1.7.2</version>
+		</dependency>
+		
+		 -->
+
+		<dependency>
 			<groupId>org.json</groupId>
-		    <artifactId>json</artifactId>
-		    <version>20140107</version>
-    	</dependency>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
 		<!-- http://www.cnblogs.com/leiOOlei/p/3727859.html -->
 		<!-- Spring -->
 		<dependency>
@@ -135,9 +156,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 		</dependency>
-		<dependency> <!-- 
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId> -->
+		<dependency> <!-- <groupId>org.hibernate</groupId> <artifactId>hibernate-commons-annotations</artifactId> -->
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 		</dependency>
@@ -208,11 +227,11 @@
 			<artifactId>tomcat-dbcp</artifactId>
 		</dependency>
 
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<scope>test</scope>
-			</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 </project>
