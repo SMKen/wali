@@ -96,8 +96,9 @@
 						<c:choose>
 							<c:when test="${diarys != null}">
 								<c:forEach var="d" items="${diarys}">
+									<fmt:setLocale value="zh_cn" />  
 									<h3>
-										<c:out value="${d.outline }"></c:out>
+										<c:out value="${d.outline }"></c:out> &nbsp;&nbsp;<fmt:formatDate value="${d.diaryDay }" />  
 									</h3>
 									<div class='itemcontent'>
 										<c:out value="${d.diary }"></c:out>
@@ -107,9 +108,8 @@
 									</div>
 									<div class="dateview">
 										<span class="icon-heart"></span><span class="icon-star"></span>
-										<span class="icon-calendar"></span>2014-09-12 周一 <span
-											class="icon-tags"></span>
-										<c:out value="${d.categorys }"></c:out>
+										<span class="icon-calendar"></span><fmt:formatDate value="${d.createTime }" type="both" dateStyle="default" />
+										<span class="icon-tags"></span><c:out value="${d.categorys }"></c:out>
 									</div>
 								</c:forEach>
 							</c:when>

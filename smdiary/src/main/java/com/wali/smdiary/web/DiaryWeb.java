@@ -161,6 +161,10 @@ public class DiaryWeb
 		diaryadd.setCreateTime(new Date());
 		diaryadd.setUpdateTime(new Date());
 		diaryadd.setUid(StringUtil.getUUID());
+		if(diaryadd.getDiaryDay() ==null)
+		{
+			diaryadd.setDiaryDay(new Date());
+		}
 		boolean flag = service.doSave(diaryadd);
 
 		ModelAndView mv = getCateGoryTimeMV();
