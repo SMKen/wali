@@ -12,19 +12,19 @@
 <body>
 <script type="text/javascript">
 	var str = '{"name":"jack"}';
-	var obj = sm.tojson(str);
+	var obj = JSON.parse(str);
 	console.log(str);
 	console.log(obj);
 	console.log(obj.name);
 	sm.ajax.request({
 		url : "diary/delete/id",
 		method:'POST',
-		/* data : {
+		data : {
 			datatype :''
-		}, */
+		},
 		success : function(xhr) {
 			console.log(xhr.responseText);
-			console.log(sm.tojson(xhr.responseText));
+			console.log(JSON.parse(xhr.responseText));
 		},
 		error : function(xhr) {
 			
