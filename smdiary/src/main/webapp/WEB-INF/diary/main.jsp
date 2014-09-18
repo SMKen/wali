@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	function deleteDiary(id) {
 		sm.ajax.request({
-			url : "${pageContext.request.contextPath}/diary/delete/id",
+			url : "${pageContext.request.contextPath}/diary/delete/"+id,
 			method : 'POST',
 			data : {
 				datatype : ''
