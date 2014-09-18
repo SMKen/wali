@@ -32,7 +32,7 @@ if (typeof sm !== 'object') {
 			onComplete : !josn.success ? sm.success : josn.success
 		});
 	};
-	sm.parse = function(text, reviver) {
+	sm.tojson = function(text, reviver) {
 		cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
 		var j;
 		function walk(holder, key) {
@@ -107,8 +107,8 @@ if (typeof sm !== 'object') {
 				xhr.setRequestHeader('Content-type',
 						'application/x-www-form-urlencoded;');
 			}
-			console.log(xhr);
-			console.log(data);
+			/*console.log(xhr);
+			console.log(data);*/
 			xhr.send(data);
 			return xhr;
 		}

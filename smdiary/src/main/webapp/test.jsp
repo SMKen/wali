@@ -12,7 +12,7 @@
 <body>
 <script type="text/javascript">
 	var str = '{"name":"jack"}';
-	var obj = sm.parse(str);
+	var obj = sm.tojson(str);
 	console.log(str);
 	console.log(obj);
 	console.log(obj.name);
@@ -23,7 +23,8 @@
 			datatype :''
 		}, */
 		success : function(xhr) {
-			alert(xhr.responseText);
+			console.log(xhr.responseText);
+			console.log(sm.tojson(xhr.responseText));
 		},
 		error : function(xhr) {
 			
