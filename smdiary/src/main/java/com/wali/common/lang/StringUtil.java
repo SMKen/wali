@@ -23,7 +23,7 @@ public class StringUtil
 	/**指定分隔符分隔标签*/
 	public static String [] splitCategory(String s )
 	{
-		return splitStr(s,",|\\.| |;|；｜，");
+		return splitStr(s,",|\\.| |;|；|，");
 	}
 	
 	/**指定分隔符分隔*/
