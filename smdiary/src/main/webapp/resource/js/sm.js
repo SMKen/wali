@@ -17,6 +17,10 @@ if (typeof sm !== 'object') {
 	sm = {};
 }
 (function() {
+	/**转向到某个页面 */
+	sm.go = function(url) {
+		window.location.href = url;
+	};
 	/** 弹出窗口 */
 	sm.pop = function(msg, title, icon) {
 		alert(msg);

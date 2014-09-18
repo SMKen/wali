@@ -14,6 +14,27 @@
 	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 <link href="${pageContext.request.contextPath}/resource/ui/index.css"
 	rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/sm.js"></script>
+<script type="text/javascript">
+	function deleteDiary(id) {
+		sm.ajax.request({
+			url : "${pageContext.request.contextPath}/diary/delete/id",
+			method : 'POST',
+			data : {
+				datatype : ''
+			},
+			success : function(xhr) {
+				data = JSON.parse(xhr.responseText)
+				if (data.flag) {
+					sm.pop('删除成功');
+					sm.go("${pageContext.request.contextPath}/diary/");
+				} else {
+					sm.pop('删除失败，请重试！');
+				}
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<!-- head begin -->
@@ -36,38 +57,36 @@
 			<!-- check MD choose begin -->
 			<c:choose>
 				<c:when test="${MD == 'add'}">
-				<h2 class="hdnamd hdtitle">
-					<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; 
-					 <a href="#">管理</a>
-				</h2>
+					<h2 class="hdnamd hdtitle">
+						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
+					</h2>
 
-				<!-- itemlist begin -->
-				<div class="itemlist">
-					<form action="${pageContext.request.contextPath}/diary/doadd"
-						method="POST" name="diaryadd">
-						<h3>
-							标题:<input style="width: 100%" name="outline">
-						</h3>
-						<div class='itemcontent'>
-							<textarea rows="10" cols="20" name="diary">
+					<!-- itemlist begin -->
+					<div class="itemlist">
+						<form action="${pageContext.request.contextPath}/diary/doadd"
+							method="POST" name="diaryadd">
+							<h3>
+								标题:<input style="width: 100%" name="outline">
+							</h3>
+							<div class='itemcontent'>
+								<textarea rows="10" cols="20" name="diary">
 								在此处填写内容
 							</textarea>
-						</div>
-						<div class="dateview">
-							<span class="icon-heart"></span><span class="icon-star"></span> <span
-								class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
-								style="width: 100%" name="categorys">
-								<br/>
+							</div>
+							<div class="dateview">
+								<span class="icon-heart"></span><span class="icon-star"></span>
+								<span class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
+									style="width: 100%" name="categorys"> <br />
 								<button type="submit" class="btn">保存</button>
-						</div>
-					</form>
-				</div>
+							</div>
+						</form>
+					</div>
 				</c:when>
 				<c:otherwise>
 					<h2 class="hdnamd hdtitle">
-						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp;
-					 	<a href="${pageContext.request.contextPath}/diary/add">新增</a>
-						
+						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a
+							href="${pageContext.request.contextPath}/diary/add">新增</a>
+
 						<c:if test="${msg != null}">
 							<font color="red">${msg }</font>
 						</c:if>
@@ -82,14 +101,15 @@
 									</h3>
 									<div class='itemcontent'>
 										<c:out value="${d.diary }"></c:out>
-										<br />
-										<a title="/" href="/" target="_blank" class="readmore">阅读>></a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-											class="readmore">修改</a>
+										<br /> <a title="/" href="/" target="_blank" class="readmore">阅读>></a>&nbsp;&nbsp;&nbsp;&nbsp;
+										<a class="readmore">修改</a>
+										<a class="readmore" onclick="deleteDiary('${d.uid}')">删除</a>
 									</div>
 									<div class="dateview">
 										<span class="icon-heart"></span><span class="icon-star"></span>
 										<span class="icon-calendar"></span>2014-09-12 周一 <span
-											class="icon-tags"></span><c:out value="${d.categorys }"></c:out>
+											class="icon-tags"></span>
+										<c:out value="${d.categorys }"></c:out>
 									</div>
 								</c:forEach>
 							</c:when>
