@@ -16,24 +16,42 @@
 	rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/sm.js"></script>
 <script type="text/javascript">
-	function deleteDiary(id) {
-		sm.ajax.request({
-			url : "${pageContext.request.contextPath}/diary/delete/"+id,
-			method : 'POST',
-			data : {
-				datatype : ''
-			},
-			success : function(xhr) {
-				data = JSON.parse(xhr.responseText)
-				if (data.flag) {
-					sm.pop('删除成功');
-					sm.go("${pageContext.request.contextPath}/diary/");
-				} else {
-					sm.pop('删除失败，请重试！');
-				}
+function deleteDiary(id) {
+	sm.ajax.request({
+		url : "${pageContext.request.contextPath}/diary/delete/"+id,
+		method : 'POST',
+		data : {
+			datatype : ''
+		},
+		success : function(xhr) {
+			data = JSON.parse(xhr.responseText)
+			if (data.flag) {
+				sm.pop('删除成功');
+				sm.go("${pageContext.request.contextPath}/diary/");
+			} else {
+				sm.pop('删除失败，请重试！');
 			}
-		});
-	}
+		}
+	});
+}
+function modDiary(id) {
+	sm.ajax.request({
+		url : "${pageContext.request.contextPath}/diary/mod/"+id,
+		method : 'POST',
+		data : {
+			datatype : ''
+		},
+		success : function(xhr) {
+			data = JSON.parse(xhr.responseText)
+			if (data.flag) {
+				sm.pop('删除成功');
+				sm.go("${pageContext.request.contextPath}/diary/");
+			} else {
+				sm.pop('删除失败，请重试！');
+			}
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -82,6 +100,34 @@
 						</form>
 					</div>
 				</c:when>
+				
+				<c:when test="${MD == 'mod'}">
+					<h2 class="hdnamd hdtitle">
+						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
+					</h2>
+
+					<!-- itemlist begin -->
+					<div class="itemlist">
+						<form action="${pageContext.request.contextPath}/diary/doMod"
+							method="POST" name="diarymod">
+							<h3>
+							<input type="hidden" style="width: 100%" name="uid" value="${diary.uid}">
+								标题:<input style="width: 100%" name="outline"  value="${diary.outline}">
+							</h3>
+							<div class='itemcontent'>
+								<textarea rows="10" cols="20" name="diary">
+								 ${diary.diary}
+							</textarea>
+							</div>
+							<div class="dateview">
+								<span class="icon-heart"></span><span class="icon-star"></span>
+								<span class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
+									style="width: 100%" name="categorys"  value="${diary.categorys}"> <br />
+								<button type="submit" class="btn">保存</button>
+							</div>
+						</form>
+					</div>
+				</c:when>
 				<c:otherwise>
 					<h2 class="hdnamd hdtitle">
 						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a
@@ -103,7 +149,7 @@
 									<div class='itemcontent'>
 										<c:out value="${d.diary }"></c:out>
 										<br /> <a title="/" href="/" target="_blank" class="readmore">阅读>></a>&nbsp;&nbsp;&nbsp;&nbsp;
-										<a class="readmore">修改</a>
+										<a class="readmore" href="${pageContext.request.contextPath}/diary/mod/${d.uid}">修改</a>
 										<a class="readmore" onclick="deleteDiary('${d.uid}')">删除</a>
 									</div>
 									<div class="dateview">

@@ -144,13 +144,14 @@ public class DiaryWeb
 		 return json.toString();
 	}
 	
-	@RequestMapping(value = "/toMod/{uid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/mod/{uid}", method = RequestMethod.GET)
 	public ModelAndView toMod(@PathVariable String uid)
 	{
 		SmDiary sd = service.getOneById(uid);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("diary", sd);
-		mv.setViewName("mod");
+		mv.addObject("MD", "mod");
+		mv.setViewName("main");
 		return mv;
 	}
 
@@ -183,18 +184,29 @@ public class DiaryWeb
 		return mv;
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView doUpdate(@ModelAttribute("diary") SmDiary diary, @ModelAttribute("admin") SmDiaryAdmin admin)
+	@RequestMapping(value = "/doMod", method = RequestMethod.POST)
+	public ModelAndView doUpdate(@ModelAttribute("diary") SmDiary diary)
 	{
-		diary.setAdmin(admin.getUid());
+		//diary.setAdmin(admin.getUid());
 		diary.setCreateTime(new Date());
 		diary.setUpdateTime(new Date());
-		diary.setUid(StringUtil.getUUID());
+		//diary.setUid(StringUtil.getUUID());
 		boolean flag = service.doUpdate(diary);
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = getCateGoryTimeMV();
 		mv.addObject("diary", diary);
 		mv.addObject("flag", flag);
-		mv.setViewName("update");
+		if(flag)
+		{
+			mv.addObject("msg", "发布成功!");	
+		}else
+		{
+			mv.addObject("msg", "发布失败!");	
+		}
+		List<SmDiary> diarys = service.getListByParams(null, null);
+
+		mv.addObject("diarys", diarys);
+		mv.addObject("MD", "list");
+		mv.setViewName("main");
 		return mv;
 	}
 
