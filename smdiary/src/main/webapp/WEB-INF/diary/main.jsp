@@ -52,6 +52,31 @@ function modDiary(id) {
 		}
 	});
 }
+function setToday(thisday)
+{
+	var now = new Date();
+    var month = now.getMonth() + 1;     //月
+    var day = now.getDate();            //日
+    var ds = now.getFullYear() + "-";
+    if(month < 10)
+    	ds += "0";
+    ds = ds + month + "-";
+    if(day < 10)
+    	ds += "0";
+    ds += day;
+    sm.get(thisday).value=ds;
+}
+Date.prototype.toString = function(showWeek)  
+{   
+    var myDate= this;  
+    var str = myDate.toLocaleDateString();  
+    if (showWeek)  
+    {   
+        var Week = ['日','一','二','三','四','五','六'];  
+        str += ' 星期' + Week[myDate.getDay()];  
+    }  
+    return str;  
+}  
 </script>
 </head>
 <body>
@@ -85,8 +110,10 @@ function modDiary(id) {
 							<textarea rows="10" cols="20" name="diary">在此处填写内容</textarea>
 							<div class="dateview">
 								<span class="icon-heart"></span><span class="icon-star"></span>
-								<span class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
-									style="width: 100%" name="categorys"> <br />
+									<span class="icon-calendar"></span>
+									<input id="calendaradd" style="width: 80px" name="diaryDay">
+									<span class="icon-tags"></span>
+									<input style="width: 200px" name="categorys"> <br />
 								<button type="submit" class="btn">保存</button>
 							</div>
 						</form>
@@ -104,8 +131,10 @@ function modDiary(id) {
 								<textarea rows="10" cols="20" name="diary">${diary.diary}</textarea>
 							<div class="dateview">
 								<span class="icon-heart"></span><span class="icon-star"></span>
-								<span class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
-									style="width: 100%" name="categorys"  value="${diary.categorys}"> <br />
+								<span class="icon-calendar"></span>选择时间
+								<input id="calendarmod" style="width: 80px" name="diaryDay">
+								<span class="icon-tags"></span><input
+									style="width: 200px" name="categorys"  value="${diary.categorys}"> <br />
 								<button type="submit" class="btn">保存</button>
 							</div>
 						</form>
@@ -199,4 +228,14 @@ function modDiary(id) {
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+if(sm.get("calendarmod") !=null && sm.get("calendarmod").value=="")
+{
+	setToday('calendarmod');
+}
+if(sm.get("calendaradd") !=null)
+{
+	setToday('calendaradd');
+}
+</script>
 </html>

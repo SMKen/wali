@@ -17,6 +17,9 @@ if (typeof sm !== 'object') {
 	sm = {};
 }
 (function() {
+	sm.get = function(id) {
+		return document.getElementById(id);
+	};
 	/**转向到某个页面 */
 	sm.go = function(url) {
 		window.location.href = url;
