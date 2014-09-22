@@ -83,14 +83,8 @@ function modDiary(id) {
 					<div class="itemlist">
 						<form action="${pageContext.request.contextPath}/diary/doadd"
 							method="POST" name="diaryadd">
-							<h3>
-								标题:<input style="width: 100%" name="outline">
-							</h3>
-							<div class='itemcontent'>
-								<textarea rows="10" cols="20" name="diary">
-								在此处填写内容
-							</textarea>
-							</div>
+							标题:<input style="width: 80%" name="outline" />
+							<textarea rows="10" cols="20" name="diary">在此处填写内容</textarea>
 							<div class="dateview">
 								<span class="icon-heart"></span><span class="icon-star"></span>
 								<span class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
@@ -110,15 +104,9 @@ function modDiary(id) {
 					<div class="itemlist">
 						<form action="${pageContext.request.contextPath}/diary/doMod"
 							method="POST" name="diarymod">
-							<h3>
-							<input type="hidden" style="width: 100%" name="uid" value="${diary.uid}">
-								标题:<input style="width: 100%" name="outline"  value="${diary.outline}">
-							</h3>
-							<div class='itemcontent'>
-								<textarea rows="10" cols="20" name="diary">
-								 ${diary.diary}
-							</textarea>
-							</div>
+								<input type="hidden" name="uid" value="${diary.uid}">
+								标题:<input style="width: 80%" name="outline"  value="${diary.outline}">
+								<textarea rows="10" cols="20" name="diary">${diary.diary}</textarea>
 							<div class="dateview">
 								<span class="icon-heart"></span><span class="icon-star"></span>
 								<span class="icon-calendar"></span>选择时间<span class="icon-tags"></span><input
