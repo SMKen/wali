@@ -107,14 +107,19 @@ Date.prototype.toString = function(showWeek)
 						<form action="${pageContext.request.contextPath}/diary/doadd"
 							method="POST" name="diaryadd">
 							标题:<input style="width: 80%" name="outline" />
-							<textarea rows="10" cols="20" name="diary">在此处填写内容</textarea>
+							<textarea rows="10" cols="20" name="diarys">在此处填写内容</textarea>
 							<div class="dateview">
-								<span class="icon-heart"></span><span class="icon-star"></span>
-									<span class="icon-calendar"></span>
-									<input id="calendaradd" style="width: 80px" name="diaryDay">
-									<span class="icon-tags"></span>
-									<input style="width: 200px" name="categorys"> <br />
+								<span class="icon-heart"></span>
+								<input style="width: 80px" name="mood">
+								<span class="icon-star"></span>
+								<input style="width: 80px" name="weather">
+								<span class="icon-calendar"></span>
+								<input id="calendaradd" style="width: 80px" name="diaryDay">
+								<span class="icon-tags"></span>
+								<input style="width: 200px" name="categorys"> <br />
 								<button type="submit" class="btn">保存</button>
+					            <!-- <button type="submit" class="btn btn-primary">Save changes</button>
+					            <button class="btn">Cancel</button> -->
 							</div>
 						</form>
 					</div>
@@ -128,13 +133,16 @@ Date.prototype.toString = function(showWeek)
 							method="POST" name="diarymod">
 								<input type="hidden" name="uid" value="${diary.uid}">
 								标题:<input style="width: 80%" name="outline"  value="${diary.outline}">
-								<textarea rows="10" cols="20" name="diary">${diary.diary}</textarea>
+								<textarea rows="10" cols="20" name="diarys">${diary.diarys}</textarea>
 							<div class="dateview">
-								<span class="icon-heart"></span><span class="icon-star"></span>
-								<span class="icon-calendar"></span>选择时间
-								<input id="calendarmod" style="width: 80px" name="diaryDay">
-								<span class="icon-tags"></span><input
-									style="width: 200px" name="categorys"  value="${diary.categorys}"> <br />
+								<span class="icon-heart"></span>
+								<input style="width: 80px" name="mood" value="${diary.mood}">
+								<span class="icon-star"></span>
+								<input style="width: 80px" name="weather" value="${diary.weather}">
+								<span class="icon-calendar"></span>
+								<input id="calendarmod" style="width: 80px" name="diaryDay" value="${diary.diaryDay}">
+								<span class="icon-tags"></span>
+								<input style="width: 200px" name="categorys" value="${diary.categorys}"> <br />
 								<button type="submit" class="btn">保存</button>
 							</div>
 						</form>

@@ -42,7 +42,7 @@ public class SmDiary implements Serializable
 	@Column(length = 64)
 	private String categorys;
 	@Column
-	private String diary;
+	private String diarys;
 	@Column
 	private int viewtimes;
 	@Column
@@ -54,12 +54,16 @@ public class SmDiary implements Serializable
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
 
-	public SmDiary(){}
-	public SmDiary(Date diaryDay,String categorys){
+	public SmDiary()
+	{
+	}
+
+	public SmDiary(Date diaryDay, String categorys)
+	{
 		this.diaryDay = diaryDay;
 		this.categorys = categorys;
 	}
-	
+
 	public String getUid()
 	{
 		return uid;
@@ -130,14 +134,14 @@ public class SmDiary implements Serializable
 		this.categorys = categorys;
 	}
 
-	public String getDiary()
+	public String getDiarys()
 	{
-		return diary;
+		return diarys;
 	}
 
-	public void setDiary(String diary)
+	public void setDiarys(String diarys)
 	{
-		this.diary = diary;
+		this.diarys = diarys;
 	}
 
 	public int getViewtimes()
