@@ -9,8 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.wali.common.lang.DateUtil;
 
 /**
  * 日志表.
@@ -31,6 +34,8 @@ public class SmDiary implements Serializable
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date diaryDay;
+	@Transient
+	private String diaryDays;
 	@Column(length = 32)
 	private String weather;
 	@Column(length = 64)
@@ -41,7 +46,7 @@ public class SmDiary implements Serializable
 	private String outline;
 	@Column(length = 64)
 	private String categorys;
-	@Column(name="diary")
+	@Column(name = "diary")
 	private String diarys;
 	@Column
 	private int viewtimes;
@@ -182,6 +187,21 @@ public class SmDiary implements Serializable
 	public void setUpdateTime(Date updateTime)
 	{
 		this.updateTime = updateTime;
+	}
+
+	public String getDiaryDays()
+	{
+		return diaryDays;
+	}
+
+	public void setDiaryDays(String diaryDays)
+	{
+		this.diaryDays = diaryDays;
+		Date d = DateUtil.formatDateStringZH(diaryDays);
+		if (d != null)
+		{
+			this.diaryDay = d;
+		}
 	}
 
 }

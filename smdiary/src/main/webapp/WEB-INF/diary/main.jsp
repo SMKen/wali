@@ -114,7 +114,7 @@ Date.prototype.toString = function(showWeek)
 								<span class="icon-star"></span>
 								<input style="width: 80px" name="weather">
 								<span class="icon-calendar"></span>
-								<!-- <input id="calendaradd" style="width: 80px" name="diaryDay"> -->
+								<input id="calendaradd" style="width: 80px" name="diaryDays">
 								<span class="icon-tags"></span>
 								<input style="width: 200px" name="categorys"> <br />
 								<button type="submit" class="btn">保存</button>
@@ -140,7 +140,7 @@ Date.prototype.toString = function(showWeek)
 								<span class="icon-star"></span>
 								<input style="width: 80px" name="weather" value="${diary.weather}">
 								<span class="icon-calendar"></span>
-								<%-- <input id="calendarmod" style="width: 80px" name="diaryDay" value="${diary.diaryDay}"> --%>
+								<input id="calendarmod" style="width: 80px" name="diaryDays" value="${diary.diaryDay}">
 								<span class="icon-tags"></span>
 								<input style="width: 200px" name="categorys" value="${diary.categorys}"> <br />
 								<button type="submit" class="btn">保存</button>
