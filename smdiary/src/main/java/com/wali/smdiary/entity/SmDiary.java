@@ -41,7 +41,7 @@ public class SmDiary implements Serializable
 	private String outline;
 	@Column(length = 64)
 	private String categorys;
-	@Column
+	@Column(name="diary")
 	private String diarys;
 	@Column
 	private int viewtimes;

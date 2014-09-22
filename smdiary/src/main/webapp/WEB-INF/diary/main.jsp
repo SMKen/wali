@@ -114,7 +114,7 @@ Date.prototype.toString = function(showWeek)
 								<span class="icon-star"></span>
 								<input style="width: 80px" name="weather">
 								<span class="icon-calendar"></span>
-								<input id="calendaradd" style="width: 80px" name="diaryDay">
+								<!-- <input id="calendaradd" style="width: 80px" name="diaryDay"> -->
 								<span class="icon-tags"></span>
 								<input style="width: 200px" name="categorys"> <br />
 								<button type="submit" class="btn">保存</button>
@@ -140,7 +140,7 @@ Date.prototype.toString = function(showWeek)
 								<span class="icon-star"></span>
 								<input style="width: 80px" name="weather" value="${diary.weather}">
 								<span class="icon-calendar"></span>
-								<input id="calendarmod" style="width: 80px" name="diaryDay" value="${diary.diaryDay}">
+								<%-- <input id="calendarmod" style="width: 80px" name="diaryDay" value="${diary.diaryDay}"> --%>
 								<span class="icon-tags"></span>
 								<input style="width: 200px" name="categorys" value="${diary.categorys}"> <br />
 								<button type="submit" class="btn">保存</button>
@@ -164,7 +164,7 @@ Date.prototype.toString = function(showWeek)
 										<c:out value="${d.outline }"></c:out> &nbsp;&nbsp;<fmt:formatDate value="${d.diaryDay }" />  
 									</h3>
 									<div class='itemcontent'>
-										<c:out value="${d.diary }"></c:out>
+										<c:out value="${d.diarys }"></c:out>
 										<br /> <a title="/" href="/" target="_blank" class="readmore">阅读>></a>&nbsp;&nbsp;&nbsp;&nbsp;
 										<a class="readmore" href="${pageContext.request.contextPath}/diary/mod/${d.uid}">修改</a>
 										<a class="readmore" onclick="deleteDiary('${d.uid}')">删除</a>
