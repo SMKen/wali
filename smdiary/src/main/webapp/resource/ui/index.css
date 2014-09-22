@@ -1,19 +1,18 @@
 @charset "UTF-8";
 * { margin: 0; padding: 0; }
-html { font-size: 16px; }
-body { font-family:'Verdana', "微软雅黑","Times New Roman","Arial","sans-seif";}
+body { font-size: 16px; font-family:'Verdana', "微软雅黑","Times New Roman","Arial","sans-seif";}
 h1 { color: #363636; font-size: 3.0em; font-weight: normal; }
 ul { list-style: none; }
 a,a:hover, a:active, a:focus {text-decoration: none; }
-.topmenu { width: 100%;margin: 0 auto;}
-.maincontainer { width: 96%;margin: 0 auto }
+.top { width: 100%;margin: 0 auto;}
+.container { width: 96%;margin: 0 auto }
 .header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
-.sitename { width: 260px; height: 55px; float: left; overflow: hidden }
+.title { width: 260px; height: 55px; float: left; overflow: hidden }
 .nav { float: right; margin: 10px 0; }
 .nav li { display: inline; list-style: none; padding: 5px; }
 .nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 15px;border-radius: 5px ;}
 .nav li a:hover, nav #active a {background: #4b8df8; }
-.maincontent { margin: 10px 0; float: left; width: 73%;}
+.content { margin: 10px 0; float: left; width: 73%;}
 .hdtitle{font:1.2em ;color: #0000ff ;font-weight: 900;}/**"Times New Roman",sans-serif,"微软雅黑"; */
 h2.hdnamd {width: 100% ;}
 .itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
@@ -32,25 +31,24 @@ a.readmore { color: #028CC2; float: left; padding-right: 5px }
 
 /* <= 960px */
 @media screen and (max-width: 960px) {
-.maincontainer { width: 93.75%; margin: 0 auto; }
+.container { width: 93.75%; margin: 0 auto; }
 .websiteDescription { margin-left: 0; }
 }
 /* for 768px or less */
 @media screen and (max-width: 768px) {
-.maincontent { float: none; width: auto; }
+.content { float: none; width: auto; }
 .subitems { margin: 0; }
-.sitename { float: none }
-.topmenu { float: none }
+.title { float: none }
+.top { float: none }
 .nav { float: none; }
 .nav li { display: block; list-style: none; padding: 5px; text-align: left; }
 .nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
 }
 /* <= 480px */
 @media screen and (max-width: 480px) {
-.sitename { float: none }
+.title { float: none }
 .nav { float: none; }
 .nav li { display: block; list-style: none; padding: 5px; text-align: left; }
- 
 .nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
 }
 @media (min-width: 981px) {

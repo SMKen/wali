@@ -56,9 +56,9 @@ function modDiary(id) {
 </head>
 <body>
 	<!-- head begin -->
-	<div class="topmenu">
+	<div class="top">
 		<div class="header">
-			<h1 class="sitename">Diary</h1>
+			<h1 class="title">Diary</h1>
 			<div class="nav">
 				<ul>
 					<li id="active"><a href="#"><span class="icon-home"></span>首页</a></li>
@@ -70,8 +70,8 @@ function modDiary(id) {
 	</div>
 	<!-- head end -->
 
-	<div class="maincontainer">
-		<div class="maincontent">
+	<div class="container">
+		<div class="content">
 			<!-- check MD choose begin -->
 			<c:choose>
 				<c:when test="${MD == 'add'}">
