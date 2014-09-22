@@ -212,11 +212,11 @@ function modDiary(id) {
 
 		<div class="clear"></div>
 	</div>
-	<footer>
+	<div class="footer">
 		<div>
 			Copyright © 2014 <a href="mailto:zh_chao@126.com">Ken</a>, All Rights
 			Reserved.
 		</div>
-	</footer>
+	</div>
 </body>
 </html>

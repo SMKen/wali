@@ -26,8 +26,8 @@ a.readmore { color: #028CC2; float: left; padding-right: 5px }
 .subitemlist h3 span { color: #65b020 }
 .subitemlist ul { margin-bottom: 20px }
 .ewicon img { margin: 10px auto; display: block }
-footer { background: #f3f3f3; margin-top: 20px; }	
-footer div { padding: 10px 0; text-align: center; }
+.footer { background: #f3f3f3; margin-top: 20px; }	
+.footer div { padding: 10px 0; text-align: center; }
 .clear { clear: both; height: 0; line-height: 0px; }
 
 /* <= 960px */
