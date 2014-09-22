@@ -9,10 +9,10 @@ a,a:hover, a:active, a:focus {text-decoration: none; }
 .maincontainer { width: 96%;margin: 0 auto }
 .header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
 .sitename { width: 260px; height: 55px; float: left; overflow: hidden }
-nav { float: right; margin: 10px 0; }
-nav li { display: inline; list-style: none; padding: 5px; }
-nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 15px;border-radius: 5px ;}
-nav li a:hover, nav #active a {background: #4b8df8; }
+.nav { float: right; margin: 10px 0; }
+.nav li { display: inline; list-style: none; padding: 5px; }
+.nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 15px;border-radius: 5px ;}
+.nav li a:hover, nav #active a {background: #4b8df8; }
 .maincontent { margin: 10px 0; float: left; width: 73%;}
 .hdtitle{font:1.2em ;color: #0000ff ;font-weight: 900;}/**"Times New Roman",sans-serif,"微软雅黑"; */
 h2.hdnamd {width: 100% ;}
@@ -41,17 +41,17 @@ a.readmore { color: #028CC2; float: left; padding-right: 5px }
 .subitems { margin: 0; }
 .sitename { float: none }
 .topmenu { float: none }
-nav { float: none; }
-nav li { display: block; list-style: none; padding: 5px; text-align: left; }
-nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
+.nav { float: none; }
+.nav li { display: block; list-style: none; padding: 5px; text-align: left; }
+.nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
 }
 /* <= 480px */
 @media screen and (max-width: 480px) {
 .sitename { float: none }
-nav { float: none; }
-nav li { display: block; list-style: none; padding: 5px; text-align: left; }
+.nav { float: none; }
+.nav li { display: block; list-style: none; padding: 5px; text-align: left; }
  
-nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
+.nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
 }
 @media (min-width: 981px) {
 .websiteDescription { margin-left: 400px }

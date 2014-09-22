@@ -59,13 +59,13 @@ function modDiary(id) {
 	<div class="topmenu">
 		<div class="header">
 			<h1 class="sitename">Diary</h1>
-			<nav>
+			<div class="nav">
 				<ul>
 					<li id="active"><a href="#"><span class="icon-home"></span>首页</a></li>
 					<li><a href="#"><span class="icon-cog"></span>设置</a></li>
 					<li><a href="#"><span class="icon-list-alt"></span>关于</a></li>
 				</ul>
-			</nav>
+			</div>
 		</div>
 	</div>
 	<!-- head end -->
