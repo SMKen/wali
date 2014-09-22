@@ -75,10 +75,8 @@ function modDiary(id) {
 			<!-- check MD choose begin -->
 			<c:choose>
 				<c:when test="${MD == 'add'}">
-					<h2 class="hdnamd hdtitle">
-						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
-					</h2>
-
+					<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
+					
 					<!-- itemlist begin -->
 					<div class="itemlist">
 						<form action="${pageContext.request.contextPath}/diary/doadd"
@@ -96,10 +94,7 @@ function modDiary(id) {
 				</c:when>
 				
 				<c:when test="${MD == 'mod'}">
-					<h2 class="hdnamd hdtitle">
-						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
-					</h2>
-
+					<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
 					<!-- itemlist begin -->
 					<div class="itemlist">
 						<form action="${pageContext.request.contextPath}/diary/doMod"
@@ -117,14 +112,11 @@ function modDiary(id) {
 					</div>
 				</c:when>
 				<c:otherwise>
-					<h2 class="hdnamd hdtitle">
-						<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a
-							href="${pageContext.request.contextPath}/diary/add">新增</a>
-
-						<c:if test="${msg != null}">
-							<font color="red">${msg }</font>
-						</c:if>
-					</h2>
+					<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a
+						href="${pageContext.request.contextPath}/diary/add">新增</a>
+					<c:if test="${msg != null}">
+						<font color="red">${msg }</font>
+					</c:if>
 					<!-- itemlist begin -->
 					<div class="itemlist">
 						<c:choose>

@@ -12,8 +12,7 @@ a,a:hover, a:active, a:focus {text-decoration: none; }
 .nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 15px;border-radius: 5px ;}
 .nav li a:hover, .nav #active a {background: #4b8df8; }
 .content { margin: 10px 0; float: left; width: 73%;}
-.hdtitle{font:1.2em ;color: #0000ff ;font-weight: 900;}/**"Times New Roman",sans-serif,"微软雅黑"; */
-h2.hdnamd {width: 100% ;}
+.hdtitle{font:1.1em ;color: #0000ff ;font-weight: 600;}/**"Times New Roman",sans-serif,"微软雅黑"; */
 .itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
 .itemlist h3, .dateview { clear: both; }
 .itemcontent { color: #666; font-size: 14px; line-height: 26px }
