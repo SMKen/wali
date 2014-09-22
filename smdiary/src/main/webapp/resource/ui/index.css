@@ -1,8 +1,8 @@
 @charset "UTF-8";
 * { margin: 0; padding: 0; }
-html { font-size: 15px; }
-body { font-family:'TeXGyreAdventor', "微软雅黑",Arial,serif,sans-seif;}
-h1 { color: #363636; font-size: 3.0em; font-family: 'Fredericka the Great', cursive; font-weight: normal; }
+html { font-size: 16px; }
+body { font-family:'Verdana', "微软雅黑","Times New Roman","Arial","sans-seif";}
+h1 { color: #363636; font-size: 3.0em; font-weight: normal; }
 ul { list-style: none; }
 a img { border: none; }
 a,a:hover, a:active, a:focus {text-decoration: none; }
@@ -12,11 +12,11 @@ img { max-width: 100%; height: auto; width: auto; }
 header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
 #sitename { width: 260px; height: 55px; float: left; overflow: hidden }
 nav { float: right; margin: 10px 0; }
-nav li { display: inline; list-style: none; padding: 1px; }
-nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 4px 15px;border-radius: 4px ;}
+nav li { display: inline; list-style: none; padding: 5px; }
+nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 15px;border-radius: 5px ;}
 nav li a:hover, nav #active a {background: #4b8df8; }
 .maincontent { margin: 10px 0; float: left; width: 73%;}
-.hdtitle{font:1.2em "Times New Roman",sans-serif,"微软雅黑"; color: #0000ff ;font-weight: 900;}
+.hdtitle{font:1.2em ;color: #0000ff ;font-weight: 900;}/**"Times New Roman",sans-serif,"微软雅黑"; */
 h2.hdnamd {width: 100% ;}
 .itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
 .itemlist h3, .dateview { clear: both; }
@@ -44,15 +44,16 @@ footer div { padding: 10px 0; text-align: center; }
 #sitename { float: none }
 .topmenu { float: none }
 nav { float: none; }
-nav li { display: block; list-style: none; padding: 1px; text-align: left; }
-nav li a { display: block; }
+nav li { display: block; list-style: none; padding: 5px; text-align: left; }
+nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
 }
 /* <= 480px */
 @media screen and (max-width: 480px) {
 #sitename { float: none }
 nav { float: none; }
-nav li { display: block; list-style: none; padding: 1px; text-align: left; }
-nav li a { display: block; }
+nav li { display: block; list-style: none; padding: 5px; text-align: left; }
+ 
+nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
 }
 @media (min-width: 981px) {
 .websiteDescription { margin-left: 400px }
