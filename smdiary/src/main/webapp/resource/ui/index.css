@@ -10,7 +10,7 @@ img { max-width: 100%; height: auto; width: auto; }
 .topmenu { width: 100%;margin: 0 auto;}
 .maincontainer { width: 96%;margin: 0 auto }
 header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
-#sitename { width: 260px; height: 55px; float: left; overflow: hidden }
+.sitename { width: 260px; height: 55px; float: left; overflow: hidden }
 nav { float: right; margin: 10px 0; }
 nav li { display: inline; list-style: none; padding: 5px; }
 nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 15px;border-radius: 5px ;}
@@ -41,7 +41,7 @@ footer div { padding: 10px 0; text-align: center; }
 @media screen and (max-width: 768px) {
 .maincontent { float: none; width: auto; }
 .subitems { margin: 0; }
-#sitename { float: none }
+.sitename { float: none }
 .topmenu { float: none }
 nav { float: none; }
 nav li { display: block; list-style: none; padding: 5px; text-align: left; }
@@ -49,7 +49,7 @@ nav li a { display: block; padding: 8px 15px;border-radius: 5px ;}
 }
 /* <= 480px */
 @media screen and (max-width: 480px) {
-#sitename { float: none }
+.sitename { float: none }
 nav { float: none; }
 nav li { display: block; list-style: none; padding: 5px; text-align: left; }
  

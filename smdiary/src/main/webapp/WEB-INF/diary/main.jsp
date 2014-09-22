@@ -58,7 +58,7 @@ function modDiary(id) {
 	<!-- head begin -->
 	<div class="topmenu">
 		<header>
-			<h1 id="sitename">Diary</h1>
+			<h1 class="sitename">Diary</h1>
 			<nav>
 				<ul>
 					<li id="active"><a href="#"><span class="icon-home"></span>首页</a></li>
