@@ -57,7 +57,7 @@ function modDiary(id) {
 <body>
 	<!-- head begin -->
 	<div class="topmenu">
-		<header>
+		<div class="header">
 			<h1 class="sitename">Diary</h1>
 			<nav>
 				<ul>
@@ -66,7 +66,7 @@ function modDiary(id) {
 					<li><a href="#"><span class="icon-list-alt"></span>关于</a></li>
 				</ul>
 			</nav>
-		</header>
+		</div>
 	</div>
 	<!-- head end -->
 

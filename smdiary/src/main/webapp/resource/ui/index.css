@@ -4,12 +4,10 @@ html { font-size: 16px; }
 body { font-family:'Verdana', "微软雅黑","Times New Roman","Arial","sans-seif";}
 h1 { color: #363636; font-size: 3.0em; font-weight: normal; }
 ul { list-style: none; }
-a img { border: none; }
 a,a:hover, a:active, a:focus {text-decoration: none; }
-img { max-width: 100%; height: auto; width: auto; }
 .topmenu { width: 100%;margin: 0 auto;}
 .maincontainer { width: 96%;margin: 0 auto }
-header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
+.header {width: 96%; border-bottom: #c0c0c01px solid; overflow: hidden; margin:0 auto; }
 .sitename { width: 260px; height: 55px; float: left; overflow: hidden }
 nav { float: right; margin: 10px 0; }
 nav li { display: inline; list-style: none; padding: 5px; }
