@@ -86,9 +86,9 @@ Date.prototype.toString = function(showWeek)
 			<div class="title">Diary</div>
 			<div class="nav">
 				<ul>
-					<li id="active"><a href="#"><span class="icon-home"></span>首页</a></li>
-					<li><a href="#"><span class="icon-cog"></span>设置</a></li>
-					<li><a href="#"><span class="icon-list-alt"></span>关于</a></li>
+					<li id="active"><a href="${pageContext.request.contextPath}/diary/"><span class="icon-home"></span>首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/diary/"><span class="icon-cog"></span>设置</a></li>
+					<li><a href="${pageContext.request.contextPath}/diary/"><span class="icon-list-alt"></span>关于</a></li>
 				</ul>
 			</div>
 		</div>
@@ -170,7 +170,8 @@ Date.prototype.toString = function(showWeek)
 										<a class="readmore" onclick="deleteDiary('${d.uid}')">删除</a>
 									</div>
 									<div class="dateview">
-										<span class="icon-heart"></span><span class="icon-star"></span>
+										<span class="icon-heart"></span><c:out value="${d.mood}"></c:out>
+										<span class="icon-star"></span><c:out value="${d.weather}"></c:out>
 										<span class="icon-calendar"></span><fmt:formatDate value="${d.createTime }" type="both" dateStyle="default" />
 										<span class="icon-tags"></span><c:out value="${d.categorys }"></c:out>
 									</div>
