@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +30,14 @@ public class SmDiaryDao extends BaseHibernateDao<SmDiary, String> implements ISm
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SmDiary> getListByParams(String[] propertys, Object[] values)
+	{
+		return (List<SmDiary>) getCriteria(propertys,values).addOrder(Order.desc("createTime")).list();
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<SmDiary> getTimeCategory(){
 		List<SmDiary> categories = (List<SmDiary>) getSession().createQuery("select new com.wali.smdiary.entity.SmDiary(diaryDay,categorys)  from com.wali.smdiary.entity.SmDiary " ).list();

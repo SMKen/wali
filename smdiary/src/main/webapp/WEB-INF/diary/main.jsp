@@ -110,9 +110,9 @@ Date.prototype.toString = function(showWeek)
 							<textarea rows="10" cols="20" name="diarys">在此处填写内容</textarea>
 							<div class="dateview">
 								<span class="icon-heart"></span>
-								<input style="width: 80px" name="mood">
+								<input style="width: 80px" name="mood" value="心情不错">
 								<span class="icon-star"></span>
-								<input style="width: 80px" name="weather">
+								<input style="width: 80px" name="weather" value="晴">
 								<span class="icon-calendar"></span>
 								<input id="calendaradd" style="width: 80px" name="diaryDays">
 								<span class="icon-tags"></span>
@@ -160,20 +160,32 @@ Date.prototype.toString = function(showWeek)
 							<c:when test="${diarys != null}">
 								<c:forEach var="d" items="${diarys}">
 									<fmt:setLocale value="zh_cn" />  
-									<h3>
-										<c:out value="${d.outline }"></c:out> &nbsp;&nbsp;<fmt:formatDate value="${d.diaryDay }" />  
-									</h3>
-									<div class='itemcontent'>
-										<c:out value="${d.diarys }"></c:out>
-										<br /> <a title="/" href="/" target="_blank" class="readmore">阅读>></a>&nbsp;&nbsp;&nbsp;&nbsp;
-										<a class="readmore" href="${pageContext.request.contextPath}/diary/mod/${d.uid}">修改</a>
-										<a class="readmore" onclick="deleteDiary('${d.uid}')">删除</a>
-									</div>
-									<div class="dateview">
-										<span class="icon-heart"></span><c:out value="${d.mood}"></c:out>
-										<span class="icon-star"></span><c:out value="${d.weather}"></c:out>
-										<span class="icon-calendar"></span><fmt:formatDate value="${d.createTime }" type="both" dateStyle="default" />
-										<span class="icon-tags"></span><c:out value="${d.categorys }"></c:out>
+									<div class="diarysitem">
+										<!-- <h3></h3> -->
+										<div class="dtitle">
+											<div class="dtitleleft"><c:out value="${d.outline }"></c:out></div>
+											<div class="dtitleright">
+											<span class="icon-calendar"></span><fmt:formatDate value="${d.diaryDay }" />
+											<span class="icon-heart"></span><c:out value="${d.mood}"></c:out>
+											<span class="icon-star"></span><c:out value="${d.weather}"></c:out>
+											</div>
+										</div>
+										<div class='itemcontent'>
+											<c:out value="${d.diarys }"></c:out>
+											<br /> 
+											<!-- <a title="/" href="/" target="_blank" class="readmore">阅读>></a>&nbsp;&nbsp;&nbsp;&nbsp; -->
+											
+										</div>
+										<div class="dbo">
+											<%-- <span class="icon-calendar"></span><fmt:formatDate value="${d.createTime }" type="both" dateStyle="default" /> --%>
+											<div class="dtitleleft">
+												<span class="icon-tags"></span><c:out value="${d.categorys }"></c:out>
+											</div>
+											<div class ="dtitleright">
+												<a class="readmore" href="${pageContext.request.contextPath}/diary/mod/${d.uid}">修改</a>
+												<a class="readmore" onclick="deleteDiary('${d.uid}')">删除</a>
+											</div>
+										</div>
 									</div>
 								</c:forEach>
 							</c:when>

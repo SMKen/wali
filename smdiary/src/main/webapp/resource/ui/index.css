@@ -12,9 +12,18 @@ a,a:hover, a:active, a:focus {text-decoration: none; }
 .nav li a { display: inline; background: #e5e5e5;text-shadow: none; padding: 8px 15px;border-radius: 5px ;}
 .nav li a:hover, .nav #active a {background: #4b8df8; }
 .content { margin: 10px 0; float: left; width: 73%;}
-.hdtitle{font:1.1em ;color: #0000ff ;font-weight: 600;}/**"Times New Roman",sans-serif,"微软雅黑"; */
-.itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
+.hdtitle{font:1.2em ;color: #0000ff ;}/**"Times New Roman",sans-serif,"微软雅黑"; */
+/* .itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
 .itemlist h3, .dateview { clear: both; }
+ */
+.itemlist .dtitle { height:30px; padding-bottom: 5px; margin: 20px 0;}
+.itemlist .diarysitem{ border: 1px dashed #858585;margin: 5px; padding: 5px}
+.itemlist .dtitle .dtitleleft{float: left}
+.itemlist .dtitle .dtitleright{float: right;margin-right: 5px}
+.itemlist .dbo {height:20px; padding-bottom: 5px; margin: 20px 0; }
+.itemlist .dbo .dtitleleft{float: left}
+.itemlist .dbo .dtitleright{float: right;margin-right: 5px}
+/* .itemlist .dtitle .dtitleleft, .dateview { clear: both; } */
 .itemcontent { color: #666; font-size: 14px; line-height: 26px }
 .dateview { margin: 0 5px; color: #939300}
 .dateview span { margin: 0 5px; }
