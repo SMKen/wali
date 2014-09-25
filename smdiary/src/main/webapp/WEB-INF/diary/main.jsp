@@ -183,6 +183,7 @@ Date.prototype.toString = function(showWeek)
 											</div>
 											<div class ="dtitleright">
 												<a class="readmore" href="${pageContext.request.contextPath}/diary/mod/${d.uid}">修改</a>
+												&nbsp;&nbsp;&nbsp;&nbsp;
 												<a class="readmore" onclick="deleteDiary('${d.uid}')">删除</a>
 											</div>
 										</div>

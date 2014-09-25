@@ -16,11 +16,11 @@ a,a:hover, a:active, a:focus {text-decoration: none; }
 /* .itemlist h3 { border-bottom: 1px dashed #858585; font-size: 1.2em; padding-bottom: 5px; margin: 20px 0; }
 .itemlist h3, .dateview { clear: both; }
  */
-.itemlist .dtitle { height:30px; padding-bottom: 5px; margin: 20px 0;}
+.itemlist .dtitle { height:30px; padding-bottom: 5px; margin: 2px 0;}
 .itemlist .diarysitem{ border: 1px dashed #858585;margin: 5px; padding: 5px}
 .itemlist .dtitle .dtitleleft{float: left}
 .itemlist .dtitle .dtitleright{float: right;margin-right: 5px}
-.itemlist .dbo {height:20px; padding-bottom: 5px; margin: 20px 0; }
+.itemlist .dbo {height:30px; padding-bottom: 5px; margin: 20px 0; }
 .itemlist .dbo .dtitleleft{float: left}
 .itemlist .dbo .dtitleright{float: right;margin-right: 5px}
 /* .itemlist .dtitle .dtitleleft, .dateview { clear: both; } */
