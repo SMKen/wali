@@ -2,12 +2,16 @@ package com.wali.smdiary.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.wali.common.web.page.Page;
 import com.wali.smdiary.dao.ISmDiaryDao;
 import com.wali.smdiary.entity.SmDiary;
 
@@ -36,40 +40,25 @@ public class SmDiaryDao extends BaseHibernateDao<SmDiary, String> implements ISm
 	{
 		return (List<SmDiary>) getCriteria(propertys,values).addOrder(Order.desc("createTime")).list();
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	public List<SmDiary> getTimeCategory(){
 		List<SmDiary> categories = (List<SmDiary>) getSession().createQuery("select new com.wali.smdiary.entity.SmDiary(diaryDay,categorys)  from com.wali.smdiary.entity.SmDiary " ).list();
 		return categories;
 	}
-	
-	/*@Override
-	public Map<String, Integer> getAllTags(String uid)
-	{
-		@SuppressWarnings("unchecked")
-		List<Object> categories = (List<Object>) getSession().createQuery("select categorys  from " + getClass().getName()).list();
-		if (categories == null || categories.isEmpty())
-		{
-			return null;
-		}
-		Map<String, Integer> cs = new HashMap<String, Integer>();
-		for (Object ca : categories)
-		{
-			String cates[] = ca.toString().split(",");
-			if (cates != null)
-			{
-				for (String s : cates)
-				{
-					if (cs.get(s) == null)
-					{
-						cs.put(s, 0);
-					}
-					cs.put(s, cs.get(s) + 1);
-				}
-			}
-		}
-		return cs;
+
+	@SuppressWarnings("unchecked")
+	public Page getPaging(int getPage,String[] propertys, Object[] values){
+		Page page = new Page(getPage);
+		//先计算总数
+		Criteria crit = getCriteria(propertys,values);
+		long count = (long) crit.setProjection(Projections.rowCount()).uniqueResult();
+		page.setTotalRecord(count);
+		List<SmDiary> categories = (List<SmDiary>) crit.addOrder(Order.desc("createTime"))
+				//TODO
+				.list();
+		
+		return page;
 	}
-*/
+	
 }

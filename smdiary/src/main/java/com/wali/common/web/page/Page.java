@@ -119,6 +119,12 @@ public class Page
 		this.totalRecord = totalRecord;
 		calc();
 	}
+	
+	public void setTotalRecord(Long totalRecord)
+	{
+		this.totalRecord = totalRecord.intValue();
+		calc();
+	}
 
 	public Object getData()
 	{

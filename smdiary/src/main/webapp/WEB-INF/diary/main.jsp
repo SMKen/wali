@@ -189,6 +189,8 @@ Date.prototype.toString = function(showWeek)
 										</div>
 									</div>
 								</c:forEach>
+								<!-- paging list -->
+								
 							</c:when>
 							<c:otherwise>
 								NO Diary
