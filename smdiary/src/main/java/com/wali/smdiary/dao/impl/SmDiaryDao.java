@@ -46,11 +46,27 @@ public class SmDiaryDao extends BaseHibernateDao<SmDiary, String> implements ISm
 		return categories;
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public Page getPage(int getPage,String[] propertys, Object[] values){
 		Page page = new Page(getPage);
 		//先计算总数
 		Criteria crit = getCriteria(propertys,values);
+		long count = (long) crit.setProjection(Projections.rowCount()).uniqueResult();
+		page.setTotalRecord(count);
+		crit.setProjection(null);
+		List<SmDiary> categories = (List<SmDiary>) crit.addOrder(Order.desc("createTime"))
+				.setFirstResult(page.getStartRow())
+				.setMaxResults(page.getPageSize())
+				.list();
+		page.setData(categories);
+		return page;
+	}*/
+
+	@SuppressWarnings("unchecked")
+	public Page getPage(int getPage,String[] propertys, Object[] values,String [] match){
+		Page page = new Page(getPage);
+		//先计算总数
+		Criteria crit = getCriteria(propertys,values,match);
 		long count = (long) crit.setProjection(Projections.rowCount()).uniqueResult();
 		page.setTotalRecord(count);
 		crit.setProjection(null);

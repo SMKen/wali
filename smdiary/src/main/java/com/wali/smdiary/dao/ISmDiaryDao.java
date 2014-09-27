@@ -15,7 +15,7 @@ import com.wali.smdiary.entity.SmDiary;
 public interface ISmDiaryDao extends IBaseHibernateDao<SmDiary, String>
 {
 
-	Page getPage(int getPage,String[] propertys, Object[] values);
+	Page getPage(int getPage,String[] propertys, Object[] values,String [] match);
 	
 	int getCountl();
 

@@ -276,8 +276,9 @@ Date.prototype.toString = function(showWeek)
 				<ul class="items">
 					<c:choose>
 						<c:when test="${timemap != null}">
-							<c:forEach var="d" items="${timemap}">
-								<li><a href="/" title="123" target="_blank"><c:out
+							<c:forEach var="d" items="${timemap}"> 
+								<li><a  href="${pageContext.request.contextPath}/diary/monthpage/${fn:replace(fn:replace(d.key, '月', ''), '年', '-')}/1"
+									 title="${d.key } 共 ${d.value }" target="_self"><c:out
 											value="${d.key }"></c:out>(<c:out value="${d.value }"></c:out>)</a></li>
 							</c:forEach>
 						</c:when>
@@ -293,8 +294,13 @@ Date.prototype.toString = function(showWeek)
 					<c:choose>
 						<c:when test="${catemap != null}">
 							<c:forEach var="d" items="${catemap}">
-								<li><a href="/" title="123" target="_blank"><c:out
+								<!-- //String message = java.net.URLEncoder.encode("中文字符","utf-8"); -->
+								<li><a  href="${pageContext.request.contextPath}/diary/tagpage/${d.key }/1"
+									 title="${d.key } 共 ${d.value }" target="_self"><c:out
 											value="${d.key }"></c:out>(<c:out value="${d.value }"></c:out>)</a></li>
+							
+								<%-- <li><a href="/" title="123" target="_blank"><c:out
+											value="${d.key }"></c:out>(<c:out value="${d.value }"></c:out>)</a></li> --%>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>

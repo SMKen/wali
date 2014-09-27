@@ -1,6 +1,7 @@
 package com.wali.smdiary.web;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -72,7 +73,7 @@ public class DiaryWeb
 		{
 			if (sd.getDiaryDay() != null)
 			{
-				String date = DateUtil.formatDateZH(sd.getDiaryDay());
+				String date = DateUtil.formatDateZHMonth(sd.getDiaryDay());
 				if (timeCount.get(date) == null)
 					timeCount.put(date, 0);
 				timeCount.put(date, timeCount.get(date) + 1);
@@ -101,6 +102,77 @@ public class DiaryWeb
 		return "forward:/diary/page/1";
 	}
 
+	@RequestMapping(value = "/monthpage/{month}/{pid}", method = RequestMethod.GET)
+	public ModelAndView month(@PathVariable String month, @PathVariable String pid)
+	{
+		Date monthDay = new Date();
+		try
+		{
+			monthDay = DateUtil.formatDateStringYearMonth(month);
+		} catch (Exception e)
+		{
+			monthDay = new Date();
+		}
+		Calendar cBegin = Calendar.getInstance();
+		cBegin.setTime(monthDay);
+		cBegin.set(Calendar.DAY_OF_MONTH, 1);
+		cBegin.set(Calendar.HOUR_OF_DAY, 0);
+		cBegin.set(Calendar.MINUTE, 0);
+		cBegin.set(Calendar.SECOND, 0);
+		cBegin.set(Calendar.MILLISECOND, 1);
+		Calendar cEnd = (Calendar) cBegin.clone();
+		cEnd.set(Calendar.MONTH, cBegin.get(Calendar.MONTH) + 1);
+
+		Integer pageid = 1;
+		try
+		{
+			pageid = Integer.valueOf(pid);
+		} catch (Exception e)
+		{
+			pageid = 1;
+		}
+		ModelAndView mv = getCateGoryTimeMV();
+		Page page = service.getPage(pageid, new String[] { "diaryDay", "diaryDay" }, new Object[] { cBegin.getTime(), cEnd.getTime() }, new String[] { "gt", "lt" });
+		mv.addObject("page", page);
+		mv.addObject("MD", "pagelist");
+		mv.setViewName("main");
+		return mv;
+	}
+
+	@RequestMapping(value = "/tagpage/{tag}/{pid}", method = RequestMethod.GET)
+	public ModelAndView tag(@PathVariable String tag, @PathVariable String pid)
+	{
+		try
+		{
+			tag = new String(tag.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (Exception e)
+		{
+			tag = null;
+		}
+		Integer pageid = 1;
+		try
+		{
+			pageid = Integer.valueOf(pid);
+		} catch (Exception e)
+		{
+			pageid = 1;
+		}
+
+		ModelAndView mv = getCateGoryTimeMV();
+		if (tag == null)
+		{
+			Page page = service.getPage(pageid, null, null, null);
+			mv.addObject("page", page);
+		} else
+		{
+			Page page = service.getPage(pageid, new String[] { "categorys" }, new Object[] { tag }, new String[] { "like" });
+			mv.addObject("page", page);
+		}
+		mv.addObject("MD", "pagelist");
+		mv.setViewName("main");
+		return mv;
+	}
+
 	@RequestMapping(value = "/page/{pid}", method = RequestMethod.GET)
 	public ModelAndView page(@PathVariable String pid)
 	{
@@ -113,7 +185,7 @@ public class DiaryWeb
 			pageid = 1;
 		}
 		ModelAndView mv = getCateGoryTimeMV();
-		Page page = service.getPage(pageid, null, null);
+		Page page = service.getPage(pageid, null, null, null);
 		mv.addObject("page", page);
 		mv.addObject("MD", "pagelist");
 		mv.setViewName("main");
@@ -155,11 +227,11 @@ public class DiaryWeb
 		return mv;
 	}
 
-	@RequestMapping(value = "/doadd", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value = "/doadd", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diaryadd)// ,
 	{
 		ModelAndView mv = getCateGoryTimeMV();
-		if(diaryadd == null)
+		if (diaryadd == null)
 		{
 			mv.addObject("MD", "add");
 			mv.setViewName("main");
@@ -183,8 +255,8 @@ public class DiaryWeb
 			mv.addObject("msg", "发布失败!");
 		}
 		// List<SmDiary> diarys = service.getListByParams(null, null);
-		Page page = service.getPage(1, null, null);
- 
+		Page page = service.getPage(1, null, null, null);
+
 		mv.addObject("page", page);
 		mv.addObject("MD", "list");
 		mv.setViewName("main");
@@ -195,15 +267,15 @@ public class DiaryWeb
 	public ModelAndView doUpdate(@ModelAttribute("diary") SmDiary diary)
 	{
 		ModelAndView mv = getCateGoryTimeMV();
-		if(diary == null)
+		if (diary == null)
 		{
-			Page page = service.getPage(1, null, null); 
+			Page page = service.getPage(1, null, null, null);
 			mv.addObject("page", page);
 			mv.addObject("MD", "pagelist");
 			mv.setViewName("main");
 			return mv;
 		}
-		
+
 		// diary.setAdmin(admin.getUid());
 		diary.setCreateTime(new Date());
 		diary.setUpdateTime(new Date());
@@ -219,10 +291,10 @@ public class DiaryWeb
 			mv.addObject("msg", "发布失败!");
 		}
 
-		Page page = service.getPage(1, null, null); 
+		Page page = service.getPage(1, null, null, null);
 		mv.addObject("page", page);
 		mv.addObject("MD", "pagelist");
-		mv.setViewName("main"); 
+		mv.setViewName("main");
 		return mv;
 	}
 

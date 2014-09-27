@@ -79,9 +79,9 @@ public class SmDiaryService implements ISmDiaryService
 //	}
 
 	@Override
-	public Page getPage(int getPage, String[] propertys, Object[] values)
+	public Page getPage(int getPage, String[] propertys, Object[] values,String [] match)
 	{
-		return dao.getPage(getPage, propertys, values);
+		return dao.getPage(getPage, propertys, values,match);
 	}
 
 }

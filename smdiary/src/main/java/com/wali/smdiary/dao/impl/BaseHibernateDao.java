@@ -96,7 +96,44 @@ public abstract class BaseHibernateDao<T, ID extends Serializable> implements IB
 		}
 		return c;
 	}
-	
+
+	Criteria getCriteria(String[] propertys, Object[] values,String[] match)
+	{
+		if(match==null)
+		{
+			return getCriteria(propertys, values);
+		}
+		Criteria c = getSession().createCriteria(getClazz());
+		if (null != propertys)
+		{
+			for (int i = 0; i < propertys.length; i++)
+			{
+				boolean add = false;
+				if(i< match.length)
+				{
+					if(match[i].equals("gt"))
+					{
+						c.add(Restrictions.gt(propertys[i], values[i]));
+						add = true;
+					}else if(match[i].equals("lt"))
+					{
+						c.add(Restrictions.lt(propertys[i], values[i]));
+						add = true;
+					}else if(match[i].equals("like"))
+					{
+						c.add(Restrictions.like(propertys[i], "%"+values[i]+"%"));
+						add = true;
+					}
+				}
+				if(!add)
+				{
+					c.add(Restrictions.eq(propertys[i], values[i]));
+				}
+			}
+		}
+		return c;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public T getOneById(Serializable ID)
