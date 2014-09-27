@@ -14,6 +14,55 @@
 	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 <link href="${pageContext.request.contextPath}/resource/ui/index.css"
 	rel="stylesheet">
+<style type="text/css">
+.margin-top-20 {
+    margin-top: 20px !important;
+}
+.pagination {
+    margin: 10px 0;
+}
+.pagination {
+    border-radius: 4px;
+    display: inline-block;
+    margin: 20px 0;
+    padding-left: 0;
+}.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #428bca;
+    border-color: #428bca;
+    color: #fff;
+    cursor: default;
+    z-index: 2;
+} 
+.pagination > li { 
+    float: left; 
+}
+.pagination > li > a, .pagination > li > span {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+}
+a {
+    color: #0da3e2;
+}
+a, a:focus, a:hover, a:active {
+    outline: 0 none;
+}
+div, input, select, textarea, span, img, table, td, th, p, a, button, ul, code, pre, li {
+    border-radius: 0 !important;
+}
+a {
+    color: #428bca;
+    text-decoration: none;
+}
+a {
+    background: none repeat scroll 0 0 transparent;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/sm.js"></script>
 <script type="text/javascript">
 function deleteDiary(id) {
@@ -97,17 +146,6 @@ Date.prototype.toString = function(showWeek)
 
 	<div class="container">
 		<div class="content">
-			<div>
-				${page }<br/>
-				${page.startPage }<br/>
-				${page.prePage }<br/>
-				${page.nextPage }<br/>
-				${page.totalPage }<br/>
-				${page.pageSize }<br/>
-				${page.totalRecord }<br/> 
-				${page.data }<br/> 
-				${page.data[0].uid }<br/> 
-			</div>
 			<!-- check MD choose begin -->
 			<c:choose>
 				<c:when test="${MD == 'add'}">
@@ -199,8 +237,24 @@ Date.prototype.toString = function(showWeek)
 										</div>
 									</div>
 								</c:forEach>
+								<div class="clear"></div>
 								<!-- paging list -->
-								
+								<div class="margin-top-20" align="center">
+		                           <ul class="pagination">
+		                              <li ><a href="${pageContext.request.contextPath}/diary/page/1">首页</a></li>
+		                              <c:forEach var = "pageindex" begin = "1" end= "${page.totalPage }" step = "1">
+										<c:choose>
+											<c:when test="${pageindex == page.startPage}">
+		                              			<li class="active"><a href="${pageContext.request.contextPath}/diary/page/${pageindex}">${pageindex}</a></li>
+											</c:when>
+										   	<c:otherwise>
+										   		<li><a href="${pageContext.request.contextPath}/diary/page/${pageindex}">${pageindex}</a></li>
+										   	</c:otherwise>
+										   	</c:choose> 
+									  </c:forEach>  
+		                              <li><a href="${pageContext.request.contextPath}/diary/page/${page.totalPage }">末页</a></li> 
+		                           </ul>
+		                        </div> 
 							</c:when>
 							<c:otherwise>
 								NO Diary
