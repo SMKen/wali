@@ -201,11 +201,11 @@ Date.prototype.toString = function(showWeek)
 						href="${pageContext.request.contextPath}/diary/add">新增</a>
 					<c:if test="${msg != null}">
 						<font color="red">${msg }</font>
-					</c:if>
+					</c:if> 
 					<!-- itemlist begin -->
 					<div class="itemlist">
 						<c:choose>
-							<c:when test="${page.data != null}">
+							<c:when test="${page.data != null and page.data != '[]'}">
 								<c:forEach var="d" items="${page.data}">
 									<fmt:setLocale value="zh_cn" />  
 									<div class="diarysitem">
@@ -257,7 +257,9 @@ Date.prototype.toString = function(showWeek)
 		                        </div> 
 							</c:when>
 							<c:otherwise>
-								NO Diary
+								<div style="font: red;margin-top: 20px;text-align: center;color: red;">
+									NO Diary
+								</div>
 							</c:otherwise>
 						</c:choose>
 					</div>
