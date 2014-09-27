@@ -167,8 +167,8 @@ Date.prototype.toString = function(showWeek)
 					<!-- itemlist begin -->
 					<div class="itemlist">
 						<c:choose>
-							<c:when test="${diarys != null}">
-								<c:forEach var="d" items="${diarys}">
+							<c:when test="${page.data != null}">
+								<c:forEach var="d" items="${page.data}">
 									<fmt:setLocale value="zh_cn" />  
 									<div class="diarysitem">
 										<!-- <h3></h3> -->

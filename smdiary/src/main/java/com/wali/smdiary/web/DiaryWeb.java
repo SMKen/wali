@@ -96,44 +96,26 @@ public class DiaryWeb
 	}
 
 	@RequestMapping
-	public ModelAndView main()// @ModelAttribute("admin") SmDiaryAdmin admin
+	public String main()
 	{
-		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
-		// "admin" }, new String[] { admin.getUid() }, new Page(1));
-//		List<SmDiary> diarys = service.getListByParams(null, null);
-		ModelAndView mv = getCateGoryTimeMV();
-//		mv.addObject("diarys", diarys);
-
-		//List<SmDiary> diarys = service.getListByParams(null, null);
-		Page page = service.getPage(1, null,null);
-
-		mv.addObject("diarys", page.getData());
-		mv.addObject("page", page);
-		mv.addObject("MD", "list");
-		mv.setViewName("main");
-		
-		mv.addObject("MD", "main");
-		mv.setViewName("main");
-		return mv;
+		return "forward:/diary/page/1";
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@ModelAttribute("admin") SmDiaryAdmin admin)
+	@RequestMapping(value = "/page/{pid}", method = RequestMethod.GET)
+	public ModelAndView page(@PathVariable String pid)
 	{
-		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
-		// "admin" }, new String[] { admin.getUid() }, new Page(1));
-//		List<SmDiary> diarys = service.getListByParams(null, null);
-
+		Integer pageid = 1;
+		try
+		{
+			pageid = Integer.valueOf(pid);
+		} catch (Exception e)
+		{
+			pageid = 1;
+		}
 		ModelAndView mv = getCateGoryTimeMV();
-//		mv.addObject("diarys", diarys);
-		//List<SmDiary> diarys = service.getListByParams(null, null);
-		Page page = service.getPage(1, null,null);
-
-		mv.addObject("diarys", page.getData());
+		Page page = service.getPage(pageid, null, null);
 		mv.addObject("page", page);
-		mv.addObject("MD", "list");
-		mv.setViewName("main");
-		mv.addObject("MD", "list");
+		mv.addObject("MD", "pagelist");
 		mv.setViewName("main");
 		return mv;
 	}
@@ -146,21 +128,22 @@ public class DiaryWeb
 		mv.setViewName("main");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/delete/{uid}", method = RequestMethod.POST)
 	public @ResponseBody String doDelete(@PathVariable String uid)
 	{
 		int count = service.doDeleteById(uid);
 		JSONObject json = new JSONObject();
-		if(count >=1)
+		if (count >= 1)
 		{
 			json.put("flag", true);
-		}else{
+		} else
+		{
 			json.put("flag", false);
 		}
-		 return json.toString();
+		return json.toString();
 	}
-	
+
 	@RequestMapping(value = "/mod/{uid}", method = RequestMethod.GET)
 	public ModelAndView toMod(@PathVariable String uid)
 	{
@@ -172,31 +155,36 @@ public class DiaryWeb
 		return mv;
 	}
 
-	@RequestMapping(value = "/doadd", method = RequestMethod.POST)
+	@RequestMapping(value = "/doadd", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diaryadd)// ,
 	{
+		ModelAndView mv = getCateGoryTimeMV();
+		if(diaryadd == null)
+		{
+			mv.addObject("MD", "add");
+			mv.setViewName("main");
+			return mv;
+		}
 		// diary.setAdmin(admin.getUid());
 		diaryadd.setCreateTime(new Date());
 		diaryadd.setUpdateTime(new Date());
 		diaryadd.setUid(StringUtil.getUUID());
-		if(diaryadd.getDiaryDay() ==null)
+		if (diaryadd.getDiaryDay() == null)
 		{
 			diaryadd.setDiaryDay(new Date());
 		}
 		boolean flag = service.doSave(diaryadd);
 
-		ModelAndView mv = getCateGoryTimeMV();
-		if(flag)
+		if (flag)
 		{
-			mv.addObject("msg", "发布成功!");	
-		}else
+			mv.addObject("msg", "发布成功!");
+		} else
 		{
-			mv.addObject("msg", "发布失败!");	
+			mv.addObject("msg", "发布失败!");
 		}
-		//List<SmDiary> diarys = service.getListByParams(null, null);
-		Page page = service.getPage(1, null,null);
-
-		mv.addObject("diarys", page.getData());
+		// List<SmDiary> diarys = service.getListByParams(null, null);
+		Page page = service.getPage(1, null, null);
+ 
 		mv.addObject("page", page);
 		mv.addObject("MD", "list");
 		mv.setViewName("main");
@@ -206,26 +194,35 @@ public class DiaryWeb
 	@RequestMapping(value = "/doMod", method = RequestMethod.POST)
 	public ModelAndView doUpdate(@ModelAttribute("diary") SmDiary diary)
 	{
-		//diary.setAdmin(admin.getUid());
+		ModelAndView mv = getCateGoryTimeMV();
+		if(diary == null)
+		{
+			Page page = service.getPage(1, null, null); 
+			mv.addObject("page", page);
+			mv.addObject("MD", "pagelist");
+			mv.setViewName("main");
+			return mv;
+		}
+		
+		// diary.setAdmin(admin.getUid());
 		diary.setCreateTime(new Date());
 		diary.setUpdateTime(new Date());
-		//diary.setUid(StringUtil.getUUID());
+		// diary.setUid(StringUtil.getUUID());
 		boolean flag = service.doUpdate(diary);
-		ModelAndView mv = getCateGoryTimeMV();
 		mv.addObject("diary", diary);
 		mv.addObject("flag", flag);
-		if(flag)
+		if (flag)
 		{
-			mv.addObject("msg", "发布成功!");	
-		}else
+			mv.addObject("msg", "发布成功!");
+		} else
 		{
-			mv.addObject("msg", "发布失败!");	
+			mv.addObject("msg", "发布失败!");
 		}
-		List<SmDiary> diarys = service.getListByParams(null, null);
 
-		mv.addObject("diarys", diarys);
-		mv.addObject("MD", "list");
-		mv.setViewName("main");
+		Page page = service.getPage(1, null, null); 
+		mv.addObject("page", page);
+		mv.addObject("MD", "pagelist");
+		mv.setViewName("main"); 
 		return mv;
 	}
 
