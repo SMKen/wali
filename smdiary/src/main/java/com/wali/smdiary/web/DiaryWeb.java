@@ -131,10 +131,13 @@ public class DiaryWeb
 		{
 			pageid = 1;
 		}
+		Page page = new Page();
+		page.setPageSize(1000);
 		ModelAndView mv = getCateGoryTimeMV();
-		Page page = service.getPage(pageid, new String[] { "diaryDay", "diaryDay" }, new Object[] { cBegin.getTime(), cEnd.getTime() }, new String[] { "gt", "lt" });
+		page = service.getPage(pageid, new String[] { "diaryDay", "diaryDay" }, new Object[] { cBegin.getTime(), cEnd.getTime() }, new String[] { "gt", "lt" });
 		mv.addObject("page", page);
 		mv.addObject("MD", "pagelist");
+		mv.addObject("pagetype", "monthpage");
 		mv.setViewName("main");
 		return mv;
 	}
@@ -157,18 +160,19 @@ public class DiaryWeb
 		{
 			pageid = 1;
 		}
-
+		Page page = new Page();
+		page.setPageSize(1000);
 		ModelAndView mv = getCateGoryTimeMV();
 		if (tag == null)
 		{
-			Page page = service.getPage(pageid, null, null, null);
-			mv.addObject("page", page);
+			page = service.getPage(pageid, null, null, null);
 		} else
 		{
-			Page page = service.getPage(pageid, new String[] { "categorys" }, new Object[] { tag }, new String[] { "like" });
-			mv.addObject("page", page);
+			page = service.getPage(pageid, new String[] { "categorys" }, new Object[] { tag }, new String[] { "like" });
 		}
+		mv.addObject("page", page);
 		mv.addObject("MD", "pagelist");
+		mv.addObject("pagetype", "tagpage");
 		mv.setViewName("main");
 		return mv;
 	}
@@ -188,6 +192,7 @@ public class DiaryWeb
 		Page page = service.getPage(pageid, null, null, null);
 		mv.addObject("page", page);
 		mv.addObject("MD", "pagelist");
+		mv.addObject("pagetype", "pagelist");
 		mv.setViewName("main");
 		return mv;
 	}
