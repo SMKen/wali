@@ -6,7 +6,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -48,16 +47,18 @@ public class SmDiaryDao extends BaseHibernateDao<SmDiary, String> implements ISm
 	}
 
 	@SuppressWarnings("unchecked")
-	public Page getPaging(int getPage,String[] propertys, Object[] values){
+	public Page getPage(int getPage,String[] propertys, Object[] values){
 		Page page = new Page(getPage);
 		//先计算总数
 		Criteria crit = getCriteria(propertys,values);
 		long count = (long) crit.setProjection(Projections.rowCount()).uniqueResult();
 		page.setTotalRecord(count);
+		crit.setProjection(null);
 		List<SmDiary> categories = (List<SmDiary>) crit.addOrder(Order.desc("createTime"))
-				//TODO
+				.setFirstResult(page.getStartRow())
+				.setMaxResults(page.getPageSize())
 				.list();
-		
+		page.setData(categories);
 		return page;
 	}
 	

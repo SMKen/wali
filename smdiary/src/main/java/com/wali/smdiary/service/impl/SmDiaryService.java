@@ -78,4 +78,10 @@ public class SmDiaryService implements ISmDiaryService
 //		return dao.getAllTags(uid);
 //	}
 
+	@Override
+	public Page getPage(int getPage, String[] propertys, Object[] values)
+	{
+		return dao.getPage(getPage, propertys, values);
+	}
+
 }

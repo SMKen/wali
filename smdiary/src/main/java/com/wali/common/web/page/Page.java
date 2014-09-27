@@ -12,7 +12,7 @@ public class Page
 	private int prePage = 0;
 	private int nextPage = 0;
 	private int totalPage = 0;
-	private int pageSize = 15;
+	private int pageSize = 5;
 	private int totalRecord = 0;
 	private Object data = null;
 

@@ -15,6 +15,8 @@ import com.wali.smdiary.entity.SmDiary;
 public interface ISmDiaryService
 {
 
+	Page getPage(int getPage,String[] propertys, Object[] values);
+	
 	int getCountl();
 
 	Boolean doSave(SmDiary T);

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wali.common.lang.DateUtil;
 import com.wali.common.lang.StringUtil;
+import com.wali.common.web.page.Page;
 import com.wali.smdiary.entity.SmDiary;
 import com.wali.smdiary.entity.SmDiaryAdmin;
 import com.wali.smdiary.service.ISmDiaryService;
@@ -99,9 +100,18 @@ public class DiaryWeb
 	{
 		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
 		// "admin" }, new String[] { admin.getUid() }, new Page(1));
-		List<SmDiary> diarys = service.getListByParams(null, null);
+//		List<SmDiary> diarys = service.getListByParams(null, null);
 		ModelAndView mv = getCateGoryTimeMV();
-		mv.addObject("diarys", diarys);
+//		mv.addObject("diarys", diarys);
+
+		//List<SmDiary> diarys = service.getListByParams(null, null);
+		Page page = service.getPage(1, null,null);
+
+		mv.addObject("diarys", page.getData());
+		mv.addObject("page", page);
+		mv.addObject("MD", "list");
+		mv.setViewName("main");
+		
 		mv.addObject("MD", "main");
 		mv.setViewName("main");
 		return mv;
@@ -112,10 +122,17 @@ public class DiaryWeb
 	{
 		// List<SmDiary> diarys = service.getPagesByParams(new String[] {
 		// "admin" }, new String[] { admin.getUid() }, new Page(1));
-		List<SmDiary> diarys = service.getListByParams(null, null);
+//		List<SmDiary> diarys = service.getListByParams(null, null);
 
 		ModelAndView mv = getCateGoryTimeMV();
-		mv.addObject("diarys", diarys);
+//		mv.addObject("diarys", diarys);
+		//List<SmDiary> diarys = service.getListByParams(null, null);
+		Page page = service.getPage(1, null,null);
+
+		mv.addObject("diarys", page.getData());
+		mv.addObject("page", page);
+		mv.addObject("MD", "list");
+		mv.setViewName("main");
 		mv.addObject("MD", "list");
 		mv.setViewName("main");
 		return mv;
@@ -176,9 +193,11 @@ public class DiaryWeb
 		{
 			mv.addObject("msg", "发布失败!");	
 		}
-		List<SmDiary> diarys = service.getListByParams(null, null);
+		//List<SmDiary> diarys = service.getListByParams(null, null);
+		Page page = service.getPage(1, null,null);
 
-		mv.addObject("diarys", diarys);
+		mv.addObject("diarys", page.getData());
+		mv.addObject("page", page);
 		mv.addObject("MD", "list");
 		mv.setViewName("main");
 		return mv;

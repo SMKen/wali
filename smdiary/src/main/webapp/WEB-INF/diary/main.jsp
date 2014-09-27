@@ -97,11 +97,21 @@ Date.prototype.toString = function(showWeek)
 
 	<div class="container">
 		<div class="content">
+			<div>
+				${page }<br/>
+				${page.startPage }<br/>
+				${page.prePage }<br/>
+				${page.nextPage }<br/>
+				${page.totalPage }<br/>
+				${page.pageSize }<br/>
+				${page.totalRecord }<br/> 
+				${page.data }<br/> 
+				${page.data[0].uid }<br/> 
+			</div>
 			<!-- check MD choose begin -->
 			<c:choose>
 				<c:when test="${MD == 'add'}">
 					<span class="icon-th-list"></span>日记列表&nbsp;&nbsp; <a href="#">管理</a>
-					
 					<!-- itemlist begin -->
 					<div class="itemlist">
 						<form action="${pageContext.request.contextPath}/diary/doadd"
