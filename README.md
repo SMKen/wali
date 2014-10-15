@@ -1,4 +1,4 @@
-Just write my own code and just for fun.
+持之以恒地更新
 
 del 	lock/q/s
 
