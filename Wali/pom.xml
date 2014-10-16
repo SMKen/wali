@@ -5,6 +5,7 @@
 	<artifactId>Wali</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>WALI</name>
 	<modules>
 		<module>smblog</module>
 		<module>smdiary</module>
