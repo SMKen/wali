@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>Ken</display-name>
 	<welcome-file-list>
-		<welcome-file>Ken.html</welcome-file>
+		<welcome-file>Ken.jsp</welcome-file>
 	</welcome-file-list>
 	<context-param>
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>

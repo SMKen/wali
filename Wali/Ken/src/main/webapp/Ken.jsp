@@ -134,7 +134,7 @@
 									<li>
 										<h5>
 											<fmt:message key="cp3" />
-										</h5> <span class="label label-info">2013 ~ Now</span>
+										</h5> <span class="label label-success">2013 ~ Now</span>
 										<p>
 											<fmt:message key="cp31" />
 										</p>
@@ -142,7 +142,7 @@
 									<li>
 										<h5>
 											<fmt:message key="cp2" />
-										</h5> <span class="label label-info">2011 ~ 2013</span>
+										</h5> <span class="label label-default">2011 ~ 2013</span>
 										<p>
 											<fmt:message key="cp21" />
 										</p>
@@ -150,7 +150,7 @@
 									<li>
 										<h5>
 											<fmt:message key="cp1" />
-										</h5> <span class="label label-info">2010 ~ 2011</span>
+										</h5> <span class="label label-warning">2010 ~ 2011</span>
 										<p>
 											<fmt:message key="cp11" />
 										</p>
@@ -291,7 +291,10 @@
 				<p>
 					@Copyright <a href="http://www.zhengchao.net.cn/" target="_blank"
 						title="<fmt:message key='name' />"><fmt:message key="name" /></a>
-					<a href="mailto:zh_chao@126.com">zh_chao@126.com</a>
+					<a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
+					<a href="<%=request.getContextPath()%>" >中文</a>
+					<a href="<%=request.getContextPath()%>/Ken.jsp?l=us" >English</a>
+					 
 				</p>
 			</footer>
 		</div>
