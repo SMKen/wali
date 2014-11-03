@@ -35,7 +35,7 @@ public class IndexWeb extends BaseServelet
 		if (lang.equals("logout"))
 		{
 			request.getSession().removeAttribute(SESSON_ADMIN);
-			response.sendRedirect(request.getContextPath() + "/db/");
+			response.sendRedirect(request.getContextPath() + "/db/page/1/");
 		} else if (lang.equals("doLogin"))
 		{
 			String email = request.getParameter("email");
