@@ -38,33 +38,28 @@ public class LogTag extends TagSupport
 	public int doStartTag()
 	{
 		// JspWriter out = this.pageContext.getOut();
-		try
+		if(lever.equals("info"))
 		{
-			switch (lever)
-			{
-			case "info":
-				logger.info(msg.toString());
-				break;
-			case "warn":
-				logger.warn(msg.toString());
-				break;
-			case "error":
-				logger.error(msg.toString());
-				break;
-			case "fatal":
-				logger.error(msg.toString());
-				break;
-			case "debug":
-				logger.debug(msg.toString());
-				break;
-			default:
-				logger.debug(msg.toString());
-				break;
-			}
-		} catch (Exception e)
+			logger.info(msg.toString());
+		}else if(lever.equals("warn"))
 		{
-			logger.warn("recorde log error . ");
-		}
+			logger.warn(msg.toString());
+		}else if(lever.equals("error"))
+		{
+			logger.error(msg.toString());
+		}else if(lever.equals("warn"))
+		{
+			logger.warn(msg.toString());
+		}else if(lever.equals("fatal"))
+		{
+			logger.error(msg.toString());
+		}else if(lever.equals("debug"))
+		{
+			logger.debug(msg.toString());
+		}else 
+		{
+			logger.debug(msg.toString());
+		}  
 
 		return EVAL_BODY_INCLUDE;
 	}

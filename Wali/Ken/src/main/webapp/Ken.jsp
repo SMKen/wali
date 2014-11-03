@@ -104,7 +104,7 @@
 									<ul>
 										<li><a href="#resume"><fmt:message key="vrs" /></a></li>
 										<li><a href="#contact"><fmt:message key="contactm" /></a></li>
-										<li><a href="${pageContext.request.contextPath}/diary">Blog</a></li>
+										<li><a href="${pageContext.request.contextPath}/db">Blog</a></li>
 										<li><a href="#features"><fmt:message key="more" /></a></li>
 									</ul>
 								</div>
@@ -282,7 +282,7 @@
 				<p>
 					
 					Copyright &copy; <a href="http://www.zhengchao.net.cn/" target="_blank"
-						title="<fmt:message key='name' />"><fmt:message key="name" /></a> 2012-2014
+						title="<fmt:message key='name' />"><fmt:message key="name" /></a> 2012-2014 V4
 					<%-- @Copyright <a href="http://www.zhengchao.net.cn/" target="_blank"
 						title="<fmt:message key='name' />"><fmt:message key="name" /></a> --%>
 					<a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
@@ -290,7 +290,7 @@
 					<a href="<%=request.getContextPath()%>/Ken.jsp?l=us" >English</a> --%>
 					<a href="<%=request.getContextPath()%>/index/lang/cn/Ken" >中文</a>
 					<a href="<%=request.getContextPath()%>/index/lang/us/Ken" >English</a>
-					<a href="${pageContext.request.contextPath}/diary"><fmt:message key="Blog" /></a>
+					<a href="${pageContext.request.contextPath}/db"><fmt:message key="Blog" /></a>
 					<a href="${pageContext.request.contextPath}/index/login"><fmt:message key="manage" /></a>
 				</p>
 			</footer>

@@ -13,6 +13,7 @@ import java.util.TreeMap;
 import javax.annotation.Resource;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,11 +31,12 @@ import com.wali.smdiary.entity.SmDiaryAdmin;
 import com.wali.smdiary.service.ISmDiaryService;
 
 @Controller
-@RequestMapping("/diary")
+@RequestMapping("/db")
 @SessionAttributes(types = SmDiaryAdmin.class, value = "admins")
 public class DiaryWeb
 {
-
+	Logger logger = org.slf4j.LoggerFactory.getLogger(DiaryWeb.class);
+	
 	@Resource(name = "smDiaryService")
 	private ISmDiaryService service;
 
@@ -99,7 +101,7 @@ public class DiaryWeb
 	@RequestMapping
 	public String main()
 	{
-		return "forward:/diary/page/1";
+		return "forward:/db/page/1";
 	}
 
 	@RequestMapping(value = "/monthpage/{month}/{pid}", method = RequestMethod.GET)
@@ -233,14 +235,15 @@ public class DiaryWeb
 	}
 
 	@RequestMapping(value = "/doadd", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView doAdd(@ModelAttribute("diary") SmDiary diaryadd)// ,
+	public String doAdd(@ModelAttribute("diary") SmDiary diaryadd)// ,
 	{
-		ModelAndView mv = getCateGoryTimeMV();
+		//ModelAndView mv = getCateGoryTimeMV();
 		if (diaryadd == null)
 		{
-			mv.addObject("MD", "add");
-			mv.setViewName("main");
-			return mv;
+//			mv.addObject("MD", "add");
+//			mv.setViewName("main");
+//			return mv; 
+			return "redirect:/diary";
 		}
 		// diary.setAdmin(admin.getUid());
 		diaryadd.setCreateTime(new Date());
@@ -251,34 +254,36 @@ public class DiaryWeb
 			diaryadd.setDiaryDay(new Date());
 		}
 		boolean flag = service.doSave(diaryadd);
-
-		if (flag)
-		{
-			mv.addObject("msg", "发布成功!");
-		} else
-		{
-			mv.addObject("msg", "发布失败!");
-		}
-		// List<SmDiary> diarys = service.getListByParams(null, null);
-		Page page = service.getPage(1, null, null, null);
-
-		mv.addObject("page", page);
-		mv.addObject("MD", "list");
-		mv.setViewName("main");
-		return mv;
+		logger.info("do add flag : "+flag);
+		return "redirect:/db";
+//		if (flag)
+//		{
+//			mv.addObject("msg", "发布成功!");
+//		} else
+//		{
+//			mv.addObject("msg", "发布失败!");
+//		}
+//		// List<SmDiary> diarys = service.getListByParams(null, null);
+//		Page page = service.getPage(1, null, null, null);
+//
+//		mv.addObject("page", page);
+//		mv.addObject("MD", "list");
+//		mv.setViewName("main");
+//		return mv;
 	}
 
 	@RequestMapping(value = "/doMod", method = RequestMethod.POST)
-	public ModelAndView doUpdate(@ModelAttribute("diary") SmDiary diary)
+	public String doUpdate(@ModelAttribute("diary") SmDiary diary)
 	{
-		ModelAndView mv = getCateGoryTimeMV();
+		//ModelAndView mv = getCateGoryTimeMV();
 		if (diary == null)
 		{
-			Page page = service.getPage(1, null, null, null);
-			mv.addObject("page", page);
-			mv.addObject("MD", "pagelist");
-			mv.setViewName("main");
-			return mv;
+//			Page page = service.getPage(1, null, null, null);
+//			mv.addObject("page", page);
+//			mv.addObject("MD", "pagelist");
+//			mv.setViewName("main");
+//			return mv;
+			return "redirect:/db";
 		}
 
 		// diary.setAdmin(admin.getUid());
@@ -286,21 +291,24 @@ public class DiaryWeb
 		diary.setUpdateTime(new Date());
 		// diary.setUid(StringUtil.getUUID());
 		boolean flag = service.doUpdate(diary);
-		mv.addObject("diary", diary);
-		mv.addObject("flag", flag);
-		if (flag)
-		{
-			mv.addObject("msg", "发布成功!");
-		} else
-		{
-			mv.addObject("msg", "发布失败!");
-		}
+		logger.info("do doupdate flag : "+flag);
+//		mv.addObject("diary", diary);
+//		mv.addObject("flag", flag);
+//		if (flag)
+//		{
+//			mv.addObject("msg", "发布成功!");
+//		} else
+//		{
+//			mv.addObject("msg", "发布失败!");
+//		}
+//
+//		Page page = service.getPage(1, null, null, null);
+//		mv.addObject("page", page);
+//		mv.addObject("MD", "pagelist");
+//		mv.setViewName("main");
+//		return mv;
 
-		Page page = service.getPage(1, null, null, null);
-		mv.addObject("page", page);
-		mv.addObject("MD", "pagelist");
-		mv.setViewName("main");
-		return mv;
+		return "redirect:/db";
 	}
 
 }

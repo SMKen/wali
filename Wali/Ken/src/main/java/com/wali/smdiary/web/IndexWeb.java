@@ -39,7 +39,7 @@ public class IndexWeb
 		mm.addAttribute("admins", null);
 		mm.clear();
 		request.getSession().removeAttribute("admin");
-		return "redirect:/diary";
+		return "redirect:/db";
 	}
 
 	@RequestMapping(value = "/langus", method = RequestMethod.GET)
@@ -52,7 +52,7 @@ public class IndexWeb
 	@RequestMapping(value = "/langcn", method = RequestMethod.GET)
 	public String langcn(HttpServletRequest request)
 	{
-		request.getSession().setAttribute("lg", "cn");;
+		request.getSession().setAttribute("lg", "cn");
 		return "redirect:/";
 	}
 	
@@ -61,9 +61,9 @@ public class IndexWeb
 	{
 		if(lg != null && !lg.equals("") && lg.equals("us"))
 		{
-			request.getSession().setAttribute("lg", "us");;
+			request.getSession().setAttribute("lg", "us");
 		}else{
-			request.getSession().setAttribute("lg", "cn");;
+			request.getSession().setAttribute("lg", "cn");
 		}
 		
 		if(null == url || url.equals("") || url.equals("Ken"))
@@ -84,7 +84,7 @@ public class IndexWeb
 			ad.setPwd("***");
 			mm.addAttribute("admins", ad);
 			request.getSession().setAttribute("admin", ad);
-			return "redirect:/diary";
+			return "redirect:/db";
 		}
 		mm.addAttribute("emaill", email);
 		mm.addAttribute("msg", "用户名或密码不对。");

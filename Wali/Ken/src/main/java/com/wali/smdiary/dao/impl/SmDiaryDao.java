@@ -67,10 +67,10 @@ public class SmDiaryDao extends BaseHibernateDao<SmDiary, String> implements ISm
 		Page page = new Page(getPage);
 		//先计算总数
 		Criteria crit = getCriteria(propertys,values,match);
-		long count = (long) crit.setProjection(Projections.rowCount()).uniqueResult();
+		long count = (Long) crit.setProjection(Projections.rowCount()).uniqueResult();
 		page.setTotalRecord(count);
 		crit.setProjection(null);
-		List<SmDiary> categories = (List<SmDiary>) crit.addOrder(Order.desc("createTime"))
+		List<SmDiary> categories = (List<SmDiary>) crit.addOrder(Order.desc("diaryDay"))
 				.setFirstResult(page.getStartRow())
 				.setMaxResults(page.getPageSize())
 				.list();

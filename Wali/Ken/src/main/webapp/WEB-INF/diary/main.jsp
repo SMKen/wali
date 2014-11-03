@@ -45,7 +45,7 @@
 <script type="text/javascript">
 	function deleteDiary(id) {
 		sm.ajax.request({
-			url : "${pageContext.request.contextPath}/diary/delete/" + id,
+			url : "${pageContext.request.contextPath}/db/delete/" + id,
 			method : 'POST',
 			data : {
 				datatype : ''
@@ -54,7 +54,7 @@
 				data = JSON.parse(xhr.responseText)
 				if (data.flag) {
 					sm.pop('删除成功');
-					sm.go("${pageContext.request.contextPath}/diary/");
+					sm.go("${pageContext.request.contextPath}/db/");
 				} else {
 					sm.pop('删除失败，请重试！');
 				}
@@ -63,7 +63,7 @@
 	}
 	function modDiary(id) {
 		sm.ajax.request({
-			url : "${pageContext.request.contextPath}/diary/mod/" + id,
+			url : "${pageContext.request.contextPath}/db/mod/" + id,
 			method : 'POST',
 			data : {
 				datatype : ''
@@ -71,8 +71,8 @@
 			success : function(xhr) {
 				data = JSON.parse(xhr.responseText)
 				if (data.flag) {
-					sm.pop('删除成功');
-					sm.go("${pageContext.request.contextPath}/diary/");
+					sm.pop('修改成功');
+					sm.go("${pageContext.request.contextPath}/db/");
 				} else {
 					sm.pop('删除失败，请重试！');
 				}
@@ -121,8 +121,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="${pageContext.request.contextPath}/diary"><fmt:message key="Index" /></a></li>
-					<li><a href="${pageContext.request.contextPath}/diary"><fmt:message key="Blog" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/db"><fmt:message key="Index" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/db"><fmt:message key="Blog" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/#about"><fmt:message key="about" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/#resume"><fmt:message key="rs" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/#contact"><fmt:message key="contact" /></a></li>
@@ -150,7 +150,7 @@
 					<fmt:message key="blog_list" /><small>&nbsp;&nbsp; <fmt:message key="blog_tip" /></small>
 					<c:if test="${sessionScope.admin != null}">
 						&nbsp;&nbsp; <a class="btn btn-primary"
-							href="${pageContext.request.contextPath}/diary/add"><fmt:message key="blog_addnew" /></a>
+							href="${pageContext.request.contextPath}/db/add"><fmt:message key="blog_addnew" /></a>
 					</c:if>
 				</h3>
 
@@ -159,7 +159,7 @@
 					<c:when test="${MD == 'add' and sessionScope.admin != null}">
 						<div class="well">
 		                    <h4><fmt:message key="blog_addnew" />:</h4>
-								<form action="${pageContext.request.contextPath}/diary/doadd" method="POST" name="diaryadd" role="form">
+								<form action="${pageContext.request.contextPath}/db/doadd" method="POST" name="diaryadd" role="form">
 									<div class="form-group">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" />
 										<textarea class="form-control" rows="10" name="diarys"  placeholder="在此处填写内容"></textarea>
@@ -177,7 +177,7 @@
 					<c:when test="${MD == 'mod' and sessionScope.admin != null}">
 					<div class="well">
 		                    <h4><fmt:message key="blog_modify" />:</h4>
-								<form action="${pageContext.request.contextPath}/diary/doMod" method="POST" name="diarymod" role="form">
+								<form action="${pageContext.request.contextPath}/db/doMod" method="POST" name="diarymod" role="form">
 									<div class="form-group">
 										<input type="hidden" name="uid" value="${diary.uid}">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" value="${diary.outline}">
@@ -227,7 +227,7 @@
 						<span style="color:red;font-style: italic"> &nbsp;&nbsp;
 							<c:if test="${sessionScope.admin != null}">
 								<span class="glyphicon glyphicon-edit"></span>
-								<a href="${pageContext.request.contextPath}/diary/mod/${d.uid}"><fmt:message key="modify" /></a>
+								<a href="${pageContext.request.contextPath}/db/mod/${d.uid}"><fmt:message key="modify" /></a>
 								<span class="glyphicon glyphicon-remove-circle"></span>
 								<a href="#" onclick="deleteDiary('${d.uid}')"><fmt:message key="delete" /></a>
 							</c:if>
@@ -255,22 +255,22 @@
 						<div class="margin-top-20" align="center">
 							<ul class="pagination">
 								<li><a
-									href="${pageContext.request.contextPath}/diary/page/1"><fmt:message key="firstPage" /></a></li>
+									href="${pageContext.request.contextPath}/db/page/1"><fmt:message key="firstPage" /></a></li>
 								<c:forEach var="pageindex" begin="1" end="${page.totalPage }"
 									step="1">
 									<c:choose>
 										<c:when test="${pageindex == page.startPage}">
 											<li class="active"><a
-												href="${pageContext.request.contextPath}/diary/page/${pageindex}">${pageindex}</a></li>
+												href="${pageContext.request.contextPath}/db/page/${pageindex}">${pageindex}</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a
-												href="${pageContext.request.contextPath}/diary/page/${pageindex}">${pageindex}</a></li>
+												href="${pageContext.request.contextPath}/db/page/${pageindex}">${pageindex}</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
 								<li><a
-									href="${pageContext.request.contextPath}/diary/page/${page.totalPage }"><fmt:message key="lastPage" /></a></li>
+									href="${pageContext.request.contextPath}/db/page/${page.totalPage }"><fmt:message key="lastPage" /></a></li>
 							</ul>
 						</div>
 					</c:when>
@@ -311,7 +311,7 @@
 									<!-- <span class="icon-tags"></span> -->
 									<span class="glyphicon glyphicon-tag"></span>
 									<a
-										href="${pageContext.request.contextPath}/diary/tagpage/${d.key }/1"
+										href="${pageContext.request.contextPath}/db/tagpage/${d.key }/1"
 										title="${d.key } 共 ${d.value }" target="_self"><c:out
 											value="${d.key }"></c:out>(<c:out value="${d.value }"></c:out>)</a>&nbsp;&nbsp;
 							</c:forEach>
@@ -334,7 +334,7 @@
 											<li>
 											<span class="glyphicon glyphicon-calendar"></span>
 											<a
-												href="${pageContext.request.contextPath}/diary/monthpage/${fn:replace(fn:replace(d.key, '月', ''), '年', '-')}/1"
+												href="${pageContext.request.contextPath}/db/monthpage/${fn:replace(fn:replace(d.key, '月', ''), '年', '-')}/1"
 												title="${d.key } 共 ${d.value }" target="_self"><c:out
 														value="${d.key }"></c:out>(<c:out value="${d.value }"></c:out>)</a></li>
 										</c:forEach>
@@ -361,9 +361,9 @@
 					<p>
 						Copyright &copy; <a href="http://www.zhengchao.net.cn/"
 							target="_blank" title="<fmt:message key='name' />"><fmt:message
-								key="name" /></a> 2012-2014 <a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
-					<a href="<%=request.getContextPath()%>/index/lang/cn/diary" >中文</a>
-					<a href="<%=request.getContextPath()%>/index/lang/us/diary" >English</a>
+								key="name" /></a> 2012-2014 V4 <a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
+					<a href="<%=request.getContextPath()%>/index/lang/cn/db" >中文</a>
+					<a href="<%=request.getContextPath()%>/index/lang/us/db" >English</a>
 						<%-- <a href="<%=request.getContextPath()%>">中文</a> <a
 							href="<%=request.getContextPath()%>/?l=us">English</a> --%>
 					</p>
