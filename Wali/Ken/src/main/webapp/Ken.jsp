@@ -2,6 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:choose> 
+<c:when  test="${sessionScope.lg == null}">
+	<fmt:setBundle basename="messages_zh_CN" />
+</c:when> 
+<c:when  test="${sessionScope.lg ==  'us'}">
+	<fmt:setBundle basename="messages_en_US" />
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages_zh_CN" />
+</c:otherwise>
+</c:choose>
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -12,30 +23,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<%
-	String languageType = null;
-	if (null == languageType) {
-		try {
-			languageType = (String) request.getParameter("l");
-		} catch (Exception e) {
-			languageType = null;
-		}
-	}
-	if (languageType == null) {
-		//locale = request.getLocale().toString();
-		languageType = "cn";
-	}
-	String Language = "Message_zh_CN";
-	if (languageType.endsWith("us")) {
-		Language = "messages_en_US";
-	} else {
-		Language = "messages_zh_CN";
-	}
-	session.setAttribute("Language", Language);
-	session.setAttribute("languageType", languageType);
-%>
-<fmt:setBundle basename="${sessionScope.Language}" />
-<title><fmt:message key="title" /></title>
+<title>
+<fmt:message key="title" />
+</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="description" content="Ken.Zheng 郑超  个人展示网页">
 <meta name="viewport" content="width=device-width">
@@ -114,6 +104,7 @@
 									<ul>
 										<li><a href="#resume"><fmt:message key="vrs" /></a></li>
 										<li><a href="#contact"><fmt:message key="contactm" /></a></li>
+										<li><a href="${pageContext.request.contextPath}/diary">Blog</a></li>
 										<li><a href="#features"><fmt:message key="more" /></a></li>
 									</ul>
 								</div>
@@ -289,12 +280,18 @@
 			<!-- End Tab Container -->
 			<footer>
 				<p>
-					@Copyright <a href="http://www.zhengchao.net.cn/" target="_blank"
-						title="<fmt:message key='name' />"><fmt:message key="name" /></a>
+					
+					Copyright &copy; <a href="http://www.zhengchao.net.cn/" target="_blank"
+						title="<fmt:message key='name' />"><fmt:message key="name" /></a> 2012-2014
+					<%-- @Copyright <a href="http://www.zhengchao.net.cn/" target="_blank"
+						title="<fmt:message key='name' />"><fmt:message key="name" /></a> --%>
 					<a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
-					<a href="<%=request.getContextPath()%>" >中文</a>
-					<a href="<%=request.getContextPath()%>/Ken.jsp?l=us" >English</a>
-					 
+					<%-- <a href="<%=request.getContextPath()%>" >中文</a>
+					<a href="<%=request.getContextPath()%>/Ken.jsp?l=us" >English</a> --%>
+					<a href="<%=request.getContextPath()%>/index/lang/cn/Ken" >中文</a>
+					<a href="<%=request.getContextPath()%>/index/lang/us/Ken" >English</a>
+					<a href="${pageContext.request.contextPath}/diary"><fmt:message key="Blog" /></a>
+					<a href="${pageContext.request.contextPath}/index/login"><fmt:message key="manage" /></a>
 				</p>
 			</footer>
 		</div>

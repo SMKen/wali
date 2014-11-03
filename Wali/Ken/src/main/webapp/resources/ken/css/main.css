@@ -164,7 +164,8 @@ body {width: 92%; margin: 0 auto} /* Center page without wrapper */
 
 .bg-1{
   /* background-image: url('../images/green1.jpg'); */
-  background-color: #9AC30D
+  background-color: #428bca
+  /* background-color: #9AC30D */
 }
 
 /* Header */

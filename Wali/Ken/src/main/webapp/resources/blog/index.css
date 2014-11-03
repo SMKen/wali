@@ -1,0 +1,30 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; }
+body { font-size: 16px; font-family:'Verdana', "微软雅黑","Times New Roman","Arial","sans-seif";}
+ul { list-style: none; }
+[class^="icon-"], [class*=" icon-"] {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	margin-left: 5px;
+	margin-right: 1px;
+	vertical-align: middle;/**text-top*/
+	background-image: url("glyphicons-halflings.png");
+	background-position: 14px 14px;
+	background-repeat: no-repeat;
+	}
+[class^="icon-"]:last-child, [class*=" icon-"]:last-child {*margin-left: 1;}
+.icon-white {background-image:url("glyphicons-halflings-white.png");}
+.icon-calendar {background-position: -192px -120px;}
+.icon-th-list {background-position: -264px 0;}
+.icon-cog {background-position: -432px 0;}
+.icon-home {background-position: 0 -24px;}
+.icon-tag {background-position: 0 -48px;}
+.icon-tags {background-position: -25px -48px;}
+.icon-book {background-position: -48px -48px;}
+.icon-bookmark {background-position: -72px -48px;}
+.icon-list-alt {background-position: -264px -24px;}
+.icon-user {background-position: -168px 0;}
+.icon-heart {background-position: -96px 0;}
+.icon-star {background-position: -120px 0;}
