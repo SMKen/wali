@@ -1,112 +1,324 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 <head>
-<title>简单示例</title>
-<meta name="description" content="website description" />
-<meta name="keywords" content="website keywords, website keywords" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="resource/simple/style.css" />
-</head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Ken</title>
+<meta name="description" content="Ken.Zheng 郑超  个人网页">
+<meta name="viewport" content="width=device-width">
+<!--  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-144x144-precomposed.png"> -->
+<!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
 
-<body>
-	<div id="main">
-		<div id="header">
-			<div id="logo">
-				<div id="logo_text">
-					<!-- class="logo_colour", allows you to change the colour of the text -->
-					<h1>
-						<a href="index.html">Ken<span class="logo_colour">SMBlog</span></a>
-					</h1>
-					<h2>Simple. light. enjoy.</h2>
+<link rel="stylesheet" href="resources/ken/css/normalize.min.css">
+<link rel="stylesheet" href="resources/ken/css/main.css">
+<script
+	src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js "></script>
+<script>
+	window.jQuery
+			|| document
+					.write('<script src="resources/jquery/jquery-1.10.2.min.js"><\/script>')
+</script>
+<script src="resources/ken/js/vendor/jquery.hashchange.min.js"></script>
+<script src="resources/ken/js/vendor/jquery.easytabs.min.js"></script>
+
+<script src="resources/ken/js/main.js"></script>
+<!--[if lt IE 9]>
+  	  <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+      <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+      <![endif]-->
+</head>
+<body class="bg-fixed bg-1">
+	<!--[if lt IE 7]>
+    You are using an <strong>outdated</strong> browser. Please upgrade your browser.
+    <![endif]-->
+	<div class="main-container">
+		<div class="main wrapper clearfix">
+			<!-- Header Start -->
+			<header id="header">
+				<div id="logo">
+					<h2>Ken.Zheng</h2>
+					<h4>Java Coder / IT / Agriculture</h4>
+				</div>
+			</header>
+			<!-- Header End -->
+			<!-- Main Tab Container -->
+			<div id="tab-container" class="tab-container">
+				<!-- Tab List -->
+				<ul class='etabs'>
+					<li class='tab' id="tab-about"><a href="#about"><i
+							class="icon-user"></i><span> About Me</span></a></li>
+					<li class='tab'><a href="#resume"><i
+							class="icon-file-text"></i><span> Resume</span></a></li>
+					<!-- <li class='tab'>
+                  <a href="#portfolio"><i class="icon-heart"></i><span> Portfolio</span></a>
+                </li> -->
+					<li class='tab'><a href="#contact"><i
+							class="icon-envelope"></i><span> Contact</span></a></li>
+				</ul>
+				<!-- End Tab List -->
+				<div id="tab-data-wrap">
+					<!-- About Tab Data -->
+					<div id="about">
+						<section class="clearfix">
+							<div class="g2">
+								<div class="photo">
+									<img
+										src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-frc1/582546_344156198979857_678123957_n.jpg"
+										alt="Sunny Luthra">
+								</div>
+								<div class="info">
+									<h2>Ken.Zheng</h2>
+									<h4>Java Coder / IT / Agriculture</h4>
+									<p>Now work.</p>
+								</div>
+							</div>
+							<div class="g1">
+								<div class="main-links sidebar">
+									<ul>
+										<li><a href="#resume">View Resume</a></li>
+										<!-- 
+                                    <li>
+                                        <a href="#portfolio">My Portfolio</a>
+                                    </li> -->
+										<li><a href="#contact">Contact Me</a></li>
+										<li><a href="#features">Features</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="break"></div>
+							<!-- <div class="contact-info">
+                          <div class="g1">
+                            <div class="item-box clearfix">
+                              <i class="icon-envelope"></i>
+                              <div class="item-data">
+                                <h3><a href="mailto:zh_chao@126.com">zh_chao@126.com</a></h3>
+                                <p>Email Address</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="g1">
+                            <div class="item-box clearfix">
+                              <i class="icon-facebook"></i>
+                              <div class="item-data">
+                                <h3><a href="http://fb.me/luthra.sunny">luthra.sunny</a></h3>
+                                <p>Facebook Profile</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="g1">
+                            <div class="item-box clearfix">
+                              <i class="icon-twitter"></i>
+                              <div class="item-data">
+                                <h3><a href="http://twitter.com/mRovaSolutions">@mRovaSolutions</a></h3>
+                                <p>Twitter Handle</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+						</section>
+						<!-- content -->
+					</div>
+					<!-- End About Tab Data -->
+					<!-- Resume Tab Data -->
+					<div id="resume">
+						<section class="clearfix">
+							<div class="g2">
+								<h3>Work Experience</h3>
+								<ul class="no-list work">
+									<li>
+										<h5>Hexun</h5>
+										<span class="label label-info">2013-</span>
+										<p>sernior</p>
+									</li>
+									<li>
+										<h5>EP</h5>
+										<span class="label label-info">2011-2013</span>
+										<p>senior</p>
+									</li>
+									<li>
+										<h5>neplink</h5>
+										<span class="label label-info">2010-2011</span>
+										<p>julior</p>
+									</li>
+								</ul>
+								<h3>Education</h3>
+								<ul class="no-list work">
+									<li>
+										<h5>Yangtze University</h5>
+										<span class="label label-success">2006-2010</span>
+										<p>instructional technology</p>
+									</li>
+								</ul>
+							</div>
+							<div class="g1">
+								<div class="sidebar">
+									<h3>Skills</h3>
+									<h5>Software</h5>
+									<div class="meter emerald">
+										<span style="width: 33.3%"><span>Photoshop</span></span>
+									</div>
+									<div class="meter midnight">
+										<span style="width: 70%"><span>Dreamweaver</span></span>
+									</div>
+									<div class="meter pomengrate">
+										<span style="width: 60%"><span>Microsoft Office</span></span>
+									</div>
+									<div class="meter asbestos">
+										<span style="width: 65%"><span>Linux</span></span>
+									</div>
+									<div class="break"></div>
+									<h5>Programming Language</h5>
+									<div class="meter emerald">
+										<span style="width: 70%"><span>HTML/CSS</span></span>
+									</div>
+									<div class="meter carrot">
+										<span style="width: 80%"><span>MySql</span></span>
+									</div>
+									<div class="meter wisteria">
+										<span style="width: 85%"><span>jQuery/JavaScript</span></span>
+									</div>
+									<div class="meter asbestos">
+										<span style="width: 82%"><span>Python</span></span>
+									</div>
+									<div class="meter asbestos">
+										<span style="width: 82%"><span>J2SE</span></span>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+					<!-- End Resume Tab Data -->
+					<!-- Portfolio Tab Data -->
+					<!-- <div id="portfolio">
+                    <section class="clearfix">
+                        <div class="g1">
+                            <div class="image">
+                                <img src="http://lorempixel.com/306/306/sports/1" alt="">
+                                <div class="image-overlay">
+                                    <div class="image-link">
+                                        <a href="http://lorempixel.com/606/606/sports/1" class="btn">Full View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g1">
+                            <div class="image">
+                                <img src="http://lorempixel.com/306/306/sports/2" alt="">
+                                <div class="image-overlay">
+                                    <div class="image-link">
+                                        <a href="http://lorempixel.com/606/606/sports/2" class="btn">Full View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g1">
+                            <div class="image">
+                                <img src="http://lorempixel.com/306/306/sports/3" alt="">
+                                <div class="image-overlay">
+                                    <div class="image-link">
+                                        <a href="http://lorempixel.com/606/606/sports/3" class="btn">Full View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="break"></div>
+                        <div class="g1">
+                            <div class="image">
+                                <img src="http://lorempixel.com/306/306/sports/4" alt="">
+                                <div class="image-overlay">
+                                    <div class="image-link">
+                                        <a href="http://lorempixel.com/606/606/sports/4" class="btn">Full View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g1">
+                            <div class="image">
+                                <img src="http://lorempixel.com/306/306/sports/5" alt="">
+                                <div class="image-overlay">
+                                    <div class="image-link">
+                                        <a href="http://lorempixel.com/606/606/sports/5" class="btn">Full View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g1">
+                            <div class="image">
+                                <img src="http://lorempixel.com/306/306/business/2" alt="">
+                                <div class="image-overlay">
+                                    <div class="image-link">
+                                        <a href="http://lorempixel.com/606/606/business/2" class="btn">Full View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </section>
+                </div> -->
+					<!-- End Portfolio Data -->
+					<!-- Contact Tab Data -->
+					<div id="contact">
+						<section class="clearfix">
+							<div class="g1">
+								<div class="sny-icon-box">
+									<div class="sny-icon">
+										<i class="icon-globe"></i>
+									</div>
+									<div class="sny-icon-content">
+										<h4>My Address</h4>
+										<p>Optical Valley,WuHan,China</p>
+									</div>
+								</div>
+							</div>
+							<div class="g1">
+								<div class="sny-icon-box">
+									<div class="sny-icon">
+										<i class="icon-phone"></i>
+									</div>
+									<div class="sny-icon-content">
+										<h4>Mobile Number</h4>
+										<p>1336724185*</p>
+									</div>
+								</div>
+							</div>
+							<div class="g1">
+								<div class="sny-icon-box">
+									<div class="sny-icon">
+										<i class="icon-user"></i>
+									</div>
+									<div class="sny-icon-content">
+										<h4>About Me</h4>
+										<p>I love to work, so don't be shy, i am just an email
+											away.</p>
+									</div>
+								</div>
+							</div>
+							<div class="break"></div>
+
+						</section>
+					</div>
+					<!-- End Contact Data -->
 				</div>
 			</div>
-			<div id="menubar">
-				<ul id="menu">
-					<!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-					<li class="selected"><a href="index.html">首页</a></li>
-					<li><a href="examples.html">博文</a></li>
-					<li><a href="page.html">图片</a></li>
-					<li><a href="another_page.html">其它</a></li>
-					<li><a href="contact.html">联系我</a></li>
-				</ul>
-			</div>
+			<!-- End Tab Container -->
+			<footer>
+				<p>
+					@Copyright <a href="http://www.zhengchao.net.cn/" target="_blank"
+						title="Ken">Ken</a> <a href="mailto:zh_chao@126.com">zh_chao@126.com</a>
+				</p>
+			</footer>
 		</div>
-		<div id="content_header"></div><!-- 
-		<div class="inner_copyright">
-			Collect from <a href="http://www.cssmoban.com/" target="_blank"
-				title="模板之家">模板之家</a>
-		</div> -->
-		<div id="site_content">
-			<div class="sidebar">
-				<!-- insert your sidebar items here -->
-				<h3>最新博文</h3>
-				<h4>New Website Launched</h4>
-				<h5>January 1st, 2010</h5>
-				<p>
-					2010 sees the redesign of our website. Take a look around and let
-					us know what you think.<br /> <a href="#">Read more</a>
-				</p>
-				<p></p>
-				<h4>New Website Launched</h4>
-				<h5>January 1st, 2010</h5>
-				<p>
-					2010 sees the redesign of our website. Take a look around and let
-					us know what you think.<br /> <a href="#">Read more</a>
-				</p>
-				<h3>链接</h3>
-				<ul>
-					<li><a href="#">链接 1</a></li>
-					<li><a href="#">链接 2</a></li>
-					<li><a href="#">链接 3</a></li>
-					<li><a href="#">链接	 4</a></li>
-				</ul>
-				<h3>搜索</h3>
-				<form method="post" action="#" id="search_form">
-					<p>
-						<input class="search" type="text" name="search_field"
-							value="Enter keywords....." /> <input name="search" type="image"
-							style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png"
-							alt="Search" title="Search" />
-					</p>
-				</form>
-			</div>
-			<div id="content">
-				<!-- insert the page content here -->
-				<h1>Welcome to the simplestyle_1 template</h1>
-				<p>This standards compliant, simple, fixed width website
-					template is released as an 'open source' design (under a Creative
-					Commons Attribution 3.0 Licence), which means that you are free to
-					download and use it for anything you want (including modifying and
-					amending it). All I ask is that you leave the 'Collect from
-					cssmoban.com' link in the footer of the template, but other than
-					that...</p>
-				<p>
-					This template is written entirely in <strong>HTML5</strong> and <strong>CSS</strong>,
-					and can be validated using the links in the footer.
-				</p>
-				<p>
-					You can view more free HTML5 web templates <a
-						href="http://www.cssmoban.com/">模板</a>.
-				</p>
-				<p>
-					This template is a fully functional 5 page website, with an <a
-						href="examples.html">examples</a> page that gives examples of all
-					the styles available with this design.
-				</p>
-				<h2>Browser Compatibility</h2>
-				<p>This template has been tested in the following browsers:</p>
-				<ul>
-					<li>Internet Explorer 8</li>
-					<li>Internet Explorer 7</li>
-					<li>FireFox 3.5</li>
-					<li>Google Chrome 6</li>
-					<li>Safari 4</li>
-				</ul>
-			</div>
-		</div>
-		<div id="content_footer"></div>
-		<div id="footer">Copyright &copy; Ken SMBlog</div>
+		<!-- #main -->
 	</div>
+	<!-- #main-container -->
 </body>
 </html>
