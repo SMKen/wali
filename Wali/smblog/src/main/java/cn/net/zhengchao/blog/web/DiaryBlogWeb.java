@@ -1,7 +1,9 @@
 package cn.net.zhengchao.blog.web;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,11 +17,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import k.lang.DateUtil;
 import k.lang.StringUtil;
 import k.page.Page;
+
+import org.json.JSONObject;
+
 import cn.net.zhengchao.blog.dao.DiaryBlogDao;
 import cn.net.zhengchao.blog.vo.SmDiary;
 
@@ -117,7 +120,7 @@ public class DiaryBlogWeb extends BaseServelet
 			}
 			logger.debug("blog list page search begin ");
 			Page page = new DiaryBlogDao().getPage(pageid, null, null, null);
-			logger.debug("blog list page search results : "+page);
+			logger.debug("blog list page search results : " + page);
 			request.setAttribute("page", page);
 			request.setAttribute("pagetype", "pagelist");
 			request.setAttribute("MD", "pagelist");
@@ -136,7 +139,7 @@ public class DiaryBlogWeb extends BaseServelet
 			{
 				pageid = 1;
 			}
-			
+
 			Date monthDay = new Date();
 			try
 			{
@@ -154,10 +157,11 @@ public class DiaryBlogWeb extends BaseServelet
 			cBegin.set(Calendar.MILLISECOND, 1);
 			Calendar cEnd = (Calendar) cBegin.clone();
 			cEnd.set(Calendar.MONTH, cBegin.get(Calendar.MONTH) + 1);
+			cEnd.set(Calendar.SECOND, cEnd.get(Calendar.SECOND)-2);
 			
 			logger.debug("blog month list page search begin ");
 			Page page = new DiaryBlogDao().getPage(pageid, new String[] { "diaryDay", "diaryDay" }, new Object[] { cBegin.getTime(), cEnd.getTime() }, new String[] { "gt", "lt" });
-			logger.debug("blog month list page search results : "+page);
+			logger.debug("blog month list page search results : " + page);
 			request.setAttribute("page", page);
 			request.setAttribute("MD", "pagelist");
 			request.setAttribute("pagetype", "monthpage");
@@ -169,7 +173,10 @@ public class DiaryBlogWeb extends BaseServelet
 			String tag = null;
 			try
 			{
-				tag = new String(tag.getBytes("ISO-8859-1"), "UTF-8");
+				tag = kGetReqParamValue(reqParam, 2, "--");
+				tag= URLDecoder.decode(tag, "utf-8");
+				logger.debug("decode tag is : "+tag);
+				//tag = new String(tag.getBytes("ISO-8859-1"), "UTF-8");
 			} catch (Exception e)
 			{
 				tag = null;
@@ -183,7 +190,7 @@ public class DiaryBlogWeb extends BaseServelet
 			{
 				pageid = 1;
 			}
- 			
+
 			logger.debug("blog tag list page search begin ");
 			Page page = null;
 			if (tag == null)
@@ -194,45 +201,156 @@ public class DiaryBlogWeb extends BaseServelet
 				page = new DiaryBlogDao().getPage(pageid, new String[] { "categorys" }, new Object[] { tag }, new String[] { "like" });
 			}
 
-			logger.debug("blog tag list page search results : "+page);
+			logger.debug("blog tag list page search results : " + page);
 			request.setAttribute("page", page);
 			request.setAttribute("MD", "pagelist");
 			request.setAttribute("pagetype", "tagpage");
 			addCateGoryTime(request);
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
-		}else if (param1.equals("mod"))
+		} else if (param1.equals("mod"))
 		{
 			String uid = kGetReqParamValue(reqParam, 2, "1");
-			if(null == uid)
+			if (null == uid)
 			{
 				response.sendRedirect(request.getContextPath() + "/db/page/1/");
-			}else{
+			} else
+			{
 				logger.debug("blog go mod search begin ");
 				SmDiary obj = new DiaryBlogDao().getDiaryById(uid);
-				logger.debug("blog go mod search results : "+ obj);
+				logger.debug("blog go mod search results : " + obj);
 				request.setAttribute("diary", obj);
 				request.setAttribute("MD", "mod");
 				addCateGoryTime(request);
 				request.getRequestDispatcher("/main.jsp").forward(request, response);
 			}
-			
+
 		} else if (param1.equals("add"))
 		{
 			request.setAttribute("MD", "add");
 			addCateGoryTime(request);
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
-		}  else if (param1.equals("doAdd"))
+		} else if (param1.equals("doAdd"))
 		{
-			request.setAttribute("MD", "add");
+			// SmDiary diaryadd = new SmDiary();
+			// diaryadd.setUpdateTime(new Date());
+			// diaryadd.setUid(StringUtil.getUUID());
+			// if (diaryadd.getDiaryDay() == null)
+			// {
+			// diaryadd.setDiaryDay(new Date());
+			// }
+			String outline = request.getParameter("outline");
+			if (outline == null || outline.equals(""))
+			{
+				outline = "标题";
+			}else{
+				outline = new String(outline.getBytes("ISO-8859-1"), "UTF-8");
+			}
+			String diarys = request.getParameter("diarys");
+			diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
+			String mood = request.getParameter("mood");
+			if (mood == null || mood.equals(""))
+			{
+				mood = "--";
+			}else{
+				mood = new String(mood.getBytes("ISO-8859-1"), "UTF-8");
+			}
+			String weather = request.getParameter("weather");
+			if (weather == null || weather.equals(""))
+			{
+				weather = "--";
+			}else{
+				weather = new String(weather.getBytes("ISO-8859-1"), "UTF-8");
+			}
+			String diaryDays = request.getParameter("diaryDays");
+			Date diaryDay = new Date();
+			try
+			{
+				diaryDay = DateUtil.formatDateStringZH(diaryDays);
+				logger.debug(diaryDays + " date " + diaryDay);
+			} catch (Exception e)
+			{
+				logger.debug(diaryDays + " parse error "+e.toString());
+				diaryDay = new Date();
+			}
+			String categorys = request.getParameter("categorys");
+			categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
+			String sql = "insert into wali_diary(UID,ADMIN ,CATEGORYS ,CREATETIME ,DIARY ,DIARYDAY ,DIARYCOUNT ,MOOD ,OUTLINE ,UPDATETIME ,VIEWTIMES ,WEATHER ) "
+					+ "values(?,? ,? ,? ,? ,? ,1 ,? ,? ,? ,1 ,? )";
+			Object params[] = new Object[] { StringUtil.getUUID(), "Ken", categorys, new Date(), diarys, diaryDay, mood, outline, new Date(), weather };
+			logger.debug("insert diary " + sql);
+			logger.debug("insert diary params " + Arrays.asList(params));
+			int flag = new DiaryBlogDao().saveOrUpdate(sql, params);
+			logger.debug("insert diary results :"+ flag);
+			if (flag == 1)
+			{
+				logger.debug("publish new blog : 发布成功!");
+			} else
+			{
+				logger.warn("publish new blog : 发布失败!");
+			}
 			addCateGoryTime(request);
-			request.getRequestDispatcher("/main.jsp").forward(request, response);
-		}   else if (param1.equals("delete"))
+			response.sendRedirect(request.getContextPath() + "/db/page/1/");
+		} else if (param1.equals("doMod"))
+		{
+			String outline = request.getParameter("outline");
+			if (outline == null || outline.equals(""))
+			{
+				outline = "标题";
+			}else{
+				outline = new String(outline.getBytes("ISO-8859-1"), "UTF-8");
+			}
+			String diarys = request.getParameter("diarys");
+			diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
+			String mood = request.getParameter("mood");
+			if (mood == null || mood.equals(""))
+			{
+				mood = "--";
+			}else{
+				mood = new String(mood.getBytes("ISO-8859-1"), "UTF-8");
+			}
+			String weather = request.getParameter("weather");
+			if (weather == null || weather.equals(""))
+			{
+				weather = "--";
+			}else{
+				weather = new String(weather.getBytes("ISO-8859-1"), "UTF-8");
+			}
+			String diaryDays = request.getParameter("diaryDays");//diaryDays
+			Date diaryDay = new Date();
+			try
+			{
+				diaryDay = DateUtil.formatDateStringZH(diaryDays);
+				logger.debug(diaryDays + " date " + diaryDay);
+			} catch (Exception e)
+			{
+				logger.debug(diaryDays + " parse error "+e.toString());
+				diaryDay = new Date();
+			}
+			String categorys = request.getParameter("categorys");
+			categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
+			String uid = request.getParameter("uid");
+			String sql = "update wali_diary set CATEGORYS = ? ,DIARY = ? ,DIARYDAY =? ,MOOD=? ,OUTLINE =?,UPDATETIME=?,WEATHER=? where UID =?";
+			Object params[] = new Object[] { categorys, diarys, diaryDay, mood, outline, new Date(), weather, uid };
+
+			int flag = new DiaryBlogDao().saveOrUpdate(sql, params);
+
+			if (flag == 1)
+			{
+				logger.debug("modify blog : 更新成功!");
+			} else
+			{
+				logger.warn("modify blog : 更新失败!");
+			}
+			addCateGoryTime(request);
+			response.sendRedirect(request.getContextPath() + "/db/page/1/");
+		} else if (param1.equals("delete"))
 		{
 			String uid = kGetReqParamValue(reqParam, 2, "1");
-			if(null == uid)
+			if (null == uid)
 			{
 				response.sendRedirect(request.getContextPath() + "/db/page/1/");
-			}else{
+			} else
+			{
 				int count = new DiaryBlogDao().deleteById(uid);
 				JSONObject json = new JSONObject();
 				if (count >= 1)
@@ -244,7 +362,7 @@ public class DiaryBlogWeb extends BaseServelet
 				}
 				response.setContentType("application/json;charset=UTF-8");
 				response.getWriter().write(json.toString());
-//				return json.toString();
+				// return json.toString();
 			}
 		} else
 		{

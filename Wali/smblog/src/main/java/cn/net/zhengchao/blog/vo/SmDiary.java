@@ -46,7 +46,7 @@ public class SmDiary implements Serializable
 //	@Column(length = 64)
 	private String categorys;
 //	@Column(name = "diary")
-	private String diarys;
+	private String diary;
 //	@Column
 	private int viewtimes;
 //	@Column
@@ -138,14 +138,14 @@ public class SmDiary implements Serializable
 		this.categorys = categorys;
 	}
 
-	public String getDiarys()
+	public String getDiary()
 	{
-		return diarys;
+		return diary;
 	}
 
-	public void setDiarys(String diarys)
+	public void setDiary(String diarys)
 	{
-		this.diarys = diarys;
+		this.diary = diarys;
 	}
 
 	public int getViewtimes()

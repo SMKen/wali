@@ -159,7 +159,7 @@
 					<c:when test="${MD == 'add' and sessionScope.admin != null}">
 						<div class="well">
 		                    <h4><fmt:message key="blog_addnew" />:</h4>
-								<form action="${pageContext.request.contextPath}/db/doadd" method="POST" name="diaryadd" role="form">
+								<form action="${pageContext.request.contextPath}/db/doAdd" method="POST" name="diaryadd" role="form">
 									<div class="form-group">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" />
 										<textarea class="form-control" rows="10" name="diarys"  placeholder="在此处填写内容"></textarea>
@@ -181,10 +181,10 @@
 									<div class="form-group">
 										<input type="hidden" name="uid" value="${diary.uid}">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" value="${diary.outline}">
-										<textarea class="form-control" rows="10" name="diarys"  placeholder="在此处填写内容">${diary.diarys}</textarea>
+										<textarea class="form-control" rows="10" name="diarys"  placeholder="在此处填写内容">${diary.diary}</textarea>
 										<input class="form-control"  style="width: 50%" 	name="mood" placeholder="心情：心情不错" value="${diary.mood}"> 
 										<input class="form-control" style="width: 50%" name="weather" placeholder="天气：晴" value="${diary.weather}"> 
-										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"  value="${diary.diaryDay}"> 
+										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"  value="<fmt:formatDate value='${diary.diaryDay}' pattern='yyyy-MM-dd'/>"> 
 										<input class="form-control" style="width: 100%"  name="categorys" placeholder="标签，以逗号或空格间隔"  value="${diary.categorys}">
 									</div>						
 									<button type="submit" class="btn btn-primary"><fmt:message key="blog_submit" /></button>
@@ -217,7 +217,7 @@
 						</p>
 						<hr>
 						<p>
-							<c:out value="${d.diarys }"></c:out>
+							<c:out value="${d.diary }"></c:out>
 						</p>
 						<!-- <span class="icon-tags"></span> -->
 						<span  style="color: green;" class="glyphicon glyphicon-tags"></span>

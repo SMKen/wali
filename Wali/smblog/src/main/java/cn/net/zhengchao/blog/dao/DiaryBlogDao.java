@@ -88,7 +88,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 				 return page;
 			 }
 			 			
-			String pageSql  = "select * from wali_diary " + paramSqlStr +" limit ?,?"; 			 
+			String pageSql  = "select * from wali_diary " + paramSqlStr +" order by DIARYDAY desc,UPDATETIME desc limit ?,?"; 			 
 			List<Object> list = new ArrayList<Object>();  
 	        if(values == null)
 	        {

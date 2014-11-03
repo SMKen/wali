@@ -44,7 +44,7 @@ public class DateUtil
 	}
 
 	/**
-	 * @see {@link #FORMAT_DATE_ZH}
+	 * @see {@link #FORMAT_DATE}
 	 */
 	public static Date formatDateStringZH(String date)
 	{
