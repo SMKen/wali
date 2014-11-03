@@ -17,12 +17,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>main</servlet-name>
-		<servlet-class>cn.net.zhengchao.blog.web.MainWeb</servlet-class>
+		<servlet-name>db</servlet-name>
+		<servlet-class>cn.net.zhengchao.blog.web.DiaryBlogWeb</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>main</servlet-name>
-		<url-pattern>/main/*</url-pattern>
+		<servlet-name>db</servlet-name>
+		<url-pattern>/db/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
