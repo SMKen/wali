@@ -4,14 +4,38 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>smblog</display-name>
-
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>Ken.jsp</welcome-file>
 	</welcome-file-list>
+	<servlet>
+		<servlet-name>index</servlet-name>
+		<servlet-class>cn.net.zhengchao.blog.web.IndexWeb</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>main</servlet-name>
+		<servlet-class>cn.net.zhengchao.blog.web.MainWeb</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>/main/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>lang</servlet-name>
+		<servlet-class>cn.net.zhengchao.blog.web.LangWeb</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lang</servlet-name>
+		<url-pattern>/lang/*</url-pattern>
+	</servlet-mapping>
 
 	<context-param>
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>messages</param-value>
 	</context-param>
-
 </web-app>
