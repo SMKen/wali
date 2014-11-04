@@ -1,0 +1,5 @@
+# robots.txt  
+User-agent: *
+Disallow: 
+Disallow: /admin/
+#Sitemap: http://www.k.com/sitemap.gz

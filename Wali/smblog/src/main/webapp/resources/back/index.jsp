@@ -6,6 +6,6 @@
 		<jsp:forward page="index/login"></jsp:forward>
 	</c:when>
 	<c:otherwise>
-		<jsp:forward page="diary"></jsp:forward>
+		<jsp:forward page="db"></jsp:forward>
 	</c:otherwise>
 </c:choose>

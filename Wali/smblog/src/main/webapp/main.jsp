@@ -104,6 +104,12 @@
 </script>
 </head>
 <body>
+<!-- check legal  -->
+<c:choose>
+	<c:when test="${MD == null or page == null}">
+		<jsp:forward page="db"></jsp:forward>
+	</c:when> 
+</c:choose>
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
