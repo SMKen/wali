@@ -78,8 +78,19 @@
 						<input type="password" name="pwd" id="pwd" class="form-control" placeholder="<fmt:message key='pwd' />" /> <br />
 						</div>	
 					<button type="submit" class="btn btn-primary"><fmt:message key="blog_submit" /></button>
-					<button type="reset" class="btn btn-primary"><fmt:message key="blog_reset" /></button>
-				<br />
+					<button type="reset" class="btn btn-primary"><fmt:message key="blog_reset" /></button> 
+				<hr/> 
+				<br/>
+					<div style="text-align: center;"> 
+						<a href="${pageContext.request.contextPath}/#about"><fmt:message key="about" /></a>
+						&nbsp;
+						<a href="${pageContext.request.contextPath}/db/page/1/"><fmt:message key="Blog" /></a>
+						&nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253519983'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1253519983' type='text/javascript'%3E%3C/script%3E"));</script>					
+						<div style="vertical-align:bottom;" >
+							<img src="${pageContext.request.contextPath}/resources/img/poweredby-117-12px.gif" alt="Ken" ><!-- style="vertical-align:middle;display:tablecell;" -->
+						</div>
+					</div>
+				<br/>
 				<c:if test="${msg != null}">
 					<font color="red">${msg }</font>
 				</c:if>

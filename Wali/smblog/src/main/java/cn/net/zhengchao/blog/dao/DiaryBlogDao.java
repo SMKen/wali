@@ -13,6 +13,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.slf4j.LoggerFactory;
 
 import cn.net.zhengchao.blog.vo.SmDiary;
 
@@ -25,6 +26,11 @@ import cn.net.zhengchao.blog.vo.SmDiary;
 public class DiaryBlogDao extends BaseDbutilDao
 {
 
+	public DiaryBlogDao() {
+		super();
+		logger  = LoggerFactory.getLogger(DiaryBlogDao.class);
+	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Page getPage(int getPage, String[] propertys, Object[] values, String[] match)
 	{
@@ -88,7 +94,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 				 return page;
 			 }
 			 			
-			String pageSql  = "select * from wali_diary " + paramSqlStr +" order by DIARYDAY desc,UPDATETIME desc limit ?,?"; 			 
+			String pageSql  = "select * from wali_diary " + paramSqlStr +" order by diaryDay desc,updateTime desc limit ?,?"; 			 
 			List<Object> list = new ArrayList<Object>();  
 	        if(values == null)
 	        {
@@ -122,6 +128,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 		return page;
 	}
 
+	@SuppressWarnings("rawtypes")
 	private ScalarHandler scalarHandler = new ScalarHandler()
 	{
 		@Override

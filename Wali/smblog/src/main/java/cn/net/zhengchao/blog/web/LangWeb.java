@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.LoggerFactory;
+
 /**
  * 语言设定 Web.
  * 
@@ -18,6 +20,7 @@ public class LangWeb extends BaseServelet {
 
 	public LangWeb() {
 		super();
+		logger  = LoggerFactory.getLogger(LangWeb.class);
 	}
 
 	@Override

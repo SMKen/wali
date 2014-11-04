@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.slf4j.LoggerFactory;
 
 import cn.net.zhengchao.blog.vo.SmDiaryAdmin;
 
@@ -16,6 +17,11 @@ import cn.net.zhengchao.blog.vo.SmDiaryAdmin;
 public class IndexDao extends BaseDbutilDao
 {
 
+	public IndexDao() {
+		super();
+		logger  = LoggerFactory.getLogger(IndexDao.class);
+	}
+	
 	/**
 	 * 检查登陆.
 	 */

@@ -22,6 +22,7 @@ import k.lang.StringUtil;
 import k.page.Page;
 
 import org.json.JSONObject;
+import org.slf4j.LoggerFactory;
 
 import cn.net.zhengchao.blog.dao.DiaryBlogDao;
 import cn.net.zhengchao.blog.vo.SmDiary;
@@ -40,6 +41,7 @@ public class DiaryBlogWeb extends BaseServelet
 	public DiaryBlogWeb()
 	{
 		super();
+		logger  = LoggerFactory.getLogger(DiaryBlogWeb.class);
 	}
 
 	private void addCateGoryTime(HttpServletRequest request)
@@ -174,6 +176,7 @@ public class DiaryBlogWeb extends BaseServelet
 			try
 			{
 				tag = kGetReqParamValue(reqParam, 2, "--");
+				logger.debug("decode tag before is : "+tag);
 				tag= URLDecoder.decode(tag, "utf-8");
 				logger.debug("decode tag is : "+tag);
 				//tag = new String(tag.getBytes("ISO-8859-1"), "UTF-8");
@@ -242,25 +245,25 @@ public class DiaryBlogWeb extends BaseServelet
 			if (outline == null || outline.equals(""))
 			{
 				outline = "标题";
-			}else{
+			}/*else{
 				outline = new String(outline.getBytes("ISO-8859-1"), "UTF-8");
-			}
+			}*/
 			String diarys = request.getParameter("diarys");
-			diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
+			//diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
 			String mood = request.getParameter("mood");
 			if (mood == null || mood.equals(""))
 			{
 				mood = "--";
-			}else{
+			}/*else{
 				mood = new String(mood.getBytes("ISO-8859-1"), "UTF-8");
-			}
+			}*/
 			String weather = request.getParameter("weather");
 			if (weather == null || weather.equals(""))
 			{
 				weather = "--";
-			}else{
+			}/*else{
 				weather = new String(weather.getBytes("ISO-8859-1"), "UTF-8");
-			}
+			}*/
 			String diaryDays = request.getParameter("diaryDays");
 			Date diaryDay = new Date();
 			try
@@ -273,8 +276,8 @@ public class DiaryBlogWeb extends BaseServelet
 				diaryDay = new Date();
 			}
 			String categorys = request.getParameter("categorys");
-			categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
-			String sql = "insert into wali_diary(UID,ADMIN ,CATEGORYS ,CREATETIME ,DIARY ,DIARYDAY ,DIARYCOUNT ,MOOD ,OUTLINE ,UPDATETIME ,VIEWTIMES ,WEATHER ) "
+			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
+			String sql = "insert into wali_diary(uid,admin,categorys,createTime,diary,diaryDay,diarycount,mood,outline,updateTime,viewtimes,weather) "
 					+ "values(?,? ,? ,? ,? ,? ,1 ,? ,? ,? ,1 ,? )";
 			Object params[] = new Object[] { StringUtil.getUUID(), "Ken", categorys, new Date(), diarys, diaryDay, mood, outline, new Date(), weather };
 			logger.debug("insert diary " + sql);
@@ -283,38 +286,40 @@ public class DiaryBlogWeb extends BaseServelet
 			logger.debug("insert diary results :"+ flag);
 			if (flag == 1)
 			{
-				logger.debug("publish new blog : 发布成功!");
+				logger.debug("publish new blog : Publish success!");
 			} else
 			{
-				logger.warn("publish new blog : 发布失败!");
+				logger.warn("publish new blog : Publish error!");
 			}
 			addCateGoryTime(request);
 			response.sendRedirect(request.getContextPath() + "/db/page/1/");
 		} else if (param1.equals("doMod"))
 		{
 			String outline = request.getParameter("outline");
+			logger.debug(" outline " + outline);
 			if (outline == null || outline.equals(""))
 			{
 				outline = "标题";
-			}else{
+			}/*else{
 				outline = new String(outline.getBytes("ISO-8859-1"), "UTF-8");
-			}
+				logger.debug(" ISO-8859-1->UTF-8 outline " + outline);
+			}*/
 			String diarys = request.getParameter("diarys");
-			diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
+			//diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
 			String mood = request.getParameter("mood");
 			if (mood == null || mood.equals(""))
 			{
 				mood = "--";
-			}else{
+			}/*else{
 				mood = new String(mood.getBytes("ISO-8859-1"), "UTF-8");
-			}
+			}*/
 			String weather = request.getParameter("weather");
 			if (weather == null || weather.equals(""))
 			{
 				weather = "--";
-			}else{
+			}/*else{
 				weather = new String(weather.getBytes("ISO-8859-1"), "UTF-8");
-			}
+			}*/
 			String diaryDays = request.getParameter("diaryDays");//diaryDays
 			Date diaryDay = new Date();
 			try
@@ -327,19 +332,19 @@ public class DiaryBlogWeb extends BaseServelet
 				diaryDay = new Date();
 			}
 			String categorys = request.getParameter("categorys");
-			categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
+			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
 			String uid = request.getParameter("uid");
-			String sql = "update wali_diary set CATEGORYS = ? ,DIARY = ? ,DIARYDAY =? ,MOOD=? ,OUTLINE =?,UPDATETIME=?,WEATHER=? where UID =?";
+			String sql = "update wali_diary set categorys = ? ,diary = ? ,diaryDay =? ,mood=? ,outline =?,updateTime=?,weather=? where uid =?";
 			Object params[] = new Object[] { categorys, diarys, diaryDay, mood, outline, new Date(), weather, uid };
 
 			int flag = new DiaryBlogDao().saveOrUpdate(sql, params);
 
 			if (flag == 1)
 			{
-				logger.debug("modify blog : 更新成功!");
+				logger.debug("modify blog : Modify success!");
 			} else
 			{
-				logger.warn("modify blog : 更新失败!");
+				logger.warn("modify blog : Modify error!");
 			}
 			addCateGoryTime(request);
 			response.sendRedirect(request.getContextPath() + "/db/page/1/");
