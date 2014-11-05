@@ -281,7 +281,7 @@
 			<footer>
 				<p>
 					Copyright &copy; <a href="http://www.zhengchao.net.cn/" target="_blank"
-						title="<fmt:message key='name' />"><fmt:message key="name" /></a> 2012-2014 V4
+						title="<fmt:message key='name' />"><fmt:message key="name" /></a> 2012-2014 V6
 					<%-- @Copyright <a href="http://www.zhengchao.net.cn/" target="_blank"
 						title="<fmt:message key='name' />"><fmt:message key="name" /></a> --%>
 					<a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
@@ -291,6 +291,7 @@
 					<a href="${pageContext.request.contextPath}/lang/us/" >English</a>
 					<a href="${pageContext.request.contextPath}/db"><fmt:message key="Blog" /></a>
 					<a href="${pageContext.request.contextPath}/index/login"><fmt:message key="manage" /></a>
+					<a target="_blank" href="${pageContext.request.contextPath}/mall.jsp">mall</a>
 					&nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253519983'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1253519983' type='text/javascript'%3E%3C/script%3E"));</script>					
 					<span style="vertical-align:bottom;float: left" >
 						<img src="${pageContext.request.contextPath}/resources/img/poweredby-120-33px.png" alt="Ken" ><!-- style="vertical-align:middle;display:tablecell;" -->

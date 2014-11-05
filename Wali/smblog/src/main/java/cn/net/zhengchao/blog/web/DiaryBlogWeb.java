@@ -102,9 +102,11 @@ public class DiaryBlogWeb extends BaseServelet
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		mask = "db";// /lang/us/db
-		logger.debug("request url is : " + kGetReqUrl(request));
+		request.setAttribute("DB", "YES");
+		//logger.debug("request url is : " + kGetReqUrl(request));
 		String reqParam[] = kGetReqParam(kGetReqUrl(request), kGetMark());
 		String param1 = kGetReqParamValue(reqParam, 1, "d");
+		logger.debug("request url param1 is : " + param1);
 		if (param1.equals("d"))
 		{
 			response.sendRedirect(request.getContextPath() + "/db/page/1/");
@@ -201,7 +203,7 @@ public class DiaryBlogWeb extends BaseServelet
 				page = new DiaryBlogDao().getPage(pageid, null, null, null);
 			} else
 			{
-				page = new DiaryBlogDao().getPage(pageid, new String[] { "categorys" }, new Object[] { tag }, new String[] { "like" });
+				page = new DiaryBlogDao().getPage(pageid, new String[] { "categorys" }, new Object[] { "%"+tag+"%" }, new String[] { "like" });
 			}
 
 			logger.debug("blog tag list page search results : " + page);

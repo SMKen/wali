@@ -104,10 +104,10 @@
 </script>
 </head>
 <body>
-<!-- check legal  -->
+<!-- check legal  --> 
 <c:choose>
-	<c:when test="${MD == null or page == null}">
-		<jsp:forward page="db"></jsp:forward>
+	<c:when test="${DB == null}">
+		<jsp:forward page="db/page/1/"></jsp:forward>
 	</c:when> 
 </c:choose>
 	<!-- Navigation -->
@@ -370,6 +370,7 @@
 								key="name" /></a> 2012-2014 V4 <a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
 					<a href="<%=request.getContextPath()%>/index/lang/cn/db" >中文</a>
 					<a href="<%=request.getContextPath()%>/index/lang/us/db" >English</a>
+					<a target="_blank" href="${pageContext.request.contextPath}/mall.jsp">mall</a>
 						<%-- <a href="<%=request.getContextPath()%>">中文</a> <a
 							href="<%=request.getContextPath()%>/?l=us">English</a> --%>
 					&nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253519983'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1253519983' type='text/javascript'%3E%3C/script%3E"));</script>					
