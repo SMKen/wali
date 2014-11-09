@@ -281,7 +281,7 @@
 			<footer>
 				<p>
 					Copyright &copy; <a href="http://www.zhengchao.net.cn/" target="_blank"
-						title="<fmt:message key='name' />"><fmt:message key="name" /></a> 2012-2014 V6
+						title="<fmt:message key='name' />"><fmt:message key="name" /></a> 2012-2014 V7
 					<%-- @Copyright <a href="http://www.zhengchao.net.cn/" target="_blank"
 						title="<fmt:message key='name' />"><fmt:message key="name" /></a> --%>
 					<a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;

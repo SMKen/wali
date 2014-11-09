@@ -367,7 +367,7 @@
 					<p>
 						Copyright &copy; <a href="http://www.zhengchao.net.cn/"
 							target="_blank" title="<fmt:message key='name' />"><fmt:message
-								key="name" /></a> 2012-2014 V4 <a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
+								key="name" /></a> 2012-2014 V7 <a href="mailto:zh_chao@126.com">zh_chao@126.com</a>&nbsp;
 					<a href="<%=request.getContextPath()%>/index/lang/cn/db" >中文</a>
 					<a href="<%=request.getContextPath()%>/index/lang/us/db" >English</a>
 					<a target="_blank" href="${pageContext.request.contextPath}/mall.jsp">mall</a>

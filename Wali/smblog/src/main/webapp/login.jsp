@@ -77,7 +77,7 @@
 						<input type="text" name="email" id="email" class="form-control"  placeholder="<fmt:message key='email' />" value="${email }" /> 
 						<input type="password" name="pwd" id="pwd" class="form-control" placeholder="<fmt:message key='pwd' />" /> <br />
 						</div>	
-					<button type="submit" class="btn btn-primary"><fmt:message key="blog_submit" /></button>
+					<button type="submit" class="btn btn-primary"><fmt:message key="login" /></button>
 					<button type="reset" class="btn btn-primary"><fmt:message key="blog_reset" /></button> 
 				<hr/> 
 				<br/>
