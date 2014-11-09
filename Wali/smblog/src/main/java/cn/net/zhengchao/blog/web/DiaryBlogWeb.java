@@ -164,7 +164,7 @@ public class DiaryBlogWeb extends BaseServelet
 			cEnd.set(Calendar.SECOND, cEnd.get(Calendar.SECOND)-2);
 			
 			logger.debug("blog month list page search begin ");
-			Page page = new DiaryBlogDao().getPage(pageid, new String[] { "diaryDay", "diaryDay" }, new Object[] { cBegin.getTime(), cEnd.getTime() }, new String[] { "gt", "lt" });
+			Page page = new DiaryBlogDao().getPage(pageid, new String[] { "DIARYDAY", "DIARYDAY" }, new Object[] { cBegin.getTime(), cEnd.getTime() }, new String[] { "gt", "lt" });
 			logger.debug("blog month list page search results : " + page);
 			request.setAttribute("page", page);
 			request.setAttribute("MD", "pagelist");
@@ -203,7 +203,7 @@ public class DiaryBlogWeb extends BaseServelet
 				page = new DiaryBlogDao().getPage(pageid, null, null, null);
 			} else
 			{
-				page = new DiaryBlogDao().getPage(pageid, new String[] { "categorys" }, new Object[] { "%"+tag+"%" }, new String[] { "like" });
+				page = new DiaryBlogDao().getPage(pageid, new String[] { "CATEGORYS" }, new Object[] { "%"+tag+"%" }, new String[] { "like" });
 			}
 
 			logger.debug("blog tag list page search results : " + page);
@@ -279,8 +279,8 @@ public class DiaryBlogWeb extends BaseServelet
 			}
 			String categorys = request.getParameter("categorys");
 			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
-			String sql = "insert into wali_diary(uid,admin,categorys,createTime,diary,diaryDay,diarycount,mood,outline,updateTime,viewtimes,weather) "
-					+ "values(?,? ,? ,? ,? ,? ,1 ,? ,? ,? ,1 ,? )";
+			String sql = "INSERT INTO WALI_NOTES(UID,ADMIN,CATEGORYS,CREATETIME,DIARY,DIARYDAY,LV,MOOD,OUTLINE,UPDATETIME,VIEWTIMES,WEATHER) "
+					+ "values(?,? ,? ,? ,? ,? ,10 ,? ,? ,? ,1 ,? )";
 			Object params[] = new Object[] { StringUtil.getUUID(), "Ken", categorys, new Date(), diarys, diaryDay, mood, outline, new Date(), weather };
 			logger.debug("insert diary " + sql);
 			logger.debug("insert diary params " + Arrays.asList(params));
@@ -336,7 +336,7 @@ public class DiaryBlogWeb extends BaseServelet
 			String categorys = request.getParameter("categorys");
 			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
 			String uid = request.getParameter("uid");
-			String sql = "update wali_diary set categorys = ? ,diary = ? ,diaryDay =? ,mood=? ,outline =?,updateTime=?,weather=? where uid =?";
+			String sql = "update WALI_NOTES set CATEGORYS = ? ,DIARY = ? ,DIARYDAY =? ,MOOD=? ,OUTLINE =?,UPDATETIME=?,WEATHER=? where UID =?";
 			Object params[] = new Object[] { categorys, diarys, diaryDay, mood, outline, new Date(), weather, uid };
 
 			int flag = new DiaryBlogDao().saveOrUpdate(sql, params);

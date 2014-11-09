@@ -37,7 +37,7 @@ public class IndexDao extends BaseDbutilDao
 		try
 		{
 			@SuppressWarnings("unchecked")
-			SmDiaryAdmin vo = (SmDiaryAdmin) qRunner.query(conn, "select * from wali_diary_admin where email = ? and pwd = ? limit 1",
+			SmDiaryAdmin vo = (SmDiaryAdmin) qRunner.query(conn, "select * from WALI_NOTES_ADMIN where EMAIL = ? and PWD = ? limit 1",
 					new BeanHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiaryAdmin")), new Object[] { email, pwd });
 			return vo;
 		} catch (Exception e)

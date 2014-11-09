@@ -44,22 +44,26 @@
 		src="${pageContext.request.contextPath}/resources/blog/sm.js"></script>
 <script type="text/javascript">
 	function deleteDiary(id) {
-		sm.ajax.request({
-			url : "${pageContext.request.contextPath}/db/delete/" + id,
-			method : 'POST',
-			data : {
-				datatype : ''
-			},
-			success : function(xhr) {
-				data = JSON.parse(xhr.responseText)
-				if (data.flag) {
-					sm.pop('删除成功');
-					sm.go("${pageContext.request.contextPath}/db/");
-				} else {
-					sm.pop('删除失败，请重试！');
+		if(confirm("是否删除此条?")){
+			sm.ajax.request({
+				url : "${pageContext.request.contextPath}/db/delete/" + id,
+				method : 'POST',
+				data : {
+					datatype : ''
+				},
+				success : function(xhr) {
+					data = JSON.parse(xhr.responseText)
+					if (data.flag) {
+						sm.pop('删除成功');
+						sm.go("${pageContext.request.contextPath}/db/");
+					} else {
+						sm.pop('删除失败，请重试！');
+					}
 				}
-			}
-		});
+			});
+		}else{
+			return false;
+		}  
 	}
 	function modDiary(id) {
 		sm.ajax.request({

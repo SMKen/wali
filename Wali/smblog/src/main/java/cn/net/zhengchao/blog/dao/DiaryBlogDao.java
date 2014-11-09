@@ -67,14 +67,12 @@ public class DiaryBlogDao extends BaseDbutilDao
 		String paramSqlStr = paramSql.toString();
 		if(paramSqlStr != null && paramSqlStr.startsWith(" and"))
 		{
-			paramSqlStr = " where " + paramSqlStr.substring(4);
+			paramSqlStr = " where STATUS = 1 and " + paramSqlStr.substring(4);
+		}else{
+			paramSqlStr = " where STATUS = 1 ";
 		}
 		// 先计算总数
-		//Criteria crit = getCriteria(propertys, values, match);
-		//Map<String, Object> map = qr.query(conn, "SELECT * FROM person where id = ?", new MapHandler(), 1L);
-//        Person person = new Person();
-//        person.setId((Long) map.get("id"));
-		String sql = "select count(*) as count from wali_diary ";
+		String sql = "select count(*) as count from WALI_NOTES ";
 		String countSql = sql + paramSqlStr;
 		QueryRunner queryRunner = new QueryRunner();
 		Connection conn = getConnection();
@@ -94,7 +92,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 				 return page;
 			 }
 			 			
-			String pageSql  = "select * from wali_diary " + paramSqlStr +" order by diaryDay desc,updateTime desc limit ?,?"; 			 
+			String pageSql  = "select * from WALI_NOTES " + paramSqlStr +" order by DIARYDAY desc,UPDATETIME desc limit ?,?"; 			 
 			List<Object> list = new ArrayList<Object>();  
 	        if(values == null)
 	        {
@@ -206,7 +204,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 		try
 		{
 			int affectedRows = 0;
-			affectedRows = queryRunner.update(conn, "delete from wali_diary where uid=?", uid);
+			affectedRows = queryRunner.update(conn, "update WALI_NOTES set STATUS = 0 where UID=?", uid);
 			conn.commit();
 			return affectedRows;
 		} catch (Exception e)
@@ -241,7 +239,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 		try
 		{
 			@SuppressWarnings("unchecked")
-			SmDiary vo = (SmDiary) qRunner.query(conn, "select * from wali_diary where uid = ? limit 1", 
+			SmDiary vo = (SmDiary) qRunner.query(conn, "select * from WALI_NOTES where UID = ? limit 1", 
 					new BeanHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")),
 					new Object[] {uid});
 			return vo;
@@ -273,7 +271,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 			// getSession().createQuery("select new com.wali.smdiary.entity.SmDiary(diaryDay,categorys)  from com.wali.smdiary.entity.SmDiary "
 			// ).list();
 			@SuppressWarnings("unchecked")
-			List<SmDiary> vo = (List<SmDiary>) qRunner.query(conn, "select diaryDay,categorys from wali_diary", new BeanListHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")),
+			List<SmDiary> vo = (List<SmDiary>) qRunner.query(conn, "select DIARYDAY,CATEGORYS from WALI_NOTES where STATUS = 1 ", new BeanListHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")),
 					new Object[] {});
 			return vo;
 		} catch (Exception e)
