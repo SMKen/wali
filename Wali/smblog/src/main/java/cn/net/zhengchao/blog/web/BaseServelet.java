@@ -20,6 +20,9 @@ import org.slf4j.LoggerFactory;
 public class BaseServelet extends HttpServlet {
 
 	Logger logger  = LoggerFactory.getLogger(BaseServelet.class);
+
+	/** session admin */
+	protected static String SESSON_ADMIN = "admin";
 	
 	private static final long serialVersionUID = -8204263841007457665L;
 

@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 
 import cn.net.zhengchao.blog.dao.DiaryBlogDao;
+import cn.net.zhengchao.blog.vo.AdminVo;
 import cn.net.zhengchao.blog.vo.SmDiary;
 
 /**
@@ -103,6 +104,12 @@ public class DiaryBlogWeb extends BaseServelet
 	{
 		mask = "db";// /lang/us/db
 		request.setAttribute("DB", "YES");
+		AdminVo vo = (AdminVo) request.getSession().getAttribute(SESSON_ADMIN);
+		if(vo == null)
+		{
+			vo = new AdminVo();
+			vo.setLv(10);//default is scanner 
+		}
 		//logger.debug("request url is : " + kGetReqUrl(request));
 		String reqParam[] = kGetReqParam(kGetReqUrl(request), kGetMark());
 		String param1 = kGetReqParamValue(reqParam, 1, "d");
@@ -123,7 +130,7 @@ public class DiaryBlogWeb extends BaseServelet
 				pageid = 1;
 			}
 			logger.debug("blog list page search begin ");
-			Page page = new DiaryBlogDao().getPage(pageid, null, null, null);
+			Page page = new DiaryBlogDao().getPage(pageid, new String []{"LV"}, new Object[]{vo.getLv()}, new String[]{"gt"});
 			logger.debug("blog list page search results : " + page);
 			request.setAttribute("page", page);
 			request.setAttribute("pagetype", "pagelist");
@@ -164,7 +171,7 @@ public class DiaryBlogWeb extends BaseServelet
 			cEnd.set(Calendar.SECOND, cEnd.get(Calendar.SECOND)-2);
 			
 			logger.debug("blog month list page search begin ");
-			Page page = new DiaryBlogDao().getPage(pageid, new String[] { "DIARYDAY", "DIARYDAY" }, new Object[] { cBegin.getTime(), cEnd.getTime() }, new String[] { "gt", "lt" });
+			Page page = new DiaryBlogDao().getPage(pageid, new String[] { "DIARYDAY", "DIARYDAY" ,"LV"}, new Object[] { cBegin.getTime(), cEnd.getTime() ,vo.getLv()}, new String[] { "gt", "lt","gt" });
 			logger.debug("blog month list page search results : " + page);
 			request.setAttribute("page", page);
 			request.setAttribute("MD", "pagelist");
@@ -200,10 +207,11 @@ public class DiaryBlogWeb extends BaseServelet
 			Page page = null;
 			if (tag == null)
 			{
-				page = new DiaryBlogDao().getPage(pageid, null, null, null);
+				//new String []{"LV"}, new Object[]{vo.getLv()}, new String[]{"gt"});
+				page = new DiaryBlogDao().getPage(pageid,new String []{"LV"}, new Object[]{vo.getLv()}, new String[]{"gt"});
 			} else
 			{
-				page = new DiaryBlogDao().getPage(pageid, new String[] { "CATEGORYS" }, new Object[] { "%"+tag+"%" }, new String[] { "like" });
+				page = new DiaryBlogDao().getPage(pageid, new String[] { "CATEGORYS","LV"}, new Object[] { "%"+tag+"%",vo.getLv()}, new String[] { "like" ,"gt"});
 			}
 
 			logger.debug("blog tag list page search results : " + page);
@@ -278,10 +286,21 @@ public class DiaryBlogWeb extends BaseServelet
 				diaryDay = new Date();
 			}
 			String categorys = request.getParameter("categorys");
+			String lv = request.getParameter("lv");
+			Integer lvint = 10;
+			try{
+				lvint = Integer.valueOf(lv);
+			}catch(Exception e)
+			{
+				lvint = 10;
+			}
+			if(lvint>10) lvint = 10;
+			if(lvint<1) lvint = 1;
+			
 			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
-			String sql = "INSERT INTO WALI_NOTES(UID,ADMIN,CATEGORYS,CREATETIME,DIARY,DIARYDAY,LV,MOOD,OUTLINE,UPDATETIME,VIEWTIMES,WEATHER) "
-					+ "values(?,? ,? ,? ,? ,? ,10 ,? ,? ,? ,1 ,? )";
-			Object params[] = new Object[] { StringUtil.getUUID(), "Ken", categorys, new Date(), diarys, diaryDay, mood, outline, new Date(), weather };
+			String sql = "INSERT INTO WALI_NOTES(UID,LV,ADMIN,CATEGORYS,CREATETIME,DIARY,DIARYDAY,MOOD,OUTLINE,UPDATETIME,VIEWTIMES,WEATHER) "
+					+ "values(?,?,? ,? ,? ,? ,?  ,? ,? ,? ,1 ,? )";
+			Object params[] = new Object[] { StringUtil.getUUID(),lvint, "Ken", categorys, new Date(), diarys, diaryDay, mood, outline, new Date(), weather };
 			logger.debug("insert diary " + sql);
 			logger.debug("insert diary params " + Arrays.asList(params));
 			int flag = new DiaryBlogDao().saveOrUpdate(sql, params);
@@ -322,6 +341,17 @@ public class DiaryBlogWeb extends BaseServelet
 			}/*else{
 				weather = new String(weather.getBytes("ISO-8859-1"), "UTF-8");
 			}*/
+			String lv = request.getParameter("lv");
+			Integer lvint = 10;
+			try{
+				lvint = Integer.valueOf(lv);
+			}catch(Exception e)
+			{
+				lvint = 10;
+			}
+			if(lvint>10) lvint = 10;
+			if(lvint<1) lvint = 1;
+			
 			String diaryDays = request.getParameter("diaryDays");//diaryDays
 			Date diaryDay = new Date();
 			try
@@ -336,8 +366,8 @@ public class DiaryBlogWeb extends BaseServelet
 			String categorys = request.getParameter("categorys");
 			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
 			String uid = request.getParameter("uid");
-			String sql = "update WALI_NOTES set CATEGORYS = ? ,DIARY = ? ,DIARYDAY =? ,MOOD=? ,OUTLINE =?,UPDATETIME=?,WEATHER=? where UID =?";
-			Object params[] = new Object[] { categorys, diarys, diaryDay, mood, outline, new Date(), weather, uid };
+			String sql = "update WALI_NOTES set CATEGORYS = ?,LV=? ,DIARY = ? ,DIARYDAY =? ,MOOD=? ,OUTLINE =?,UPDATETIME=?,WEATHER=? where UID =?";
+			Object params[] = new Object[] { categorys,lvint, diarys, diaryDay, mood, outline, new Date(), weather, uid };
 
 			int flag = new DiaryBlogDao().saveOrUpdate(sql, params);
 

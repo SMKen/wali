@@ -15,7 +15,7 @@ public class Page
 	private int pageSize = 5;
 	private int totalRecord = 0;
 	private Object data = null;
-
+	
 	public Page(){}
 
 	public Page(int start){
@@ -39,8 +39,7 @@ public class Page
 		sb.append("totalRecord:" + totalRecord);
 		sb.append("totalPage:" + totalPage);
 		sb.append("data:" + data);
-
-		return super.toString();
+		return sb.toString();
 	}
 
 	void calc()

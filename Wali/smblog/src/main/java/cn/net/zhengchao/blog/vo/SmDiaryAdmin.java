@@ -18,38 +18,39 @@ import java.util.Date;
  * @author Ken
  * @since 2014年8月28日
  */
-//@Entity(name = "wali_diary_admin")
+// @Entity(name = "wali_diary_admin")
 public class SmDiaryAdmin implements Serializable
 {
 
 	private static final long serialVersionUID = 7444424719607939065L;
-//	@Id
-//	@GeneratedValue(generator = "paymentableGenerator")
-//	@GenericGenerator(name = "paymentableGenerator", strategy = "assigned")
-//	@Column(name = "uid", length = 32)
+	// @Id
+	// @GeneratedValue(generator = "paymentableGenerator")
+	// @GenericGenerator(name = "paymentableGenerator", strategy = "assigned")
+	// @Column(name = "uid", length = 32)
 	private String uid;
-//	@Column(length = 32)
+	// @Column(length = 32)
 	private String name;
-//	@Column(length = 64)
+	// @Column(length = 64)
 	private String pwd;
-//	@Column(length = 64)
+	// @Column(length = 64)
 	private String email;
-//	@Column(length = 64)
+	// @Column(length = 64)
 	private String logo;
-//	@Column(length = 64)
+	// @Column(length = 64)
 	private String imgs;
-//	@Column
+	// @Column
 	private int logintimes;
-//	@Column
+	// @Column
+	private int lv;
 	private int diarycount;
-//	@Column
-//	@Temporal(TemporalType.TIMESTAMP)
+	// @Column
+	// @Temporal(TemporalType.TIMESTAMP)
 	private Date createTime;
-//	@Column
-//	@Temporal(TemporalType.TIMESTAMP)
+	// @Column
+	// @Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
-//	@Column
-//	@Temporal(TemporalType.TIMESTAMP)
+	// @Column
+	// @Temporal(TemporalType.TIMESTAMP)
 	private Date lastloginTime;
 
 	public String getUid()
@@ -60,6 +61,16 @@ public class SmDiaryAdmin implements Serializable
 	public void setUid(String uid)
 	{
 		this.uid = uid;
+	}
+
+	public int getLv()
+	{
+		return lv;
+	}
+
+	public void setLv(int lv)
+	{
+		this.lv = lv;
 	}
 
 	public String getName()

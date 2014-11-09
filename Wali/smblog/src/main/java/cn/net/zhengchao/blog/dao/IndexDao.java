@@ -39,6 +39,12 @@ public class IndexDao extends BaseDbutilDao
 			@SuppressWarnings("unchecked")
 			SmDiaryAdmin vo = (SmDiaryAdmin) qRunner.query(conn, "select * from WALI_NOTES_ADMIN where EMAIL = ? and PWD = ? limit 1",
 					new BeanHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiaryAdmin")), new Object[] { email, pwd });
+			if(vo !=null)
+			{
+				//update logintimes and last logintime
+				qRunner.update(conn, "update WALI_NOTES_ADMIN set LASTLOGINTIME=now(),LOGINTIMES=LOGINTIMES+1  where UID=?", vo.getUid());
+				//conn.commit();
+			}
 			return vo;
 		} catch (Exception e)
 		{

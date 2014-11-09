@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.LoggerFactory;
 
 import cn.net.zhengchao.blog.dao.IndexDao;
+import cn.net.zhengchao.blog.vo.AdminVo;
 import cn.net.zhengchao.blog.vo.SmDiaryAdmin;
 
 /**
@@ -47,8 +48,9 @@ public class IndexWeb extends BaseServelet {
 			if (ad != null)
 			{
 				ad.setPwd("***");
+				AdminVo av = new AdminVo(ad.getUid(),ad.getName(),ad.getLv());
 				// mm.addAttribute("admins", ad);
-				request.getSession().setAttribute("admin", ad);
+				request.getSession().setAttribute(SESSON_ADMIN, av);
 				response.sendRedirect(request.getContextPath() + "/db/");
 				return ;
 			}
@@ -60,9 +62,6 @@ public class IndexWeb extends BaseServelet {
 			response.sendRedirect(request.getContextPath() + "/login.jsp");
 		} 
 	}
-
-	/** session admin */
-	static String SESSON_ADMIN = "admin";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

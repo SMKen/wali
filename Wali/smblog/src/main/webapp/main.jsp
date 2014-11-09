@@ -158,7 +158,7 @@
 			<div class="col-md-8">
 				<h3 class="page-header">
 					<fmt:message key="blog_list" /><small>&nbsp;&nbsp; <fmt:message key="blog_tip" /></small>
-					<c:if test="${sessionScope.admin != null}">
+					<c:if test="${sessionScope.admin != null and sessionScope.admin.lv == 1}">
 						&nbsp;&nbsp; <a class="btn btn-primary"
 							href="${pageContext.request.contextPath}/db/add"><fmt:message key="blog_addnew" /></a>
 					</c:if>
@@ -166,7 +166,7 @@
 
 				<!-- check MD choose begin -->
 				<c:choose> 
-					<c:when test="${MD == 'add' and sessionScope.admin != null}">
+					<c:when test="${MD == 'add' and sessionScope.admin != null and sessionScope.admin.lv == 1}">
 						<div class="well">
 		                    <h4><fmt:message key="blog_addnew" />:</h4>
 								<form action="${pageContext.request.contextPath}/db/doAdd" method="POST" name="diaryadd" role="form">
@@ -176,6 +176,7 @@
 										<input class="form-control"  style="width: 50%" 	name="mood" placeholder="心情：心情不错"> 
 										<input class="form-control" style="width: 50%" name="weather" placeholder="天气：晴"> 
 										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"> 
+										<input class="form-control" style="width: 50%" name="lv" placeholder="级别：默认10"> 
 										<input class="form-control" style="width: 100%"  name="categorys" placeholder="标签，以逗号或空格间隔">
 									</div>						
 									<button type="submit" class="btn btn-primary"><fmt:message key="blog_submit" /></button>
@@ -184,7 +185,7 @@
 		                </div>
 					</c:when>
 					
-					<c:when test="${MD == 'mod' and sessionScope.admin != null}">
+					<c:when test="${MD == 'mod' and sessionScope.admin != null and sessionScope.admin.lv == 1}">
 					<div class="well">
 		                    <h4><fmt:message key="blog_modify" />:</h4>
 								<form action="${pageContext.request.contextPath}/db/doMod" method="POST" name="diarymod" role="form">
@@ -195,6 +196,7 @@
 										<input class="form-control"  style="width: 50%" 	name="mood" placeholder="心情：心情不错" value="${diary.mood}"> 
 										<input class="form-control" style="width: 50%" name="weather" placeholder="天气：晴" value="${diary.weather}"> 
 										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"  value="<fmt:formatDate value='${diary.diaryDay}' pattern='yyyy-MM-dd'/>"> 
+										<input class="form-control" style="width: 50%" name="${diary.lv}" placeholder="级别：默认10">
 										<input class="form-control" style="width: 100%"  name="categorys" placeholder="标签，以逗号或空格间隔"  value="${diary.categorys}">
 									</div>						
 									<button type="submit" class="btn btn-primary"><fmt:message key="blog_submit" /></button>
@@ -235,7 +237,7 @@
 								<c:out value="${d.categorys }"></c:out>
 						</c:if>
 						<span style="color:red;font-style: italic"> &nbsp;&nbsp;
-							<c:if test="${sessionScope.admin != null}">
+							<c:if test="${sessionScope.admin != null and sessionScope.admin.lv == 1}">
 								<span class="glyphicon glyphicon-edit"></span>
 								<a href="${pageContext.request.contextPath}/db/mod/${d.uid}"><fmt:message key="modify" /></a>
 								<span class="glyphicon glyphicon-remove-circle"></span>

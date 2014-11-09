@@ -20,42 +20,42 @@ import k.lang.DateUtil;
  * @author Ken
  * @since 2014年8月28日
  */
-//@Entity(name = "wali_diary")
+// @Entity(name = "wali_diary")
 public class SmDiary implements Serializable
 {
 
 	private static final long serialVersionUID = -1550154992225104488L;
-//	@Id
-//	@GeneratedValue(generator = "paymentableGenerator")
-//	@GenericGenerator(name = "paymentableGenerator", strategy = "assigned")
-//	@Column(name = "uid", length = 32)
+	// @Id
+	// @GeneratedValue(generator = "paymentableGenerator")
+	// @GenericGenerator(name = "paymentableGenerator", strategy = "assigned")
+	// @Column(name = "uid", length = 32)
 	private String uid;
-//	@Column
-//	@Temporal(TemporalType.TIMESTAMP)
+	// @Column
+	// @Temporal(TemporalType.TIMESTAMP)
 	private Date diaryDay;
-//	@Transient
+	// @Transient
 	private String diaryDays;
-//	@Column(length = 32)
+	// @Column(length = 32)
 	private String weather;
-//	@Column(length = 64)
+	// @Column(length = 64)
 	private String mood;
-//	@Column(length = 32)
+	// @Column(length = 32)
 	private String admin;
-//	@Column(length = 64)
+	// @Column(length = 64)
 	private String outline;
-//	@Column(length = 64)
+	// @Column(length = 64)
 	private String categorys;
-//	@Column(name = "diary")
+	// @Column(name = "diary")
 	private String diary;
-//	@Column
+	// @Column
 	private int viewtimes;
-//	@Column
-	private int diarycount;
-//	@Column
-//	@Temporal(TemporalType.TIMESTAMP)
+	// @Column
+	private int lv;
+	// @Column
+	// @Temporal(TemporalType.TIMESTAMP)
 	private Date createTime;
-//	@Column
-//	@Temporal(TemporalType.TIMESTAMP)
+	// @Column
+	// @Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
 
 	public SmDiary()
@@ -158,14 +158,14 @@ public class SmDiary implements Serializable
 		this.viewtimes = viewtimes;
 	}
 
-	public int getDiarycount()
+	public int getLv()
 	{
-		return diarycount;
+		return lv;
 	}
 
-	public void setDiarycount(int diarycount)
+	public void setLv(int lv)
 	{
-		this.diarycount = diarycount;
+		this.lv = lv;
 	}
 
 	public Date getCreateTime()
