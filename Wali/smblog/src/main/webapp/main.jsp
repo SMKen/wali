@@ -40,6 +40,13 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<link href="${pageContext.request.contextPath}/resources/mk/bootstrap-markdown.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/jquery/jquery-1.10.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/mk/markdown.js"></script>
+<script src="${pageContext.request.contextPath}/resources/mk/to-markdown.js"></script>
+<script src="${pageContext.request.contextPath}/resources/mk/bootstrap-markdown.js"></script>
+
 <script
 		src="${pageContext.request.contextPath}/resources/blog/sm.js"></script>
 <script type="text/javascript">
@@ -169,10 +176,11 @@
 					<c:when test="${MD == 'add' and sessionScope.admin != null and sessionScope.admin.lv == 1}">
 						<div class="well">
 		                    <h4><fmt:message key="blog_addnew" />:</h4>
-								<form action="${pageContext.request.contextPath}/db/doAdd" method="POST" name="diaryadd" role="form">
+								<form action="${pageContext.request.contextPath}/db/doAdd" method="POST" name="diaryadd" role="form"
+									onsubmit="return submitAdd();">
 									<div class="form-group">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" />
-										<textarea class="form-control" rows="10" name="diarys"  placeholder="在此处填写内容"></textarea>
+										<textarea class="form-control" rows="10" name="diarys"  id="add-diary"  data-provide="markdown"  placeholder="在此处填写内容"></textarea>
 										<input class="form-control"  style="width: 50%" 	name="mood" placeholder="心情：心情不错"> 
 										<input class="form-control" style="width: 50%" name="weather" placeholder="天气：晴"> 
 										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"> 
@@ -188,11 +196,12 @@
 					<c:when test="${MD == 'mod' and sessionScope.admin != null and sessionScope.admin.lv == 1}">
 					<div class="well">
 		                    <h4><fmt:message key="blog_modify" />:</h4>
-								<form action="${pageContext.request.contextPath}/db/doMod" method="POST" name="diarymod" role="form">
+								<form action="${pageContext.request.contextPath}/db/doMod" method="POST" name="diarymod" role="form"
+								onsubmit="return submitMod();">
 									<div class="form-group">
 										<input type="hidden" name="uid" value="${diary.uid}">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" value="${diary.outline}">
-										<textarea class="form-control" rows="10" name="diarys"  placeholder="在此处填写内容">${diary.diary}</textarea>
+										<textarea class="form-control" rows="10" name="diarys" id="mod-diary" placeholder="在此处填写内容"  data-provide="markdown">${diary.diary}</textarea>
 										<input class="form-control"  style="width: 50%" 	name="mood" placeholder="心情：心情不错" value="${diary.mood}"> 
 										<input class="form-control" style="width: 50%" name="weather" placeholder="天气：晴" value="${diary.weather}"> 
 										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"  value="<fmt:formatDate value='${diary.diaryDay}' pattern='yyyy-MM-dd'/>"> 
@@ -392,10 +401,6 @@
 
 	</div>
 	<!-- /.container -->
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery/jquery-1.10.2.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.js"></script>
 </body>
 <script type="text/javascript">
 	if (sm.get("calendarmod") != null && sm.get("calendarmod").value == "") {
@@ -404,5 +409,19 @@
 	if (sm.get("calendaradd") != null) {
 		setToday('calendaradd');
 	}
+	function submitAdd(){
+		console.log($("#add-diary").val());
+		console.log(markdown.toHTML($("#add-diary").val()));
+		return false;
+	}
+	function submitMod(){
+		console.log($("#mod-diary").val());
+		console.log(markdown.toHTML($("#mod-diary").val()));
+		return false;
+	}
+	
+	
+	 //id="mod-diary"
+	
 </script>
 </html>
