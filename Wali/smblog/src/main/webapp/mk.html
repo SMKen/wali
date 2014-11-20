@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test Markdown</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="resources/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="resources/mk/bootstrap-markdown.css" rel="stylesheet">
+<script src="resources/jquery/jquery-1.10.2.min.js"></script>
+<script src="resources/mk/markdown.js"></script>
+<script src="resources/mk/to-markdown.js"></script>
+<script src="resources/mk/bootstrap-markdown.js"></script>
+
+</head>
+<body>
+	<textarea rows="15" data-provide="markdown" name="content" id="editor" 
+		class="md-input" style="resize: none; display: block;">### Hello there
+How are you?
+I have bellow task for you :
+
+Select from this text...
+Click the bold on THIS WORD and make THESE ONE italic
+Link GOOGLE to google.com
+Test to insert image (and try to tab after write the image description)
+Test Preview
+And ending here... Click "List"
+
+Enjoy!</textarea>
+
+<!-- var toMarkdown = require('to-markdown').toMarkdown;
+console.log(toMarkdown('<b>Hello world</b>'));
+ -->
+	<!-- <div data-provide="markdown-editable"> -->
+<div data-provide="markdown-editable"  id="xx">
+          <h3>This is some editable heading</h3>
+          <p>Well, actually all contents within this "markdown-editable" context is really editable. Just click anywhere!</p>
+          ### Hello there
+How are you?
+I have bellow task for you :
+
+Select from this text...
+Click the bold on THIS WORD and make THESE ONE italic
+Link GOOGLE to google.com
+Test to insert image (and try to tab after write the image description)
+Test Preview
+And ending here... Click "List"
+
+Enjoy!
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+console.log($("#xx").text());
+console.log(window.markdown);
+console.log(markdown.toHTML($("#xx").text()));
+console.log(toMarkdown('<b>Hello world</b>'));
+</script>
+</html>
