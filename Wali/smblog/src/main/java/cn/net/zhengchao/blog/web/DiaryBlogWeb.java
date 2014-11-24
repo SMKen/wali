@@ -244,37 +244,11 @@ public class DiaryBlogWeb extends BaseServelet
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
 		} else if (param1.equals("doAdd"))
 		{
-			// SmDiary diaryadd = new SmDiary();
-			// diaryadd.setUpdateTime(new Date());
-			// diaryadd.setUid(StringUtil.getUUID());
-			// if (diaryadd.getDiaryDay() == null)
-			// {
-			// diaryadd.setDiaryDay(new Date());
-			// }
-			String outline = request.getParameter("outline");
-			if (outline == null || outline.equals(""))
-			{
-				outline = "标题";
-			}/*else{
-				outline = new String(outline.getBytes("ISO-8859-1"), "UTF-8");
-			}*/
-			String diarys = request.getParameter("diarys");
-			//diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
-			String mood = request.getParameter("mood");
-			if (mood == null || mood.equals(""))
-			{
-				mood = "--";
-			}/*else{
-				mood = new String(mood.getBytes("ISO-8859-1"), "UTF-8");
-			}*/
-			String weather = request.getParameter("weather");
-			if (weather == null || weather.equals(""))
-			{
-				weather = "--";
-			}/*else{
-				weather = new String(weather.getBytes("ISO-8859-1"), "UTF-8");
-			}*/
-			String diaryDays = request.getParameter("diaryDays");
+			String outline = getRString(request.getParameter("outline"),"标题");
+			String diarys =getRString( request.getParameter("diarys"),"无");
+			String mood = getRString(request.getParameter("mood"),"--");
+			String weather = getRString(request.getParameter("weather"),"--"); 
+			String diaryDays = getRString(request.getParameter("diaryDays"),null);
 			Date diaryDay = new Date();
 			try
 			{
@@ -285,7 +259,7 @@ public class DiaryBlogWeb extends BaseServelet
 				logger.debug(diaryDays + " parse error "+e.toString());
 				diaryDay = new Date();
 			}
-			String categorys = request.getParameter("categorys");
+			String categorys = getRString(request.getParameter("categorys"),null);
 			String lv = request.getParameter("lv");
 			Integer lvint = 10;
 			try{
@@ -297,7 +271,6 @@ public class DiaryBlogWeb extends BaseServelet
 			if(lvint>10) lvint = 10;
 			if(lvint<1) lvint = 1;
 			
-			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
 			String sql = "INSERT INTO WALI_NOTES(UID,LV,ADMIN,CATEGORYS,CREATETIME,DIARY,DIARYDAY,MOOD,OUTLINE,UPDATETIME,VIEWTIMES,WEATHER) "
 					+ "values(?,?,? ,? ,? ,? ,?  ,? ,? ,? ,1 ,? )";
 			Object params[] = new Object[] { StringUtil.getUUID(),lvint, "Ken", categorys, new Date(), diarys, diaryDay, mood, outline, new Date(), weather };
@@ -316,31 +289,12 @@ public class DiaryBlogWeb extends BaseServelet
 			response.sendRedirect(request.getContextPath() + "/db/page/1/");
 		} else if (param1.equals("doMod"))
 		{
-			String outline = request.getParameter("outline");
-			logger.debug(" outline " + outline);
-			if (outline == null || outline.equals(""))
-			{
-				outline = "标题";
-			}/*else{
-				outline = new String(outline.getBytes("ISO-8859-1"), "UTF-8");
-				logger.debug(" ISO-8859-1->UTF-8 outline " + outline);
-			}*/
-			String diarys = request.getParameter("diarys");
-			//diarys = new String(diarys.getBytes("ISO-8859-1"), "UTF-8");
-			String mood = request.getParameter("mood");
-			if (mood == null || mood.equals(""))
-			{
-				mood = "--";
-			}/*else{
-				mood = new String(mood.getBytes("ISO-8859-1"), "UTF-8");
-			}*/
-			String weather = request.getParameter("weather");
-			if (weather == null || weather.equals(""))
-			{
-				weather = "--";
-			}/*else{
-				weather = new String(weather.getBytes("ISO-8859-1"), "UTF-8");
-			}*/
+			String outline = getRString(request.getParameter("outline"),"标题");
+			String diarys =getRString( request.getParameter("diarys"),"无");
+			String mood = getRString(request.getParameter("mood"),"--");
+			String weather = getRString(request.getParameter("weather"),"--"); 
+			String diaryDays = getRString(request.getParameter("diaryDays"),null);
+			
 			String lv = request.getParameter("lv");
 			Integer lvint = 10;
 			try{
@@ -352,7 +306,6 @@ public class DiaryBlogWeb extends BaseServelet
 			if(lvint>10) lvint = 10;
 			if(lvint<1) lvint = 1;
 			
-			String diaryDays = request.getParameter("diaryDays");//diaryDays
 			Date diaryDay = new Date();
 			try
 			{
@@ -363,8 +316,7 @@ public class DiaryBlogWeb extends BaseServelet
 				logger.debug(diaryDays + " parse error "+e.toString());
 				diaryDay = new Date();
 			}
-			String categorys = request.getParameter("categorys");
-			//categorys = new String(categorys.getBytes("ISO-8859-1"), "UTF-8");
+			String categorys = getRString(request.getParameter("categorys"),null);
 			String uid = request.getParameter("uid");
 			String sql = "update WALI_NOTES set CATEGORYS = ?,LV=? ,DIARY = ? ,DIARYDAY =? ,MOOD=? ,OUTLINE =?,UPDATETIME=?,WEATHER=? where UID =?";
 			Object params[] = new Object[] { categorys,lvint, diarys, diaryDay, mood, outline, new Date(), weather, uid };
@@ -422,4 +374,22 @@ public class DiaryBlogWeb extends BaseServelet
 		service(request, response);
 	}
 
+	String getRString(String str , String defaults)
+	{
+		if(str == null || str.equals("")) {
+			if(defaults!= null) return defaults;
+			return str;
+		}
+		try{
+			if(str.equals(new String(str.getBytes("ISO-8859-1"), "ISO-8859-1")))
+			{
+				return new String(str.getBytes("ISO-8859-1"), "UTF-8");
+			}
+		}catch(Exception e)
+		{
+			
+		}
+		return str;
+	}
+	
 }

@@ -31,6 +31,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/mk/bootstrap-markdown.css" rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/resources/blog/css/blog-home.css"
 	rel="stylesheet">
@@ -180,7 +181,8 @@
 									onsubmit="return submitAdd();">
 									<div class="form-group">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" />
-										<textarea class="form-control" rows="10" name="diarys"  id="add-diary"  data-provide="markdown"  placeholder="在此处填写内容"></textarea>
+										<input type="hidden"name="diarys"  id="add-diaryh" ></input>
+										<textarea class="form-control" rows="10" name="diarysx"  id="add-diary"  data-provide="markdown"  placeholder="在此处填写内容"></textarea>
 										<input class="form-control"  style="width: 50%" 	name="mood" placeholder="心情：心情不错"> 
 										<input class="form-control" style="width: 50%" name="weather" placeholder="天气：晴"> 
 										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"> 
@@ -201,7 +203,8 @@
 									<div class="form-group">
 										<input type="hidden" name="uid" value="${diary.uid}">
 										<input placeholder="标题" class="form-control" style="width: 100%" name="outline" value="${diary.outline}">
-										<textarea class="form-control" rows="10" name="diarys" id="mod-diary" placeholder="在此处填写内容"  data-provide="markdown">${diary.diary}</textarea>
+										<input type="hidden"name="diarys"  id="mod-diaryh" ></input>
+										<textarea class="form-control" rows="10" name="diarysx" id="mod-diary" placeholder="在此处填写内容"  data-provide="markdown">${diary.diary}</textarea>
 										<input class="form-control"  style="width: 50%" 	name="mood" placeholder="心情：心情不错" value="${diary.mood}"> 
 										<input class="form-control" style="width: 50%" name="weather" placeholder="天气：晴" value="${diary.weather}"> 
 										<input class="form-control" id="calendaradd" 	style="width: 50%" name="diaryDays"  value="<fmt:formatDate value='${diary.diaryDay}' pattern='yyyy-MM-dd'/>"> 
@@ -238,7 +241,7 @@
 						</p>
 						<hr>
 						<p>
-							<c:out value="${d.diary }"></c:out>
+							<c:out value="${d.diary }" escapeXml="false"></c:out>
 						</p>
 						<!-- <span class="icon-tags"></span> -->
 						<span  style="color: green;" class="glyphicon glyphicon-tags"></span>
@@ -410,18 +413,17 @@
 		setToday('calendaradd');
 	}
 	function submitAdd(){
-		console.log($("#add-diary").val());
-		console.log(markdown.toHTML($("#add-diary").val()));
-		return false;
+		$("#add-diaryh").val(markdown.toHTML($("#add-diary").val()));
+		//console.log($("#add-diaryh").val());
+		return true;
 	}
 	function submitMod(){
-		console.log($("#mod-diary").val());
-		console.log(markdown.toHTML($("#mod-diary").val()));
-		return false;
+		$("#mod-diaryh").val(markdown.toHTML($("#mod-diary").val()));
+		return true;
 	}
-	
-	
-	 //id="mod-diary"
-	
+
+	if($("#mod-diary").val() != null){
+		$("#mod-diary").val(toMarkdown($("#mod-diary").val()));
+	}
 </script>
 </html>
