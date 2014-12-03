@@ -167,28 +167,6 @@
 										<fmt:message key="skill" />
 									</h3>
 									<h5>
-										<fmt:message key="soft" />
-									</h5>
-									<div class="meter emerald">
-										<span style="width: 90%"><span>Eclipse</span></span>
-									</div>
-									<div class="meter emerald">
-										<span style="width: 65%"><span>Linux</span></span>
-									</div>
-									<div class="meter emerald">
-										<span style="width: 65%"><span>SVN/CVS</span></span>
-									</div>
-									<div class="meter emerald">
-										<span style="width: 80%"><span>Tomcat/Jboss</span></span>
-									</div>
-									<div class="meter asbestos">
-										<span style="width: 50%"><span>Photoshop/Dreamweaver</span></span>
-									</div>
-									<div class="meter pomengrate">
-										<span style="width: 65%"><span>Office/Visio/Project/MindManager</span></span>
-									</div>
-									<div class="break"></div>
-									<h5>
 										<fmt:message key="lag" />
 									</h5>
 									<div class="meter emerald">
@@ -206,17 +184,45 @@
 									<div class="meter emerald">
 										<span style="width: 90%"><span>SQL</span></span>
 									</div>
-									<div class="meter carrot">
+									<div class="meter emerald">
 										<span style="width: 80%"><span>MySql</span></span>
 									</div>
 									<div class="meter carrot">
 										<span style="width: 70%"><span>Mssql/Oracle</span></span>
 									</div>
-									<div class="meter wisteria">
+									<div class="meter emerald">
 										<span style="width: 85%"><span>JS/ajax/jQuery</span></span>
 									</div>
 									<div class="meter emerald">
 										<span style="width: 70%"><span>HTML/CSS</span></span>
+									</div>
+									<div class="meter asbestos">
+										<span style="width: 30%"><span>PHP/AD</span></span>
+									</div>
+									
+									<div class="break"></div>
+									
+									<h5>
+										<fmt:message key="soft" />
+									</h5>
+									<div class="meter emerald">
+										<span style="width: 90%"><span>Eclipse</span></span>
+									</div>
+									<div class="meter emerald">
+										<span style="width: 65%"><span>Linux</span></span>
+									</div>
+									<div class="meter emerald">
+										<span style="width: 65%"><span>SVN/CVS/Maven</span></span>
+									</div>
+									<div class="meter emerald">
+										<span style="width: 80%"><span>Tomcat/Jboss</span></span>
+									</div>
+									<div class="meter asbestos">
+										<span style="width: 50%"><span>Photoshop/Dreamweaver</span></span>
+									</div>
+									<!-- pomengrate -->
+									<div class="meter emerald">
+										<span style="width: 65%"><span>Office/Visio/Project/MindManager</span></span>
 									</div>
 								</div>
 							</div>

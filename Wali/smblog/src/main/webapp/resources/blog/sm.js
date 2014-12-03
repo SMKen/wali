@@ -92,3 +92,52 @@ if (typeof sm !== 'object') {
 	}();
 
 }());
+
+
+/**edit input*/
+function   combox(obj,select){   
+	this.obj=obj   
+	this.name=select;   
+	this.select=document.getElementsByName(select)[0];   
+}    
+combox.prototype.init=function(){   
+	var   inputbox="<input   name='combox_"+this.name+"'   onchange='"+this.obj+".find()'   "   
+	inputbox+="style='position:absolute;width:"+(this.select.offsetWidth-16)+";height:"+this.select.offsetHeight+";left:"+getL(this.select)+";top:"+getT(this.select)+"'>"   
+	document.write(inputbox)   
+	with(this.select.style){   
+	left=getL(this.select)   
+	top=getT(this.select)   
+	position="absolute"   
+	clip="rect(0   "+(this.select.offsetWidth)+"   "+this.select.offsetHeight+"   "+(this.select.offsetWidth-18)+")"   
+	}   
+	this.select.onchange=new   Function(this.obj+".change()")   
+	this.change()   
+		
+}   
+combox.prototype.find=function(){   
+	var   inputbox=document.getElementsByName("combox_"+this.name)[0]   
+	with(this.select){   
+	for(i=0;i<options.length;i++)   
+		if(options[i].text.indexOf(inputbox.value)==0){   
+			selectedIndex=i   
+			this.change();   
+			break;   
+		}   
+	}   
+}   
+
+combox.prototype.change=function(){   
+	var   inputbox=document.getElementsByName("combox_"+this.name)[0]   
+	inputbox.value=this.select.options[this.select.selectedIndex].text;   
+	with(inputbox){select();focus()};   
+}   
+function   getL(e){   
+	var   l=e.offsetLeft;   
+	while(e=e.offsetParent)l+=e.offsetLeft;   
+	return   l   
+}   
+function   getT(e){   
+	var   t=e.offsetTop;   
+	while(e=e.offsetParent)t+=e.offsetTop;   
+	return   t   
+}   
