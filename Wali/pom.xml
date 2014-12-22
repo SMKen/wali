@@ -10,6 +10,8 @@
 		<module>smblog</module>
 		<module>smdiary</module>
 		<module>Ken</module>
+		<module>angularjs</module>
+		<module>JavaStudy</module>
 	</modules>
 
 	<dependencyManagement>
