@@ -15,18 +15,22 @@ public class Page
 	private int pageSize = 5;
 	private int totalRecord = 0;
 	private Object data = null;
-	
-	public Page(){}
 
-	public Page(int start){
+	public Page()
+	{
+	}
+
+	public Page(int start)
+	{
 		this.startPage = start;
 	}
-	
-	public Page(int start,int pagesize){
+
+	public Page(int start, int pagesize)
+	{
 		this.startPage = start;
 		this.pageSize = pagesize;
 	}
-	
+
 	@Override
 	public String toString()
 	{
@@ -118,7 +122,7 @@ public class Page
 		this.totalRecord = totalRecord;
 		calc();
 	}
-	
+
 	public void setTotalRecord(Long totalRecord)
 	{
 		this.totalRecord = totalRecord.intValue();

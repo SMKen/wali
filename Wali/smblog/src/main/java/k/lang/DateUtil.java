@@ -33,7 +33,7 @@ public class DateUtil
 		java.text.SimpleDateFormat sfdate = new java.text.SimpleDateFormat(FORMAT_DATE_ZH);
 		return sfdate.format(date);
 	}
-	
+
 	/**
 	 * @see {@link #FORMAT_DATE_ZHMONTH}
 	 */
@@ -72,5 +72,5 @@ public class DateUtil
 			return null;
 		}
 	}
-	
+
 }

@@ -18,15 +18,17 @@ import cn.net.zhengchao.blog.vo.SmDiaryAdmin;
  * @author zc
  * @see 2014-11-3
  */
-public class IndexWeb extends BaseServelet { 
-        
+public class IndexWeb extends BaseServelet
+{
+
 	private static final long serialVersionUID = -3798714636190011663L;
+
 	public IndexWeb()
 	{
 		super();
-		logger  = LoggerFactory.getLogger(IndexWeb.class);
+		logger = LoggerFactory.getLogger(IndexWeb.class);
 	}
- 
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		mask = "index";// /lang/us/db
@@ -36,7 +38,7 @@ public class IndexWeb extends BaseServelet {
 		if (lang.equals("doLogout") || lang.equals("logout"))
 		{
 			request.getSession().removeAttribute(SESSON_ADMIN);
-			logger.debug("logout remove session : "+request.getSession().getAttribute(SESSON_ADMIN));
+			logger.debug("logout remove session : " + request.getSession().getAttribute(SESSON_ADMIN));
 			response.sendRedirect(request.getContextPath() + "/db/page/1/");
 		} else if (lang.equals("doLogin"))
 		{
@@ -48,11 +50,11 @@ public class IndexWeb extends BaseServelet {
 			if (ad != null)
 			{
 				ad.setPwd("***");
-				AdminVo av = new AdminVo(ad.getUid(),ad.getName(),ad.getLv());
+				AdminVo av = new AdminVo(ad.getUid(), ad.getName(), ad.getLv());
 				// mm.addAttribute("admins", ad);
 				request.getSession().setAttribute(SESSON_ADMIN, av);
 				response.sendRedirect(request.getContextPath() + "/db/");
-				return ;
+				return;
 			}
 			request.getSession().setAttribute("emaill", email);
 			request.getSession().setAttribute("msg", "用户名或密码不对。");
@@ -60,7 +62,7 @@ public class IndexWeb extends BaseServelet {
 		} else
 		{
 			response.sendRedirect(request.getContextPath() + "/login.jsp");
-		} 
+		}
 	}
 
 	@Override

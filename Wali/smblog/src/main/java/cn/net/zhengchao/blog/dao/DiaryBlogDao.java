@@ -26,49 +26,51 @@ import cn.net.zhengchao.blog.vo.SmDiary;
 public class DiaryBlogDao extends BaseDbutilDao
 {
 
-	public DiaryBlogDao() {
+	public DiaryBlogDao()
+	{
 		super();
-		logger  = LoggerFactory.getLogger(DiaryBlogDao.class);
+		logger = LoggerFactory.getLogger(DiaryBlogDao.class);
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Page getPage(int getPage, String[] propertys, Object[] values, String[] match)
 	{
 		Page page = new Page(getPage);
 		StringBuffer paramSql = new StringBuffer();
-		if(propertys != null && propertys.length>0)
+		if (propertys != null && propertys.length > 0)
 			if (null != propertys)
 			{
 				for (int i = 0; i < propertys.length; i++)
 				{
 					boolean add = false;
-					if(i< match.length)
+					if (i < match.length)
 					{
-						if(match[i].equals("gt"))
+						if (match[i].equals("gt"))
 						{
-							paramSql.append(" and "+propertys[i] + ">= ? ");
+							paramSql.append(" and " + propertys[i] + ">= ? ");
 							add = true;
-						}else if(match[i].equals("lt"))
+						} else if (match[i].equals("lt"))
 						{
-							paramSql.append(" and "+propertys[i] + "<= ? ");
+							paramSql.append(" and " + propertys[i] + "<= ? ");
 							add = true;
-						}else if(match[i].equals("like"))
+						} else if (match[i].equals("like"))
 						{
-							paramSql.append(" and "+propertys[i] + " like ? ");
+							paramSql.append(" and " + propertys[i] + " like ? ");
 							add = true;
 						}
 					}
-					if(!add)
+					if (!add)
 					{
-						paramSql.append(" and "+propertys[i] + " = ? ");
+						paramSql.append(" and " + propertys[i] + " = ? ");
 					}
 				}
 			}
 		String paramSqlStr = paramSql.toString();
-		if(paramSqlStr != null && paramSqlStr.startsWith(" and"))
+		if (paramSqlStr != null && paramSqlStr.startsWith(" and"))
 		{
 			paramSqlStr = " where STATUS = 1 and " + paramSqlStr.substring(4);
-		}else{
+		} else
+		{
 			paramSqlStr = " where STATUS = 1 ";
 		}
 		// 先计算总数
@@ -82,36 +84,38 @@ public class DiaryBlogDao extends BaseDbutilDao
 		}
 		try
 		{
-			 Number num = 0 ;
-			 num = (Number) queryRunner.query(conn, countSql, scalarHandler, values); 
-			 if (num != null ) {
-				 page.setTotalRecord(num.intValue());
-				 //num.longValue() : - 1 ; 
-			 }else{
-				 page.setTotalRecord(0);
-				 return page;
-			 }
-			 			
-			String pageSql  = "select * from WALI_NOTES " + paramSqlStr +" order by DIARYDAY desc,UPDATETIME desc limit ?,?"; 			 
-			List<Object> list = new ArrayList<Object>();  
-	        if(values == null)
-	        {
-	        	values = new Object[0];
-	        }
-			for (int i=0; i<values.length; i++) {  
-	            list.add(values[i]);  
-	        }  
-	        
-	        list.add(values.length,page.getStartRow());
-	        list.add(values.length+1,page.getPageSize());
-	        
-	        Object[] newParam =  list.toArray(new Object[1]);
-	        
-	        List<SmDiary> diarys = (List<SmDiary>) queryRunner.query(conn,pageSql, 
-	        		new BeanListHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")),newParam); 
-	        page.setData(diarys);
+			Number num = 0;
+			num = (Number) queryRunner.query(conn, countSql, scalarHandler, values);
+			if (num != null)
+			{
+				page.setTotalRecord(num.intValue());
+				//num.longValue() : - 1 ; 
+			} else
+			{
+				page.setTotalRecord(0);
+				return page;
+			}
+
+			String pageSql = "select * from WALI_NOTES " + paramSqlStr + " order by DIARYDAY desc,UPDATETIME desc limit ?,?";
+			List<Object> list = new ArrayList<Object>();
+			if (values == null)
+			{
+				values = new Object[0];
+			}
+			for (int i = 0; i < values.length; i++)
+			{
+				list.add(values[i]);
+			}
+
+			list.add(values.length, page.getStartRow());
+			list.add(values.length + 1, page.getPageSize());
+
+			Object[] newParam = list.toArray(new Object[1]);
+
+			List<SmDiary> diarys = (List<SmDiary>) queryRunner.query(conn, pageSql, new BeanListHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")), newParam);
+			page.setData(diarys);
 			return page;
-	        
+
 		} catch (Exception e)
 		{
 			logger.error("update record error ", e);
@@ -119,10 +123,10 @@ public class DiaryBlogDao extends BaseDbutilDao
 		{
 			closeConnecton(conn);
 		}
-		
-//		List<SmDiary> categories = (List<SmDiary>) crit.addOrder(Order.desc("createTime")).
-//				setFirstResult(page.getStartRow()).setMaxResults(page.getPageSize()).list();
-//		page.setData(categories);
+
+		//		List<SmDiary> categories = (List<SmDiary>) crit.addOrder(Order.desc("createTime")).
+		//				setFirstResult(page.getStartRow()).setMaxResults(page.getPageSize()).list();
+		//		page.setData(categories);
 		return page;
 	}
 
@@ -239,9 +243,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 		try
 		{
 			@SuppressWarnings("unchecked")
-			SmDiary vo = (SmDiary) qRunner.query(conn, "select * from WALI_NOTES where UID = ? limit 1", 
-					new BeanHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")),
-					new Object[] {uid});
+			SmDiary vo = (SmDiary) qRunner.query(conn, "select * from WALI_NOTES where UID = ? limit 1", new BeanHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")), new Object[] { uid });
 			return vo;
 		} catch (Exception e)
 		{
@@ -252,7 +254,7 @@ public class DiaryBlogDao extends BaseDbutilDao
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 获取所有的时间与标签.
 	 */
@@ -271,8 +273,8 @@ public class DiaryBlogDao extends BaseDbutilDao
 			// getSession().createQuery("select new com.wali.smdiary.entity.SmDiary(diaryDay,categorys)  from com.wali.smdiary.entity.SmDiary "
 			// ).list();
 			@SuppressWarnings("unchecked")
-			List<SmDiary> vo = (List<SmDiary>) qRunner.query(conn, "select DIARYDAY,CATEGORYS from WALI_NOTES where STATUS = 1 ", new BeanListHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")),
-					new Object[] {});
+			List<SmDiary> vo = (List<SmDiary>) qRunner.query(conn, "select DIARYDAY,CATEGORYS from WALI_NOTES where STATUS = 1 ",
+					new BeanListHandler(Class.forName("cn.net.zhengchao.blog.vo.SmDiary")), new Object[] {});
 			return vo;
 		} catch (Exception e)
 		{
